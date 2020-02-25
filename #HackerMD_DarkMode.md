@@ -48,6 +48,7 @@
 
   }
 
+
   .form-control::placeholder,
   .form-control::-webkit-input-placeholder,
   .form-control:-moz-placeholder,
@@ -1552,7 +1553,6 @@
 
  </style>
 
-`123`
 :::warning
 > 一維陣列的宣告方式如下: 
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">陣列名稱</span> = [<span style="color: lightgreen">陣列長度</span>]<span style="color: lightgreen">元素型別</span>{<span style="color: yellow">元素初始值1</span>,<span style="color: yellow">元素初始值2</span>}** 
