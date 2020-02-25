@@ -1566,7 +1566,7 @@
 
 ###### tags: `Plus` `SQL` `Redis`
 
-# SQL 學習 & Redis
+# 資料庫基礎(SQL／NoSQL)
 
 ## 安裝PostgreSQL:
 
