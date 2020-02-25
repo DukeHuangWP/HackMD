@@ -35,8 +35,11 @@
     color: #ddd;
   }
 
-  hr {
+  hr  {
     border-color: #6d6d6d;
+  }
+  .part code{
+    background-color: #999900;
   }
 
   /* form */
