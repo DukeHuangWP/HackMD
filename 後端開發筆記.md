@@ -1,4 +1,3 @@
-
 <style>
 
 
@@ -7,7 +6,6 @@
   body[style],
   body[style*="background-color: white;"] {
     background-color: #444444 !important;
-
   }
 
   body {
@@ -22,6 +20,7 @@
     background: #444444;
     color: #abb2bf;
   }
+  
 
 
 
@@ -35,7 +34,9 @@
     color: #ddd;
   }
 
-  hr {
+  hr,
+  code{
+    background-color: #999900 !important;
     border-color: #6d6d6d;
   }
 
@@ -55,11 +56,7 @@
   }
 
   /*--------------- navbar ---------------*/
-  .header {
-    background-color: #0e0e0e;
-    border-color: #0e0e0e;
-  }
-
+  .header,
   .navbar {
     background-color: #0e0e0e;
     border-color: #0e0e0e;
@@ -83,12 +80,7 @@
   }
 
 
-  .navbar .btn-group label.active {
-    background-color: #555;
-    color: #eee;
-    border-color: #555;
-  }
-
+  .navbar .btn-group label.active,
   .navbar .btn-group label.active:focus,
   .navbar .btn-group label.active:hover {
     background-color: #555;
