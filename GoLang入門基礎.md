@@ -1884,24 +1884,33 @@ for go goto if range return select switch
 ---
 ### Go 變數之數值範圍(整數、浮點數)
 > ==`uint8`==    正整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^0)到![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^8)
+> 
 > ==`uint16`==    正整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^0)到![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{16})
+> 
 > ==`uint32`==    正整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^0)到![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{32})
+> 
 > ==`uint64`==    正整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^0)到![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{64})
->
+> 
 > ==` int8`==    整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-2^{8-1}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{8-1}-1)
+>
 > ==`int16`==    整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-2^{16-1}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{16-1}-1)
+>
 > ==`int32`==    整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-2^{32-1}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{32-1}-1)
+> 
 > ==`int64`==    整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-2^{64-1}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{64-1}-1)
 >
 >
 > 
 > ==`float32`==    數值範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-1.40...\times10^{-45}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=3.40...\times10^{38})
+> 
 > ==`float64`==    數值範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-4.94...\times10^{-324}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=1.79...\times10^{308})
 >
 > ==`complex64 `==  the set of all complex numbers with float32 real and imaginary parts
+> 
 > ==`complex128`==  the set of all complex numbers with float64 real and imaginary parts
->
+> 
 > ==`byte`==        alias for uint8
+> 
 > ==`rune`==        alias for int32
 
 ---
@@ -1912,18 +1921,31 @@ for go goto if range return select switch
 > 2. Go字串變數一但賦值後不可以任意修改字元，必須重新給予賦值才能修改
 > 
 > ==`\a`== → U+0007 alert or bell
+> 
 > ==`\b`== → U+0008 backspace
+> 
 > ==`\f`== → U+000C form feed
+> 
 > ==`\n`== → U+000A line feed or newline
+> 
 > ==`\r`== → U+000D carriage return
+> 
 > ==`\t`== → U+0009 horizontal tab
+> 
 > ==`\v`== → U+000b vertical tab
+> 
 > ==`\\`== → U+005c backslash
+> 
 > ==`\"`== → U+0022 double quote
+> 
 > ==`\ooo`== → o is octal digit.
+> 
 > ==`\xhh`== → a byte. h here is a hexadecimal digit.
+> 
 > ==`\uhhhh`== → a Unicode character whose codepoint can be expressed in 4 hexadecimal digits. (pad 0 in front)
+> 
 > ==`\Uhhhhhhhh`== → a Unicode character whose codepoint can be expressed in 8 hexadecimal digits. (pad 0 in front)
+> 
 > 
 > http://xahlee.info/comp/unicode_character_representation.html
 > ### Go語言變數基礎 - 字元編碼:
@@ -2907,8 +2929,8 @@ func main() {
 > <div class="panel-body">
 > 
 >  
-> > <span style="color: DeepSkyBlue">**if**</span> <span style="color: DodgerBlue">**條件判斷式** </span>{
-> > <span style="color: red">　　執行內容1...</span>
+> > <span style="color: DeepSkyBlue">**if**</span> <span style="color: DodgerBlue">**條件判斷式** </span>{\
+> > <span style="color: red">　　執行內容1...</span>\
 > > **}**
 > </div>
 > 
@@ -2916,37 +2938,37 @@ func main() {
 > <div class="panel-body">
 > 
 >  
-> > <span style="color: DeepSkyBlue">**if**</span> <span style="color: yellow">**宣告初始化變數**</span>**;**<span style="color: DodgerBlue">**條件判斷式** </span>{
-> > <span style="color: red">　　執行內容1...</span>
-> > **}** <span style="color: DeepSkyBlue">**else if**</span> **{**
-> > <span style="color: red">　　執行內容2...</span> 
-> > **}** <span style="color: DeepSkyBlue">**else**</span> **{**
-> > <span style="color: red">　　執行內容3...</span> 
+> > <span style="color: DeepSkyBlue">**if**</span> <span style="color: yellow">**宣告初始化變數**</span>**;**<span style="color: DodgerBlue">**條件判斷式** </span>{\
+> > <span style="color: red">　　執行內容1...</span>\
+> > **}** <span style="color: DeepSkyBlue">**else if**</span> **{**\
+> > <span style="color: red">　　執行內容2...</span>\
+> > **}** <span style="color: DeepSkyBlue">**else**</span> **{**\
+> > <span style="color: red">　　執行內容3...</span>\
 > > **}**
 > </div>
 > 
 > ### Go 語言的結構控制 - ( switch 最簡式 )
 > <div class="panel-body">
 > 
-> > <span style="color: DeepSkyBlue">**switch**</span> {
-> > 　**case** <span style="color: yellow">判斷變數值</span>**:**
-> > <span style="color: red">　　執行內容...</span>
+> > <span style="color: DeepSkyBlue">**switch**</span> {\
+> > 　**case** <span style="color: yellow">判斷變數值</span>**:**\
+> > <span style="color: red">　　執行內容...</span>\
 > > **}**
 > </div>
 > 
 > ### Go 語言的結構控制 - ( switch 完整式 )
 > <div class="panel-body">
 > 
-> > <span style="color: DeepSkyBlue">**switch**</span> <span style="color: orange">**宣告判斷變數**</span>{
-> > 　**case** <span style="color: yellow">判斷變數值1</span>**:**
-> > <span style="color: red">　　 執行內容1...</span>
-> >  　 　<span style="color: magenta">**fallthrough**</span>
-> > 　**case** <span style="color: yellow">判斷變數值2</span>**:**
-> > <span style="color: red">　　 執行內容2...</span>
-> > 　**case** <span style="color: yellow">判斷變數值3</span>**:**
-> > <span style="color: red">　　 執行內容3...</span>
+> > <span style="color: DeepSkyBlue">**switch**</span> <span style="color: orange">**宣告判斷變數**</span>{\
+> > 　**case** <span style="color: yellow">判斷變數值1</span>**:**\
+> > <span style="color: red">　　 執行內容1...</span>\
+> >  　 　<span style="color: magenta">**fallthrough**</span>\
+> > 　**case** <span style="color: yellow">判斷變數值2</span>**:**\
+> > <span style="color: red">　　 執行內容2...</span>\
+> > 　**case** <span style="color: yellow">判斷變數值3</span>**:**\
+> > <span style="color: red">　　 執行內容3...</span>\
 > > 　**default:**
-> > <span style="color: red">　　 執行內容(最後)...</span>
+> > <span style="color: red">　　 執行內容(最後)...</span>\
 > > **}**
 > 
 > ==`fallthrough`== 該保留字會在 ==`執行內容1`== 完成後繼續執行 ==`變數判斷式2`==
@@ -3048,9 +3070,9 @@ func main() {
 > ### Go 語言的結構控制 - ( for 最簡式 )
 > <div class="panel-body">
 >
-> > <span style="color: DeepSkyBlue">**for**</span> **{**
-> > <span style="color: red">　  　 執行內容...</span>
-> > <span style="color: magenta">　　　**break** </span>
+> > <span style="color: DeepSkyBlue">**for**</span> **{**\
+> > <span style="color: red">　  　 執行內容...</span>\
+> > <span style="color: magenta">　　　**break** </span>\
 > > **}**
 > 
 > 執行內容會直到 ==`break`== 後或是利用 ==`goto`== 跳出迴圈才會中斷，否則為無限迴圈 
@@ -3059,8 +3081,8 @@ func main() {
 > ### Go 語言的結構控制 - ( for 普通式 )
 > <div class="panel-body">
 >
-> > <span style="color: DeepSkyBlue">**for**</span> <span style="color: DodgerBlue">**條件判斷式** </span>{
-> > <span style="color: red">　  　 執行內容...</span>
+> > <span style="color: DeepSkyBlue">**for**</span>\ <span style="color: DodgerBlue">**條件判斷式** </span>{\
+> > <span style="color: red">　  　 執行內容...</span>\
 > > **}**
 > 
 > 執行內容會在 ==`條件判斷式`== 為false後中斷迴圈，也可使用 ==`break`== 或 ==`goto`== 中斷迴圈 
@@ -3071,8 +3093,8 @@ func main() {
 > ### Go 語言的結構控制 - ( for 完整式 )
 > <div class="panel-body">
 >
-> > <span style="color: DeepSkyBlue">**for**</span> <span style="color: yellow">**宣告初始化變數**</span>;<span style="color: DodgerBlue">**條件判斷式** </span>;<span style="color: Orange">**每次執行式** </span>{
-> > <span style="color: red">　  　 執行內容...</span>
+> > <span style="color: DeepSkyBlue">**for**</span> <span style="color: yellow">**宣告初始化變數**</span>;<span style="color: DodgerBlue">**條件判斷式** </span>;<span style="color: Orange">**每次執行式** </span>{\
+> > <span style="color: red">　  　 執行內容...</span>\
 > > **}**
 > 
 > 執行內容會在 ==`條件判斷式`== 為false後中斷迴圈，也可使用 ==`break`== 或 ==`goto`== 中斷迴圈。 ==`每次執行式`== 為每次迴圈 ==`執行內容`== 前都要執行一次。
@@ -4028,4 +4050,3 @@ func main() {
 
 
 ``` 
-
