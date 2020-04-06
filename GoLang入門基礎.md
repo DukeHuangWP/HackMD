@@ -1560,8 +1560,8 @@
 
 ### Go 語言的重要特色
 > 
-> 1. 編譯副檔名必須為 ``.go``，預設以 ``UTF-8``編碼
-> 2. 語句結尾可加入 ``;``號或者不加，語句結尾必須換行分隔
+> 1. 編譯副檔名必須為 ==`.go`==，預設以 ==`UTF-8`== 編碼
+> 2. 語句結尾可加入 ==`;`== 號或者不加，語句結尾必須換行分隔
 > 3. GoLang所有程式碼必須命名並編為一個Package
 > 4. GoLang不允許Package import引入後卻未使用
 > 5. GoLang不允許區域內變數宣告後卻從未使用
@@ -1721,7 +1721,7 @@
 > **[⁴]**	https://ithelp.ithome.com.tw/articles/10194019
 > **[⁵]**	https://www.ithome.com.tw/node/57227
 > **[⁶]**	https://kknews.cc/zh-tw/tech/bxgj5xo.html
-> > ==此表格為本hackmd作者所整理，雖嚴謹查證資料但不保證內容完美無誤==
+> > ==`此表格為本hackmd作者所整理，雖嚴謹查證資料但不保證內容完美無誤`==
 
 ---
 
@@ -1751,10 +1751,10 @@ for go goto if range return select switch
 
 ### Go 語言的變數宣告方式
 > 
-> 1. Go預設變數宣告時若未賦值則為預設值為 ==(數字=0、字串為空、邏輯值為false)==
+> 1. Go預設變數宣告時若未賦值則為預設值為(數字=0、字串為空、邏輯值為false)
 > 2. Go變數宣告可依據所賦值判斷資料型別
 > 3. 整數變數賦值預設型別為int、小數和指數為float64、字串為string
-> 4. 可使用 ``:=``指令免去使用 ``var``宣告，但不能在函數以外作宣告使用
+> 4. 可使用 ==`:=`== 指令免去使用 ==`var`== 宣告，但不能在函數以外作宣告使用
 > 5. 變數命名首字大寫，則該變數Package之外可見(Exported)
 > 
 > 
@@ -1775,7 +1775,7 @@ for go goto if range return select switch
 > 	var m1, m2, m3 = 1, "Text", 2
 > 	fmt.Println("\r", m1, "\n", m2, "\n", m3, "\n")
 > 
-> 	//3. 可使用 ``:=``指令免去使用 ``var``宣告，但不能宣告原先以有變數名稱
+> 	//3. 可使用 ==`:=`== 指令免去使用 ==`var`== 宣告，但不能宣告原先以有變數名稱
 > 	p1, p2, p3 := 100, "PString", 220
 > 	fmt.Println("\r", p1, "\n", p2, "\n", p3, "\n")
 > 
@@ -1789,8 +1789,8 @@ for go goto if range return select switch
 > }
 > ```
 
-### Go 語言變數與 ``+``號運算
-> 1. Go預設變數之整數類型預設為 ``int``
+### Go 語言變數與 ==`+`== 號運算
+> 1. Go預設變數之整數類型預設為 ==`int`==
 > 2. 數值必須型別完全相同才可以運算，必須透過轉換
 > 3. 字串之間使用+號可以進行拼接
 > 4. 浮點轉換或計算可能失去精確度
@@ -1883,35 +1883,35 @@ for go goto if range return select switch
 
 ---
 ### Go 變數之數值範圍(整數、浮點數)
-> ``uint8``   正整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^0)到![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^8)
+> ==`uint8`==    正整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^0)到![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^8)
 > 
-> ``uint16``   正整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^0)到![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{16})
+> ==`uint16`==    正整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^0)到![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{16})
 > 
-> ``uint32``   正整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^0)到![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{32})
+> ==`uint32`==    正整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^0)到![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{32})
 > 
-> ``uint64``   正整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^0)到![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{64})
+> ==`uint64`==    正整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^0)到![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{64})
 > 
-> `` int8``   整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-2^{8-1}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{8-1}-1)
+> ==` int8`==    整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-2^{8-1}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{8-1}-1)
 >
-> ``int16``   整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-2^{16-1}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{16-1}-1)
+> ==`int16`==    整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-2^{16-1}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{16-1}-1)
 >
-> ``int32``   整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-2^{32-1}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{32-1}-1)
+> ==`int32`==    整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-2^{32-1}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{32-1}-1)
 > 
-> ``int64``   整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-2^{64-1}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{64-1}-1)
+> ==`int64`==    整數範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-2^{64-1}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=2^{64-1}-1)
 >
 >
 > 
-> ``float32``   數值範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-1.40...\times10^{-45}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=3.40...\times10^{38})
+> ==`float32`==    數值範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-1.40...\times10^{-45}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=3.40...\times10^{38})
 > 
-> ``float64``   數值範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-4.94...\times10^{-324}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=1.79...\times10^{308})
+> ==`float64`==    數值範圍: ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=-4.94...\times10^{-324}) 到 ![](http://chart.googleapis.com/chart?chf=bg,s,444444&chco=EEEEEE&cht=tx&chl=1.79...\times10^{308})
 >
-> ``complex64 `` the set of all complex numbers with float32 real and imaginary parts
+> ==`complex64 `==  the set of all complex numbers with float32 real and imaginary parts
 > 
-> ``complex128`` the set of all complex numbers with float64 real and imaginary parts
+> ==`complex128`==  the set of all complex numbers with float64 real and imaginary parts
 > 
-> ``byte``       alias for uint8
+> ==`byte`==        alias for uint8
 > 
-> ``rune``       alias for int32
+> ==`rune`==        alias for int32
 
 ---
 
@@ -1920,31 +1920,31 @@ for go goto if range return select switch
 > 1. Go字串變數預設編碼皆為UTF-8
 > 2. Go字串變數一但賦值後不可以任意修改字元，必須重新給予賦值才能修改
 > 
-> ``\a``→ U+0007 alert or bell
+> ==`\a`== → U+0007 alert or bell
 > 
-> ``\b``→ U+0008 backspace
+> ==`\b`== → U+0008 backspace
 > 
-> ``\f``→ U+000C form feed
+> ==`\f`== → U+000C form feed
 > 
-> ``\n``→ U+000A line feed or newline
+> ==`\n`== → U+000A line feed or newline
 > 
-> ``\r``→ U+000D carriage return
+> ==`\r`== → U+000D carriage return
 > 
-> ``\t``→ U+0009 horizontal tab
+> ==`\t`== → U+0009 horizontal tab
 > 
-> ``\v``→ U+000b vertical tab
+> ==`\v`== → U+000b vertical tab
 > 
-> ``\\``→ U+005c backslash
+> ==`\\`== → U+005c backslash
 > 
-> ``\"``→ U+0022 double quote
+> ==`\"`== → U+0022 double quote
 > 
-> ``\ooo``→ o is octal digit.
+> ==`\ooo`== → o is octal digit.
 > 
-> ``\xhh``→ a byte. h here is a hexadecimal digit.
+> ==`\xhh`== → a byte. h here is a hexadecimal digit.
 > 
-> ``\uhhhh``→ a Unicode character whose codepoint can be expressed in 4 hexadecimal digits. (pad 0 in front)
+> ==`\uhhhh`== → a Unicode character whose codepoint can be expressed in 4 hexadecimal digits. (pad 0 in front)
 > 
-> ``\Uhhhhhhhh``→ a Unicode character whose codepoint can be expressed in 8 hexadecimal digits. (pad 0 in front)
+> ==`\Uhhhhhhhh`== → a Unicode character whose codepoint can be expressed in 8 hexadecimal digits. (pad 0 in front)
 > 
 > 
 > http://xahlee.info/comp/unicode_character_representation.html
@@ -2290,7 +2290,7 @@ func main() {
 1. 函數內部宣告的變數僅能在該函數域內使用，稱為局部變數(Local Variable)
 2. 函數外部宣告的變數稱為全域變數(Global Variable)
 3. 將全域變數首字母命名為大寫者，表示該變數可供其他Package使用，小寫者僅能於該Package內使用
-4. ``if``,``switch``,``for``... 等判斷式或區域內所宣告變數僅能在該函數內使用
+4. ==`if`== ==`switch`== ==`for`== ... 等判斷式或區域內所宣告變數僅能在該函數內使用
 
 ### Go 語言常量宣告與iota
 > ```go=
@@ -2326,8 +2326,8 @@ func main() {
 
 ---
 ### Go 語言算數運算子(Operators)
-> 1. ``++``和 ``--``必須放置變數右邊，必須獨立使用(自成一行)
-> 2. ``%``號運算結果 = ``被除數-(被除數/除數)*除數``
+> 1. ==`++`== 和 ==`--`== 必須放置變數右邊，必須獨立使用(自成一行)
+> 2. ==`%`== 號運算結果 = ==`被除數-(被除數/除數)*除數`==
 > 
 > 資料參考:https://www.tutorialspoint.com/go/go_operators.htm
 > |算數運算子(Arithmetic Operator)|二元運算子(Bitwise Operator)|關係運算子(Relational Operator)|邏輯運算子(Logical Operator)|位址運算子(Adress Operator)|接收運算子(Receive Operator)|
@@ -2343,27 +2343,27 @@ func main() {
 > ||賦值運算子|(Assignment Operators)|
 > |-   |-        |-   |
 > | =  |賦值運算   |  |
-> | ++  |自減賦值運算   | ``O++``→ ``O=O+1`` |
-> | ```--``` |自減賦值運算   | ``O--``→ ``O=O-1`` |
-> |+=  |相加後賦值 |``O+=A``→ ``O=O+A``|
-> |-=  |相減後賦值 |``O-=A``→ ``O=O-A``|
-> |*=  |相乘後賦值 |``O*=A``→ ``O=O*A``|
-> |/=  |相除後賦值 |``O/=A``→ ``O=O/A`` |
-> |%=  |求餘後賦值 |``O%=A``→ ``O=O%A`` |
-> |<<= |左移後賦值 |``O<<=A``→ ``O=O<<A``|
-> |>>= |右移後賦值 |``O>>=A``→ ``O=O>>A``|
-> |&=  |按位與後赋值|``O&=A``→ ``O=O&A`` |
-> |^=  |按位異或後赋值|``O^A``→ ``O=O^A`` |
-> |`|`=|按位或後赋值| `` O|=A →``→ ``O=O|A`` |
+> | ++  |自減賦值運算   | ==`O++`== → ==`O=O+1`==  |
+> | ==``--``==  |自減賦值運算   | ==`O--`== → ==`O=O-1`==  |
+> |+=  |相加後賦值 |==`O+=A`== → ==`O=O+A`== |
+> |-=  |相減後賦值 |==`O-=A`== → ==`O=O-A`== |
+> |*=  |相乘後賦值 |==`O*=A`== → ==`O=O*A`== |
+> |/=  |相除後賦值 |==`O/=A`== → ==`O=O/A`==  |
+> |%=  |求餘後賦值 |==`O%=A`== → ==`O=O%A`==  |
+> |<<= |左移後賦值 |==`O<<=A`== → ==`O=O<<A`== |
+> |>>= |右移後賦值 |==`O>>=A`== → ==`O=O>>A`== |
+> |&=  |按位與後赋值|==`O&=A`== → ==`O=O&A`==  |
+> |^=  |按位異或後赋值|==`O^A`== → ==`O=O^A`==  |
+> |`|`=|按位或後赋值| ==` O|=A →`== → ==`O=O|A`==  |
 > 
 > |Category | Operator | Associativity|
 > | - | - | - | -  |
-> |Postfix | ``()````[]````<-````.``| Left to right|
-> |Unary | ``+````-````!````~````++````--````*(type)````&````sizeof``| Right to left|
+> |Postfix | ==`()`== ==`[]`== ==`<-`== ==`.`== | Left to right|
+> |Unary | ==`+`== ==`-`== ==`!`== ==`~`== ==`++`== ==`--`== ==`*(type)`== ==`&`== ==`sizeof`== | Right to left|
 > |Multiplicative | * / % | Left to right|
 > |Additive | + - | Left to right|
 > |Shift | << >> | Left to right|
-> |Relational | ``<````<=````>````>=``| Left to right|
+> |Relational | ==`<`== ==`<=`== ==`>`== ==`>=`== | Left to right|
 > |Equality | == != | Left to right|
 > |Bitwise AND | & | Left to right|
 > |Bitwise XOR | ^ | Left to right|
@@ -2371,7 +2371,7 @@ func main() {
 > |Logical AND | && | Left to right|
 > |Logical OR | `||` | Left to right|
 > |Conditional | ?: | Right to left|
-> |Assignment | ``=`` ``+=`` ``+=`` ``-=`` ``*=`` ``/=`` ``%=`` ``>>=`` ``<<=`` ``&=`` ``^=`` `|=` | Right to left|
+> |Assignment | ==`=`== ==`+=`== ==`+=`== ==`-=`== ==`*=`== ==`/=`== ==`%=`== ==`>>=`== ==`<<=`== ==`&=`== ==`^=`== ==`|=`== | Right to left|
 > |Comma | , | Left to right|
 > 
 > 
@@ -2627,13 +2627,13 @@ func main() {
 > |strings.Contains|檢查字串是否包含有該字元|(被檢查字串,搜尋字串)|(bool)|
 > |strings.HasPrefix|檢查該字串是否以該字串為開頭|(被檢查字串,搜尋字串)|(bool)|
 > |strings.HasSuffix|檢查該字串是否以該字串為結尾|(被檢查字串,搜尋字串)|(bool)|
-> |strings.Count|統計字串的該字串數量|(被統計字串,搜尋字串)|(int)|
+> |strings.Count|統計字串的字元種類數|(被統計字串,搜尋字串)|(int)|
 > |strings.Index|計算字串位於該中所在位置(由左至右第一位)|(被計算字串,搜尋字串)|(int) (0表示首位 -1表示搜尋不到)|
 > |strings.LastIndex|計算字串位於該中所在位置(由右至左第一位)|(被計算字串,搜尋字串)|(int) (0表示首位 -1表示搜尋不到)|
 > |strings.ToUpper|將字串內的字元之英文字母改成大寫|(string)|(string)|
 > |strings.ToLower|將字串內的字元之英文字母改成小寫|(string)|(string)|
-> |strings.Replace|將字串內的特定字串取代成另一字串(+由左至右/-由右至左)|(原始字串,搜尋字串,修改字串,±取代次數)|(string)|
-> |strings.ReplaceAll|將字串內的所有特定字串取代成另一字串|(原始字串,搜尋字串,修改字串)|(string)|
+> |strings.Replace|將字串內的特定字串取代成另一字串(+由左至右/-由右至左)|(原始字串,被取代字串,搜尋字串,±取代次數)|(string)|
+> |strings.ReplaceAll|將字串內的所有特定字串取代成另一字串|(原始字串,被取代字串,搜尋字串)|(string)|
 > |strings.TrimSpace|將字串最靠左與最靠右之空白與"\n\t\r"去除|(string)|(string)|
 > |strings.TrimPrefix|將字串最靠左特定字串去除|(原始字串,去除字串)|(string)|
 > |strings.TrimSuffix|將字串最靠右特定字串去除|(原始字串,去除字串)|(string)|
@@ -2740,7 +2740,7 @@ func main() {
 > 編譯器皆會分配記憶體空間給變數，實值型別變數皆有被分配固定的記憶體地址，該地址稱為依型別分類稱為變數的指標(Pointer)，其宣告方式如下:
 > > <span style="color: DeepSkyBlue">**var**</span> <span style="color: DodgerBlue">**指標名稱**</span> *<span style="color: lightgreen">實值型別</span>
 >
-> 此宣告表示該型別的指標(程式碼中必位於 ``var``右側與 ``=``的左側)
+> 此宣告表示該型別的指標(程式碼中必位於 ==`var`== 右側與 ==`=`== 的左側)
 > 不同型別的之間指標視為不同型別的變數，故無法交換或賦值
 >
 
@@ -2752,7 +2752,7 @@ func main() {
 > 實值型別變數中的基本型別變數: 邏輯值、數值、字串，皆可直接獲取該類變數的指標:
 > > <span style="color: yellow">**被賦值的變數名稱**</span> = *<span style="color: DodgerBlue">**指標名稱**</span>
 >
-> 指標即代表某變數所指向的記憶體地址， ``*指標名稱``位於程式碼 ``=``的右側，即代表該變數的值。( ``*指標名稱``在此可視為該變數的另類表示法)
+> 指標即代表某變數所指向的記憶體地址， ==`*指標名稱`== 位於程式碼 ==`=`== 的右側，即代表該變數的值。( ==`*指標名稱`== 在此可視為該變數的另類表示法)
 >
 >
 >
@@ -2762,10 +2762,10 @@ func main() {
 <div class="panel-body">
 
 > 
-> 實值型別變數可直接使用 ``&``符號獲取該變數的記憶體地址，該記憶體地址可以直接作賦值給指標:
+> 實值型別變數可直接使用 ==`&`== 符號獲取該變數的記憶體地址，該記憶體地址可以直接作賦值給指標:
 > > <span style="color: DodgerBlue">**指標名稱**</span> = &<span style="color: yellow">**變數名稱**</span>
 >
-> ``&變數``位於程式碼 ``=``的右側，即代表該變數的地址。
+> ==`&變數`== 位於程式碼 ==`=`== 的右側，即代表該變數的地址。
 >
 >
 >
@@ -2777,7 +2777,7 @@ func main() {
 <div class="panel-body">
 
 > 
-> 指標可使用 ``*``符號直接對記憶體地址作賦值:
+> 指標可使用 ==`*`== 符號直接對記憶體地址作賦值:
 > > *<span style="color: DodgerBlue">**指標名稱**</span> = <span style="color: orange">**值**</span>
 >
 >
@@ -2951,7 +2951,7 @@ func main() {
 > <div class="panel-body">
 > 
 > > <span style="color: DeepSkyBlue">**switch**</span> {\
-> > 　**case** <span style="color: yellow">判斷變數值1,判斷變數值2, .... </span>**:**\
+> > 　**case** <span style="color: yellow">判斷變數值</span>**:**\
 > > <span style="color: red">　　執行內容...</span>\
 > > **}**
 > </div>
@@ -2960,7 +2960,7 @@ func main() {
 > <div class="panel-body">
 > 
 > > <span style="color: DeepSkyBlue">**switch**</span> <span style="color: orange">**宣告判斷變數**</span>{\
-> > 　**case** <span style="color: yellow">判斷變數值1a,判斷變數值1b, .... </span>**:**\
+> > 　**case** <span style="color: yellow">判斷變數值1</span>**:**\
 > > <span style="color: red">　　 執行內容1...</span>\
 > >  　 　<span style="color: magenta">**fallthrough**</span>\
 > > 　**case** <span style="color: yellow">判斷變數值2</span>**:**\
@@ -2971,7 +2971,7 @@ func main() {
 > > <span style="color: red">　　 執行內容(最後)...</span>\
 > > **}**
 > 
-> ``fallthrough``該保留字會在 ``執行內容1``完成後繼續執行 ``變數判斷式2``
+> ==`fallthrough`== 該保留字會在 ==`執行內容1`== 完成後繼續執行 ==`變數判斷式2`==
 >
 > </div>
 > 
@@ -3075,17 +3075,17 @@ func main() {
 > > <span style="color: magenta">　　　**break** </span>\
 > > **}**
 > 
-> 執行內容會直到 ``break``後或是利用 ``goto``跳出迴圈才會中斷，否則為無限迴圈 
+> 執行內容會直到 ==`break`== 後或是利用 ==`goto`== 跳出迴圈才會中斷，否則為無限迴圈 
 > </div>
 > 
 > ### Go 語言的結構控制 - ( for 普通式 )
 > <div class="panel-body">
 >
-> > <span style="color: DeepSkyBlue">**for**</span> <span style="color: DodgerBlue">**條件判斷式** </span>**{**\
+> > <span style="color: DeepSkyBlue">**for**</span>\ <span style="color: DodgerBlue">**條件判斷式** </span>{\
 > > <span style="color: red">　  　 執行內容...</span>\
 > > **}**
 > 
-> 執行內容會在 ``條件判斷式``為false後中斷迴圈，也可使用 ``break``或 ``goto``中斷迴圈 
+> 執行內容會在 ==`條件判斷式`== 為false後中斷迴圈，也可使用 ==`break`== 或 ==`goto`== 中斷迴圈 
 > 
 >
 > </div>
@@ -3097,7 +3097,7 @@ func main() {
 > > <span style="color: red">　  　 執行內容...</span>\
 > > **}**
 > 
-> 執行內容會在 ``條件判斷式``為false後中斷迴圈，也可使用 ``break``或 ``goto``中斷迴圈。 ``每次執行式``為每次迴圈 ``執行內容``前都要執行一次。
+> 執行內容會在 ==`條件判斷式`== 為false後中斷迴圈，也可使用 ==`break`== 或 ==`goto`== 中斷迴圈。 ==`每次執行式`== 為每次迴圈 ==`執行內容`== 前都要執行一次。
 > 
 >
 > </div>
@@ -3314,11 +3314,11 @@ func main() {
 
 ### Go 語言的包(Package)使用說明
 > 
-> 1. 每個程式碼 ``.go``必須歸屬一個package
-> 2. 歸屬同一個package之 ``.go``變數名稱不得重複
-> 3. 歸屬同一個package之 ``.go``檔案必須位於同一資料夾
-> 4. import導入package可自訂抬頭名稱，資料夾路徑為 ``%GOPATH%/src``目錄下
-> 5. 若要將package編譯成執行檔，必須將主程式歸屬於 ``package main``當中，執行檔將由 ``func init()``然後 ``func main()``開始執行。
+> 1. 每個程式碼 ==`.go`== 必須歸屬一個package
+> 2. 歸屬同一個package之 ==`.go`== 變數名稱不得重複
+> 3. 歸屬同一個package之 ==`.go`== 檔案必須位於同一資料夾
+> 4. import導入package可自訂抬頭名稱，資料夾路徑為 ==`%GOPATH%/src`== 目錄下
+> 5. 若要將package編譯成執行檔，必須將主程式歸屬於 ==`package main`== 當中，執行檔將由 ==`func init()`== 然後 ==`func main()`== 開始執行。
 > 
 > 
 > ### Package使用範例:
@@ -3351,7 +3351,7 @@ func main() {
 > ```
 > 
 > 
->  ``Package_main.go:``
+>  ==`Package_main.go:`== 
 > ``` go=
 > package main
 > import (
@@ -3372,7 +3372,7 @@ func main() {
 > }
 > ``` 
 > 
->  ``Package_Test1.go:``
+>  ==`Package_Test1.go:`== 
 > ``` go=
 > //package main可透過import導入並使用大寫開頭名稱之變數
 > //package main不可由import導入小寫開頭名稱之變數
@@ -3381,28 +3381,28 @@ func main() {
 > var Gstring_Name_Test1 = "測試1"
 > ``` 
 > 
->  ``Package_Test2-1.go:``
+>  ==`Package_Test2-1.go:`== 
 > ``` go=
 > //歸屬同一個package(同目錄)的Package_Test2-1.go之變數名稱不得重複
 > package Package_Test2
 > var Gstring_Name_Test2_1 = "測試2-1"
 > ``` 
 > 
->  ``Package_Test2-2.go:``
+>  ==`Package_Test2-2.go:`== 
 > ``` go=
 > //歸屬同一個package(同目錄)的Package_Test2-2.go之變數名稱不得重複複
 > package Package_Test2
 > var Gstring_Name_Test2_2 = "測試2-2"
 > ``` 
 > 
->  ``Package_Test3-1.go:``
+>  ==`Package_Test3-1.go:`== 
 > ``` go=
 > //package main可使用import更名避免重複的package名稱
 > package Package_Test2
 > var Gstring_Name_Test2_1 = "測試2-1"
 > ``` 
 > 
->  ``Package_Test2-2.go:``
+>  ==`Package_Test2-2.go:`== 
 > ``` go=
 > //package main可使用import更名避免重複的package名稱
 > package Package_Test2
@@ -3785,7 +3785,7 @@ func main() {
 
 ```
 > 閉包應用驗:
-> ``Package_main.go:``
+> ==`Package_main.go:`== 
 > ``` go=
 > package main
 > 
@@ -3838,7 +3838,7 @@ func main() {
 > 
 > ``` 
 > 
->  ``閉包概念/Packpage/Packpage.go:``
+>  ==`閉包概念/Packpage/Packpage.go:`== 
 >  ``` go=
 > package Package_ClosureTest
 > 
