@@ -3024,3 +3024,488 @@ func (input Console) toSliceEMIF() ([]interface{}, error) {
 }
 
 ```
+
+### Go : 檔案系統操作:
+```go=
+package main
+
+import (
+	"bufio"
+	"errors"
+	"io"
+	"io/ioutil"
+	"net/http"
+	"os"
+	"strconv"
+)
+
+// os.O_WRONLY: 只寫
+// os.O_CREATE: 創建文件(如果文件不存在)
+// os.O_RDONLY: 只讀
+// os.O_RDWR: 讀寫皆可
+// os.O_APPEND: 尾部加入
+// os.O_TRUNC: 清空(文件存在情況下)
+// 第三個參數設置權限控制
+
+
+
+func fc_GetPWD() string {
+	vs_WorkingDir, _ := os.Getwd()
+	return vs_WorkingDir
+}
+
+func fc_SetPWD(FilePathInput string) error {
+	err := os.Chdir(FilePathInput)
+	return err
+}
+
+func fc_GetEnv(EnvVarName string) (EnvVarValue string) {
+	return os.Getenv(EnvVarName)
+}
+
+func fc_GetAllEnv(EnvVarName string) (AllEnvVarValues []string) {
+	return os.Environ()
+}
+
+func fc_GetPathList(FilePathInput string) (FolderList []string, err error) {
+	pty_OpenFile, err := os.Open(FilePathInput)
+	if err != nil {
+		return FolderList, err
+	}
+
+	ty_FileInfos, err := pty_OpenFile.Readdir(-1)
+	pty_OpenFile.Close()
+	if err != nil {
+		return FolderList, err
+	}
+	for _, value := range ty_FileInfos {
+			FolderList = append(FolderList, value.Name())
+	}
+	return FolderList, nil
+}
+
+func fc_GetFolderList(FilePathInput string) (FolderList []string, err error) {
+	pty_OpenFile, err := os.Open(FilePathInput)
+	if err != nil {
+		return FolderList, err
+	}
+
+	ty_FileInfos, err := pty_OpenFile.Readdir(-1)
+	pty_OpenFile.Close()
+	if err != nil {
+		return FolderList, err
+	}
+	for _, value := range ty_FileInfos {
+		if value.IsDir(){
+			FolderList = append(FolderList, value.Name())
+		}
+	}
+	return FolderList, nil
+}
+
+func fc_GetFileList(FilePathInput string) (FolderList []string, err error) {
+	pty_OpenFile, err := os.Open(FilePathInput)
+	if err != nil {
+		return FolderList, err
+	}
+
+	ty_FileInfos, err := pty_OpenFile.Readdir(-1)
+	pty_OpenFile.Close()
+	if err != nil {
+		return FolderList, err
+	}
+	for _, value := range ty_FileInfos {
+		if !value.IsDir(){
+			FolderList = append(FolderList, value.Name())
+		}
+	}
+	return FolderList, nil
+}
+
+func fc_FileMove(FilePathInput, FilePathOutput string) error {
+	return os.Rename(FilePathInput, FilePathOutput)
+}
+
+func fc_SetEnv(EnvVarName, EnvVarValue string) error {
+	return os.Setenv(EnvVarName, EnvVarValue)
+}
+
+func fc_IsFileModeCode(vs_chmod string) bool {
+	if len(vs_chmod) == 3 || len(vs_chmod) == 4 {
+		_, err_chmodCheck := strconv.ParseUint(vs_chmod, 10, 32)
+		if err_chmodCheck == nil {
+			for _, value := range vs_chmod {
+				if value == '8' || value == '9' {
+					return false
+				}
+			}
+			return true
+		}
+	}
+	return false
+}
+
+func fc_FileModeEnCode(vs_chmod string) (vs_ModeCodestring string, err error) {
+	switch len(vs_chmod) {
+	case 1: //r、w表示同時適用OWNER(Windows，Unix)
+		switch vs_chmod {
+		case "r":
+			return "0200", nil
+		case "w":
+			return "0400", nil
+		}
+	case 2: //rw兩字表示同時適用OWNER(Windows，Unix)
+		if vs_chmod == "rx" || vs_chmod == "xr" {
+			return "0200", nil
+		} else if vs_chmod == "wx" || vs_chmod == "xw" {
+			return "0400", nil
+		} else if vs_chmod == "rw" || vs_chmod == "wr" {
+			return "0600", nil
+		}
+	case 3: //rwx三字表示同時適用OWNER(Windows，Unix),777三數字僅適用Unix
+		switch vs_chmod {
+		case "rwx", "rxw", "xrw", "xwr", "wrx", "wxr":
+			return "0700", nil
+		default:
+			if fc_IsFileModeCode(vs_chmod) {
+				return "0" + vs_chmod, nil
+			}
+		}
+	case 4:
+		if fc_IsFileModeCode(vs_chmod) {
+			return vs_chmod, nil
+		}
+	case 9:
+		var vu_ower, vu_group, vu_others, vu_sum uint64
+		for index, value := range vs_chmod {
+			switch value {
+			case 'r':
+				vu_sum = vu_sum + 4
+			case 'w':
+				vu_sum = vu_sum + 2
+			case 'x':
+				vu_sum = vu_sum + 1
+			case '-':
+				continue
+			default:
+				return "", errors.New("Bad chmod input")
+			}
+
+			switch index {
+			case 2:
+				vu_ower = vu_sum
+				vu_sum = 0
+			case 5:
+				vu_group = vu_sum
+				vu_sum = 0
+			case 8:
+				vu_others = vu_sum
+			case 9:
+				return "", errors.New("Bad chmod input")
+			}
+		}
+
+		if vu_ower > 7 || vu_group > 7 || vu_others > 7 {
+			return "", errors.New("Bad chmod input")
+		} else {
+			return "0" + strconv.FormatUint(vu_ower, 10) + strconv.FormatUint(vu_group, 10) + strconv.FormatUint(vu_others, 10), nil
+		}
+
+	}
+	return "", errors.New("Bad chmod input")
+}
+
+func fc_IsExist(FilePathInput string) bool {
+	if _, err := os.Stat(FilePathInput); os.IsExist(err) {
+		return false
+	}
+	return true
+}
+
+func fc_IsNotExist(FilePathInput string) bool {
+	if _, err := os.Stat(FilePathInput); os.IsNotExist(err) {
+		return true
+	}
+	return false
+}
+
+func fc_CreatFile(FilePathInput string) error {
+	_, err := os.Create(FilePathInput) //666
+	return err
+}
+
+func fc_CreatFolder(FilePathInput, vs_chmod string) error {
+	var err error
+	if vs_chmod == "" {
+		err = os.MkdirAll(FilePathInput, 0777)
+		return err
+	}
+
+	vu_chmodNum, err_chmodCheck := strconv.ParseUint(vs_chmod, 10, 32)
+	if err_chmodCheck != nil {
+		err = os.MkdirAll(FilePathInput, 0777)
+	} else {
+		err = os.MkdirAll(FilePathInput, os.FileMode(vu_chmodNum))
+	}
+
+	return err
+}
+
+func fc_RemovePath(FilePathInput string) error {
+	err := os.RemoveAll(FilePathInput)
+	return err
+}
+
+func fc_RemoveFile(FilePathInput string) error {
+	ty_FileStat, err := os.Stat(FilePathInput)
+	if !ty_FileStat.IsDir() {
+		err = os.Remove(FilePathInput)
+		return err
+	} else {
+		return errors.New("It's a Folder not File")
+	}
+}
+
+func fc_RemoveFolder(FilePathInput string) error {
+	ty_FileStat, err := os.Stat(FilePathInput)
+	if ty_FileStat.IsDir() {
+		err = os.Remove(FilePathInput)
+		return err
+	} else {
+		return errors.New("It's a File not Empty-Folder")
+	}
+}
+
+func fc_ReadFile(FilePathInput string) (string, error) {
+
+	sl_Output, err := ioutil.ReadFile(FilePathInput)
+	if err != nil {
+		return "", err
+	} else {
+		return string(sl_Output), nil
+	}
+
+}
+
+func fc_ReadBufFile(FilePathInput string, BufSize int64) (string, error) {
+
+	pty_OpenFile, err := os.Open(FilePathInput)
+	if err != nil {
+		return "", err
+	}
+	defer pty_OpenFile.Close()
+
+	pty_BufReader := bufio.NewReader(pty_OpenFile)
+	sl_Output := make([]byte, BufSize)
+
+	_, err = pty_BufReader.Read(sl_Output)
+	if err != nil {
+		return "", err
+	} else {
+		return string(sl_Output), nil
+	}
+
+}
+
+func fc_ClearFile(FilePathInput string) error {
+
+	_, err := os.OpenFile(FilePathInput, os.O_WRONLY|os.O_TRUNC, 0222)
+	return err
+}
+
+func fc_AppendFile(FilePathInput string, WriteString string) error {
+	pty_OpenFile, err := os.OpenFile(FilePathInput, os.O_WRONLY|os.O_APPEND, 0222)
+	if err != nil {
+		return err
+	}
+	defer pty_OpenFile.Close()
+
+	pty_NewWriter := bufio.NewWriter(pty_OpenFile)
+
+	//將檔案寫入快取
+	if _, err = pty_NewWriter.WriteString(WriteString); err != nil {
+		return err
+	}
+	//從快取寫入到檔案中
+	if err = pty_NewWriter.Flush(); err != nil {
+		return err
+	} else {
+		return nil
+	}
+}
+
+func fc_AppendBufFile(FilePathInput string, WriteString string, vi_Bufsize int) error {
+	pty_OpenFile, err := os.OpenFile(FilePathInput, os.O_WRONLY|os.O_APPEND, 0222)
+	if err != nil {
+		return err
+	}
+	defer pty_OpenFile.Close()
+
+	//使用NewWriter方法返回的io.Writer緩衝預設大小為4096，也可以使用NewWriterSize方法設定快取的大小
+	pty_NewWriter := bufio.NewWriterSize(pty_OpenFile, vi_Bufsize)
+
+	//將檔案寫入快取
+	if _, err = pty_NewWriter.WriteString(WriteString); err != nil {
+		return err
+	}
+	//從快取寫入到檔案中
+	if err = pty_NewWriter.Flush(); err != nil {
+		return err
+	} else {
+		return nil
+	}
+}
+
+func fc_WriteNewFile(FilePathInput string, WriteString string) error {
+	pty_OpenFile, err := os.OpenFile(FilePathInput, os.O_CREATE|os.O_RDWR, 0222)
+	if err != nil {
+		return err
+	}
+	defer pty_OpenFile.Close()
+
+	pty_NewWriter := bufio.NewWriter(pty_OpenFile)
+
+	//將檔案寫入快取
+	if _, err = pty_NewWriter.WriteString(WriteString); err != nil {
+		return err
+	}
+	//從快取寫入到檔案中
+	if err = pty_NewWriter.Flush(); err != nil {
+		return err
+	} else {
+		return nil
+	}
+}
+
+func fc_WriteBufNewFile(FilePathInput string, WriteString string, vi_Bufsize int) error {
+	pty_OpenFile, err := os.OpenFile(FilePathInput, os.O_CREATE|os.O_RDWR, 0222)
+	if err != nil {
+		return err
+	}
+	defer pty_OpenFile.Close()
+
+	//使用NewWriter方法返回的io.Writer緩衝預設大小為4096，也可以使用NewWriterSize方法設定快取的大小
+	pty_NewWriter := bufio.NewWriterSize(pty_OpenFile, vi_Bufsize)
+
+	//將檔案寫入快取
+	if _, err = pty_NewWriter.WriteString(WriteString); err != nil {
+		return err
+	}
+	//從快取寫入到檔案中
+	if err = pty_NewWriter.Flush(); err != nil {
+		return err
+	} else {
+		return nil
+	}
+}
+
+func fc_UrlDownload(SavePathInput string, UrlInput string) error {
+
+	// Get the data
+	pty_HttpRESP, err := http.Get(UrlInput)
+	if err != nil {
+		return err
+	}
+	defer pty_HttpRESP.Body.Close()
+
+	// Create the file
+	pty_FileOut, err := os.Create(SavePathInput)
+	if err != nil {
+		return err
+	}
+	defer pty_FileOut.Close()
+
+	// Write the body to file
+	_, err = io.Copy(pty_FileOut, pty_HttpRESP.Body)
+	return err
+}
+
+
+```
+
+### Go : 驗證CG記憶體回收機制:
+```go=
+package main
+
+import (
+	"fmt"
+	"log"
+	"runtime"
+)
+
+func main() {
+
+	var m0 runtime.MemStats
+	println()
+	log.Println("At begin:")
+	PrintMemUsage(m0)
+	// 2020/04/06 11:09:40 At begin:
+	// Alloc(當前堆上對象佔用的內存大小) = 0 MiB
+	// TotalAlloc(堆上總共分配出的內存大小) = 0 MiB
+	// Sys(程序從作業系統總共申請的內存大小) = 6 MiB
+	// NumGC(垃圾回收運行的次數) = 0
+
+	var m1 runtime.MemStats
+	var overall1 []float64
+	for i := 0; i < 1136640; i++ {
+		overall1 = append(overall1, 1)
+	}
+	println()
+	log.Println("nothing to do:")
+	PrintMemUsage(m1)
+	println(overall1)
+	overall1 = nil //僅為了計算方便
+	// 2020/04/06 11:09:40 nothing to do:
+	// Alloc(當前堆上對象佔用的內存大小) = 8 MiB
+	// Sys(程序從作業系統總共申請的內存大小) = 37 MiB
+	// NumGC(垃圾回收運行的次數) = 9
+	// [1136640/1136640]0xc00127c000
+
+	var m2 runtime.MemStats
+	var overall2 []float64
+	for i := 0; i < 1136640; i++ {
+		overall2 = append(overall2, 1)
+	}
+	overall2 = nil
+	println()
+	log.Println("nil :")
+	PrintMemUsage(m2)
+	println(overall2)
+	// 2020/04/06 11:09:40 nil :
+	// Alloc(當前堆上對象佔用的內存大小) = 0 MiB
+	// Sys(程序從作業系統總共申請的內存大小) = 37 MiB
+	// NumGC(垃圾回收運行的次數) = 17
+	// [0/0]0x0
+
+	// Force GC to clear up, should see a memory drop
+	var m3 runtime.MemStats
+	var overall3 []float64
+	for i := 0; i < 1136640; i++ {
+		overall3 = append(overall3, 1)
+	}
+	runtime.GC()
+	println()
+	log.Println("Forece GC:")
+	PrintMemUsage(m3)
+	// 2020/04/06 11:09:40 Forece GC:
+	// Alloc(當前堆上對象佔用的內存大小) = 0 MiB
+	// Sys(程序從作業系統總共申請的內存大小) = 37 MiB
+	// NumGC(垃圾回收運行的次數) = 27
+
+}
+
+func PrintMemUsage(m runtime.MemStats) {
+	runtime.ReadMemStats(&m)
+
+	// For info on each, see: https://golang.org/pkg/runtime/#MemStats
+	fmt.Printf("Alloc(當前堆上對象佔用的內存大小) = %v MiB\n", byteToMiB(m.Alloc))
+	//fmt.Printf("TotalAlloc(堆上總共分配出的內存大小) = %v MiB\n", byteToMiB(m.TotalAlloc))
+	fmt.Printf("Sys(程序從作業系統總共申請的內存大小) = %v MiB\n", byteToMiB(m.Sys))
+	fmt.Printf("NumGC(垃圾回收運行的次數) = %v\n", m.NumGC)
+
+}
+
+func byteToMiB(b uint64) uint64 {
+	return b / 1024 / 1024
+}
+```
