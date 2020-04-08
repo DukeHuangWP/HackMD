@@ -3430,6 +3430,11 @@ package main
 import (
 	"fmt"
 	"log"
+	"runtime"package main
+
+import (
+	"fmt"
+	"log"
 	"runtime"
 )
 
@@ -3441,7 +3446,6 @@ func main() {
 	PrintMemUsage(m0)
 	// 2020/04/06 11:09:40 At begin:
 	// Alloc(當前堆上對象佔用的內存大小) = 0 MiB
-	// TotalAlloc(堆上總共分配出的內存大小) = 0 MiB
 	// Sys(程序從作業系統總共申請的內存大小) = 6 MiB
 	// NumGC(垃圾回收運行的次數) = 0
 
@@ -3454,7 +3458,7 @@ func main() {
 	log.Println("nothing to do:")
 	PrintMemUsage(m1)
 	println(overall1)
-	overall1 = nil //僅為了計算方便
+	overall1 = nil //僅為了計算方便,不影響測試結果
 	// 2020/04/06 11:09:40 nothing to do:
 	// Alloc(當前堆上對象佔用的內存大小) = 8 MiB
 	// Sys(程序從作業系統總共申請的內存大小) = 37 MiB
@@ -3491,6 +3495,25 @@ func main() {
 	// Alloc(當前堆上對象佔用的內存大小) = 0 MiB
 	// Sys(程序從作業系統總共申請的內存大小) = 37 MiB
 	// NumGC(垃圾回收運行的次數) = 27
+
+
+	var m4 runtime.MemStats
+	var overall4 []float64
+	p4 := &overall4
+	for i := 0; i < 1136640; i++ {
+		overall4 = append(overall4, 1)
+	}
+	runtime.GC()
+	println()
+	log.Println("Forece GC (use pointer):")
+	PrintMemUsage(m4)
+	println(p4)
+	// 2020/04/06 11:09:40 Forece GC:
+	// Alloc(當前堆上對象佔用的內存大小) = 8 MiB
+	// Sys(程序從作業系統總共申請的內存大小) = 37 MiB
+	// NumGC(垃圾回收運行的次數) = 37
+	// 0xc00010ff60
+
 
 }
 
