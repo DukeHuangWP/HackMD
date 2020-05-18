@@ -3081,7 +3081,7 @@ func main() {
 > ### Go 語言的結構控制 - ( for 普通式 )
 > <div class="panel-body">
 >
-> > <span style="color: DeepSkyBlue">**for**</span>\ <span style="color: DodgerBlue">**條件判斷式** </span>{\
+> > <span style="color: DeepSkyBlue">**for**</span> <span style="color: DodgerBlue">**條件判斷式** </span>**{**\
 > > <span style="color: red">　  　 執行內容...</span>\
 > > **}**
 > 
