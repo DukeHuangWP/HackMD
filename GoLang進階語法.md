@@ -1563,10 +1563,10 @@
 ### Go 陣列(Array)宣告
 
 > 一維陣列的宣告方式如下: 
-> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">陣列名稱</span> = [<span style="color: lightgreen">陣列長度</span>]<span style="color: lightgreen">元素型別</span>{<span style="color: yellow">元素初始值1</span>,<span style="color: yellow">元素初始值2</span>}** 
-> > *陣列長度可以使用 ==``[...]``== 讓編譯器自動計算長度
-> > *元素型別可為任何資料型別的
-> > *元素初始值若不賦予則為元素型別的預設值
+> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">陣列名稱</span> = [<span style="color: lightgreen">陣列長度</span>]<span style="color: lightgreen">元素型別</span>{<span style="color: yellow">元素初始值1</span>,<span style="color: yellow">元素初始值2</span>}** \
+> > *陣列長度可以使用 ==``[...]``== 讓編譯器自動計算長度\
+> > *元素型別可為任何資料型別的\
+> > *元素初始值若不賦予則為元素型別的預設值\
 > > *元素初始值可以依序使用 ==``,``== 分隔並可以向右增加元素，或是直接指定元素位置賦值 
 > >　例如 : **<span style="color: LemonChiffon">ar := [...]int{</span><span style="color: Orange">0</span><span style="color: LemonChiffon">:99}</span>** 其中<span style="color: Orange">0</span>表示為第一個元素
 >
@@ -1764,24 +1764,24 @@ func main() {
 > 切片(slice)可視作可變動長度的陣列，但其本身為引用型別
 > 
 > 切片的第一種宣告方式(直接創建無名稱陣列): 
-> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">切片名稱</span> = []<span style="color: lightgreen">元素型別</span>{<span style="color: yellow">元素初始值1</span>,<span style="color: yellow">元素初始值2</span>}** 
-> > *元素型別可為資料型別的 ==``邏輯值、數值、字串``==???引用類型?
-> > *元素初始值若不賦予則為元素型別的預設值
+> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">切片名稱</span> = []<span style="color: lightgreen">元素型別</span>{<span style="color: yellow">元素初始值1</span>,<span style="color: yellow">元素初始值2</span>}** \
+> > *元素型別可為資料型別的 ==``邏輯值、數值、字串``==???引用類型?\
+> > *元素初始值若不賦予則為元素型別的預設值\
 > > *元素初始值可以依序使用 ==``,``== 分隔並可以向右增加元素
 >
 > 切片的第二種宣告方式(引入已被創建的陣列): 
-> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">切片名稱</span> = 陣列名稱[<span style="color: yellow">開始元素位置</span>:<span style="color: Orange">結束元素位置</span>]** 
-> > *"開始元素位置"即選擇被引入陣列的元素位置作為引入起始
-> > *"結束元素位置"即選擇被引入陣列的"元素位置"(第幾個元素)作為引入結束
+> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">切片名稱</span> = 陣列名稱[<span style="color: yellow">開始元素位置</span>:<span style="color: Orange">結束元素位置</span>]** \
+> > *"開始元素位置"即選擇被引入陣列的元素位置作為引入起始\
+> > *"結束元素位置"即選擇被引入陣列的"元素位置"(第幾個元素)作為引入結束\
 > > *元素位置可以使用 ==`` ``== (空白)作為"第一個元素位置"或"最後一個元素位置"作為簡寫
 > 
 > 切片的第三種宣告方式(使用make函式創建): 
-> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">切片名稱</span> = make([]<span style="color: lightgreen">元素型別</span>,<span style="color: yellow">切片長度</span>,<span style="color: yellow">切片容量</span>)** 
-> > *切片長度<=切片容量,切片容量可藉由指令變動大小(記憶體位址也會改變)
+> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">切片名稱</span> = make([]<span style="color: lightgreen">元素型別</span>,<span style="color: yellow">切片長度</span>,<span style="color: yellow">切片容量</span>)** \
+> > *切片長度<=切片容量,切片容量可藉由指令變動大小(記憶體位址也會改變)\
 > > *使用make函式所創建的切片，相當於直接創建無名稱且0值陣列做為切片
 >
 > 切片的字串宣告方式(限用於宣告字串): 
-> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">切片名稱</span> = []<span style="color: lightgreen">字串型別</span>(<span style="color: yellow">字串</span>)** 
+> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">切片名稱</span> = []<span style="color: lightgreen">字串型別</span>(<span style="color: yellow">字串</span>)** \
 > > *字串型別為 ==``byte``==、==``int32``==、==``rune``==
 >
 >切片的宣告方式如下: 
@@ -1846,14 +1846,18 @@ func main() {
 >如果新切片名稱與原切片名稱相同，則切片位址將不會改變。
 >
 > > append()函式擴容方式(拼接新的元素):
-> >  **<span style="color: DodgerBlue">擴容後切片名稱</span> = append(<span style="color: lightgreen">被擴容切片名稱</span>,<span style="color: yellow">元素初始值1</span>,<span style="color: yellow">元素初始值2</span>}** 
-> > *元素型別必須與擴容後切片型別相同
+> > 
+> >  **<span style="color: DodgerBlue">擴容後切片名稱</span> = append(<span style="color: lightgreen">被擴容切片名稱</span>,<span style="color: yellow">元素初始值1</span>,<span style="color: yellow">元素初始值2</span>}**
+> >  
+> > *元素型別必須與擴容後切片型別相同\
 > > *元素初始值若可以依序使用 ==``,``== 分隔並可以向右增加元素
 > 
 > > append()函式擴容方式(拼接原有的切片):
+> > 
 > > **<span style="color: DodgerBlue">擴容後切片名稱</span> = append(<span style="color: lightgreen">被擴容切片名稱</span>,<span style="color: yellow">拼接切片名稱1</span>,<span style="color: yellow">拼接切片名稱2</span><span style="color: red">...</span>}** 
-> > *切片型別必須與擴容後切片型別相同
-> > *拼接切片可以依序使用 ==``,``== 分隔並可以向右增加切片
+> > 
+> > *切片型別必須與擴容後切片型別相同\
+> > *拼接切片可以依序使用 ==``,``== 分隔並可以向右增加切片\
 > > *拼接切片時append()指令中 ==``...``== 不可省略
 >
 >
@@ -1861,7 +1865,9 @@ func main() {
 >其過程依序將元素寫入直至切片長度結束為止，
 >完成後其切片的長度將不會減少或是增加，前後記憶體位址都將保持不變
 > > copy()用法如下:
+> > 
 > >  **copy(<span style="color: lightgreen">被寫入切片名稱</span>,<span style="color: yellow">寫入切片名稱</span>}** 
+> >  
 > > *切片型別必須與copy後切片型別相同
 >
 >``` go
@@ -1949,8 +1955,23 @@ func main() {
 >	
 >```
 
+### Go 切片append()& 可變參數(Variadic)範例
+>
+>``` go
+>package main
+>import "fmt"
+>func main() {
+>	var a byte = 'a'
+>	var b = []byte{'b', 'b'}
+>	c := append([]byte{a}, b...)
+>	c = append(c, b...)
+>	fmt.Printf("%s", c)
+>	//abbbb
+> }
+>```
+
 ### Go 切片&陣列擴容[append()]陷阱 : 
-> 切片若引入原有的陣列當作元素後其使用append()函式擴容需要注意:
+> 切片若引入原有的陣列當作元素後其使用append()函式擴容需要注意:\
 > ==`` 切片擴容未超過原先陣列長度元素，則所擴容的元素將會溢出並向下覆蓋原本的陣列元素 ``==
 > 可直接參考 : https://play.golang.org/p/2noxYSTVe__Y
 >``` go
@@ -2129,18 +2150,18 @@ func main() {
 > 雜湊表(Map)是一種無排序鍵值(key-vaule)資料結構為引用型別，因該變數內的鍵值記憶體位址處於動態變化(鍵值位址無法獲取)，必須先分配記憶體空間(手動或自動)後才能使用。分配完空間後往後Map鍵值增加會自動擴容，不會發生panic。
 > 
 > Map的第一種宣告方式(僅能宣告Map名稱未分配記憶體空間): 
-> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">map名稱</span> map[<span style="color: lightgreen">鍵型別</span>]<span style="color: yellow">值型別</span>** 
-> > *鍵的資料型別可為 ==``邏輯值、數值、字串、指標、陣列、結構體、接口、通道``==
-> > *值的資料型別可為任何資料型別包括map自己本身
+> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">map名稱</span> map[<span style="color: lightgreen">鍵型別</span>]<span style="color: yellow">值型別</span>** \
+> > *鍵的資料型別可為 ==``邏輯值、數值、字串、指標、陣列、結構體、接口、通道``==\
+> > *值的資料型別可為任何資料型別包括map自己本身\
 > > *該方式僅宣告Map名稱尚未分配記憶體，宣告完後無法直接使用(賦值、增加...)
 > 
 > Map的第二種宣告方式(使用make()函式賦值，並分配記憶體空間): 
-> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">map名稱</span> = make(map[<span style="color: lightgreen">鍵型別</span>]<span style="color: yellow">值型別</span>,<span style="color: orange">map容量</span>]** 
+> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">map名稱</span> = make(map[<span style="color: lightgreen">鍵型別</span>]<span style="color: yellow">值型別</span>,<span style="color: orange">map容量</span>]** \
 > > *map容量省略或為空皆會預設為零值，該值必須為正整數
 >
 > Map的第三種宣告方式(直接賦予鍵值，將後自動分配記憶體空間)): 
-> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">map名稱</span> = map[<span style="color: lightgreen">鍵型別</span>]<span style="color: yellow">值型別</span>{<span style="color: lightgreen">鍵1</span>:<span style="color: yellow">值1</span>,<span style="color: lightgreen">鍵3</span>:<span style="color: yellow">值2</span>}**
-> > *鍵型別與值型別必須與key和value相符且一致
+> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">map名稱</span> = map[<span style="color: lightgreen">鍵型別</span>]<span style="color: yellow">值型別</span>{<span style="color: lightgreen">鍵1</span>:<span style="color: yellow">值1</span>,<span style="color: lightgreen">鍵3</span>:<span style="color: yellow">值2</span>}**\
+> > *鍵型別與值型別必須與key和value相符且一致\
 > > *鍵名稱不能夠重複
 > ``` go
 > package main
@@ -2453,22 +2474,21 @@ func main() {
 > 
 > Golang支持物件導向程式設計（Object-oriented programming)特性，不使用其他語言常見的class指令，改使用結構體(Struct)來實現OO特性，GoLang與其他語言相比簡化了:繼承、重載(Overload)、構造函式(Constructor)、析構函式(Destructor)、隱藏參數this指針。結構體為值資料型別內可具備多種資料型別的屬性(Field)，需用type指令定義其內的屬性，
 > 
-> >  **<span style="color: DeepSkyBlue">type </span><span style="color: DodgerBlue">結構體名稱</span> struct{**
-> >**<span style="color: lightgreen">　　屬性名稱1</span> <span style="color: yellow">屬性型別1</span>**
-> >**<span style="color: lightgreen">　　屬性名稱2</span> <span style="color: yellow">屬性型別2</span>**
+> >  **<span style="color: DeepSkyBlue">type </span><span style="color: DodgerBlue">結構體名稱</span> struct{**\
+> >**<span style="color: lightgreen">　　屬性名稱1</span> <span style="color: yellow">屬性型別1</span>**\
+> >**<span style="color: lightgreen">　　屬性名稱2</span> <span style="color: yellow">屬性型別2</span>**\
 > >  **}**
 > >   
-> > *屬性的資料型別可為 ==``邏輯值、數值、字串、指標、陣列、Map、結構體``==
-> > *結構體的資料型別可為任何資料型別包括結構體自己本身
->　
->　定義完結構體後還須透過宣告才能成為變數
+> > *屬性的資料型別可為 ==``邏輯值、數值、字串、指標、陣列、Map、結構體``==\
+> > *結構體的資料型別可為任何資料型別包括結構體自己本身 \
+> > *定義完結構體後還須透過宣告才能成為變數
 
 　
-> 結構體的第一種宣告方式(僅宣告而未賦值): 
+> 結構體的第一種宣告方式(僅宣告而未賦值):
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">變數名稱</span> <span style="color: lightgreen">結構體名稱</span>**
 >
 
-> 結構體的第二種宣告方式(依序直接賦值): 
+> 結構體的第二種宣告方式(依序直接賦值):
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">變數名稱</span> = <span style="color: lightgreen">結構體名稱</span>{<span style="color: yellow">屬性值1</span>,<span style="color: yellow">屬性值2</span>}**
 >
 
@@ -2661,6 +2681,56 @@ func main() {
 }
 ```
 
+### Go 結構體雜湊表(map)型別(struct of map)
+
+
+```go
+ package main
+ import "fmt"
+ 
+ type st_Example struct {
+	id   uint64
+	name string
+	data interface{}
+}
+
+func FC_newStruct(id uint64, name string, data interface{}) *st_Example {
+	return &st_Example{id, name, data}
+}
+
+func (r *st_Example) Update(id uint64, name string, data interface{}) {
+	r.id = id
+	r.name = name
+	r.data = data
+	return
+}
+
+func main() {
+
+	var ex1 *st_Example
+	ex1 = FC_newStruct(1, "name1", "data1")
+	fmt.Println(ex1, ex1.name) //&{1 name1 data1} name1
+
+	var ex2 st_Example //struct必須作為變數必須是實參
+	ex2.Update(2, "name2", "data2")
+	fmt.Println(ex2, ex2.name) //{2 name2 data2} name2
+
+
+	var mpExample = make(map[string]*st_Example)
+	mpExample["key"] = &st_Example{}
+	//Update前必須存入struct
+	mpExample["key"].Update(91, "name91", "data91")
+	fmt.Println(mpExample["key"], mpExample["key"].name) //&{92 name92 data92} name92
+	delete(mpExample, "key")
+
+	mpExample["key"] = &st_Example{0, "name92", "data92"}
+	mpExample["key"].id = 92
+	fmt.Println(mpExample["key"], mpExample["key"].name) //&{91 name91 data91} name91
+	//map-*struct寫入非常簡便
+
+}
+```
+
 
 ### Go 方法與函式 (Method&Function)
 
@@ -2668,14 +2738,14 @@ func main() {
 > 2. 當資料型別為值型別時，函式(Function)不能直接將指標當作變數輸入，反之方法(Method)可將變數與指標當作自訂型別變數直接輸入，方法(Method)可定義自訂型別變數影響範圍
 > 
 > Method宣告方式: 
-> >  **<span style="color: DeepSkyBlue">func </span>(<span style="color: DodgerBlue">自訂型別名稱</span> <span style="color: DeepSkyBlue">自訂型別</span>) <span style="color: lightgreen">方法名稱</span>(<span style="color: yellow">輸入變數列表</span>) (<span style="color: orange">輸出變數列表</span>) {
-> ><span style="color: red">　　方法內容...</span>
-> >　　return <span style="color: orange">輸出值</span>
+> >  **<span style="color: DeepSkyBlue">func </span>(<span style="color: DodgerBlue">自訂型別名稱</span> <span style="color: DeepSkyBlue">自訂型別</span>) <span style="color: lightgreen">方法名稱</span>(<span style="color: yellow">輸入變數列表</span>) (<span style="color: orange">輸出變數列表</span>) {\
+> ><span style="color: red">　　方法內容...</span>\
+> >　　return <span style="color: orange">輸出值</span>\
 > >  }**
 > >  
-> > *輸入、輸出變數非必需的，有輸出變數則一定要使用 ==`` return ``== 返回值
-> > *方法(Method)必須綁定於自訂型別，必須有自訂型別變數才能使用
-> > *編譯器對於 ==``(&變數名稱).方法名稱()``== 與 ==`` 變數名稱.方法名稱()``== 兩者等價
+> > *輸入、輸出變數非必需的，有輸出變數則一定要使用 ==`` return ``== 返回值\
+> > *方法(Method)必須綁定於自訂型別，必須有自訂型別變數才能使用\
+> > *編譯器對於 ==``(&變數名稱).方法名稱()``== 與 ==`` 變數名稱.方法名稱()``== 兩者等價\
 > > *方法之自訂型別可定義 ==``引用或值型別``==，設定其作用範圍(不因指標而影響)
 > 
 > ```go
@@ -2950,7 +3020,7 @@ func main() {
 
 Golang沒有類(class)，Go語言的結構體(struct)和其它程式語言的類(class)有同等的地位，可以理解Golang是基於struct來實現OOP繼承(Inheritance)特性。
 
-1.結構體嵌入了另一個結構體並且定義該屬性名稱，稱為「嵌入具名結構體組合型別」
+1.結構體嵌入了另一個結構體並且定義該屬性名稱，稱為「嵌入具名結構體組合型別」\
 2.結構體嵌入了另一個結構體並且無定義該屬性名稱，稱為「嵌入匿名結構體組合型別」
 
 ==`` Package_Struct/PackageStruct.go``==
@@ -3389,8 +3459,8 @@ func main() {
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">限寫管道名稱</span> = make(chan <- <span style="color: lightgreen">元素型別</span>,<span style="color: yellow">元素容量</span>)**
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">限取管道名稱</span> = make(<-chan <span style="color: lightgreen">元素型別</span>,<span style="color: yellow">元素容量</span>)**
 > >  
-> > *宣告管道時若無限定寫入或取出，即表示該管道是雙向的(可寫入和取出)
-> > *管道元素型別相同則視為相同型別，不受限定寫入或取出影響
+> > *宣告管道時若無限定寫入或取出，即表示該管道是雙向的(可寫入和取出)\
+> > *管道元素型別相同則視為相同型別，不受限定寫入或取出影響\
 > > *雙向的管道可轉換為限定寫入或取出(單向)；單向的管道後不可轉換成雙向或異相；
 > 
 > ```go=
@@ -3785,7 +3855,6 @@ func main() {
 > 
 > 	//ABXBAXBAXBAXBAXBAXBAXBAXBAXBAX
 > 	//BAXABXABXABXBAXBAXBAXBAXBAXBAX
-> 	//ABXABXBAXBAXBAXBAXBAXBAXBAXBAX
 > 	//執行結果之次數能獲得保證，但次序仍不一定
 > 
 > }
@@ -3886,8 +3955,6 @@ func main() {
 > 不要通过共享内存来通信, 而要通过通信来共享内存” --- 出自《 Effective Go 
 > golang 的設計讓 concurrency 非常容易。
 > https://blog.golang.org/concurrency-is-not-parallelism
->
->![image alt](https://nikgrozev.com/images/blog/Overview%20of%20Modern%20Concurrency%20and%20Parallelism%20Concepts/concurrent_vs_parallel.png)
 >
 >
 > 驗證多核心運算(切片加總計算):
