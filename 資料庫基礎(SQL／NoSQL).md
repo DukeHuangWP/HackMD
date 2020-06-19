@@ -1667,223 +1667,7 @@ ceate table TableName(
 ```
 
 
-## SQL基本語法分類:
-
-https://www.1keydata.com/tw/sql/sql-alter-table.html
-
-**(1) 資料定義語言(Data Definition Language,DDL):**
-
-==`CREATE`== : 創建表格
-```sql
-
-CREATE TABLE "表格名"
-("欄位名稱1" "資料型別1" "欄位條件",
-"欄位名稱2" "資料型別2" "欄位條件",
-... )
-
-CREATE TABLE TableName(
-    id serial primary key,
-    title varchar(255) not null,
-    content text check(length(content) > 3),
-    is_del boolean default FALSE,
-    created_date timestamp default 'now'
-);
-
-```
-
-```sql
-CREAT VIEW CVName SELECT (TN1.C1,TN2.C2) FROM (TableName1 as TN1,TableName2 as TN2) WHERE TN1.C1=TN2.C2;
-/* 列出TableName1.C2等於TableName2.C2之中顯示出TableName1.C1兩者TableName2.C2並列表格(其中將TableName1作縮寫TN1)  */
-/* 將上敘述指令值型結果編制成 CVName */
-SELECT * FROME CVName;
-/* 可重複使用CVName簡化指令 */
-DROP VIEW CVName;
-```
-
-==`ALTER`== : 改變表格
-```sql
-
-ALTER TABLE TableName ADD ContentName char(1);
-/* 在表格TableName加入新欄位ContentName */
-
-ALTER TABLE TableName DROP ContentName;
-/* 在表格TableName中將ContentName欄位刪除 */
-
-ALTER TABLE TableNameOLD RENAME TO TableNameNEW;
-/* 在表格TableNameOLD名稱改成TableNameNEW */
-
-ALTER TABLE TableName RENAME ContentNameOLD to ContentNameNEW
-/* 在表格TableName中將ContentNameOLD欄位名稱改成ContentNameNEW */
-
-ALTER TABLE TableName ALTER ContentName type char(30);
-/* 將表格TableName中將ContentName欄位資料型別改成 char(30) */
-
-```
-
-==`DROP`== : 刪除表格(危險)
-```sql
-DROP TABLE Customer;
-```
-
-**(2) 資料處理語言(Data Manipulation Language,DML):**
-
-==`INSERT`== : 插入表格
-```sql
-INSERT INTO 表格名 (欄位1, 欄位2, ...) VALUES (值1, 值2, ...);
-INSERT INTO TableName (ContentName1,ContentName2) VALUES ('Los Angeles', 900);
-```
-
-==`UPDATE`== : 更新表格
-```sql
-UPDATE 表格名 SET 欄位名 = (值表示式) WHERE (條件式);
-UPDATE TableName SET ContentName = (ContentName+1) WHERE (ContentName) IS NOT NULL;
-/* 將表格TableName之ContentName欄位內符合不為空值，其值更新為原本值+1 */
-```
-
-==`DELETE`== : 刪除表格
-```sql
-DELETE FROM 表格名 WHERE (條件式);
-```
-
-==`SELECT`== : 選取表格
-```sql
-SELECT (欄位1, 欄位2, ...) FROM 表格名;
-SELECT * FROM TableName;
-/* 將選擇表格TableName所有內容 */
-
-
-SELECT (欄位1, 欄位2, ...) FROM 表格名 ORDER BY (欄位1,欄位2, ...) ASC;
-SELECT (欄位1, 欄位2, ...) FROM 表格名 ORDER BY (欄位1,欄位2, ...) DESC;
-SELECT * FROM TableName ORDER BY (ContentName1,ContentName2) ASC;
-/* 將選擇表格TableName所有內容，並依欄位名升序排列 */
-
-
-SELECT (欄位1, 欄位2, ...) FROM 表格名 ORDER BY (欄位1,欄位2, ...) ASC;
-SELECT (欄位1, 欄位2, ...) FROM 表格名 ORDER BY (欄位1,欄位2, ...) DESC;
-SELECT * FROM TableName ORDER BY (ContentName1,ContentName2) ASC;
-/* 將選擇表格TableName所有內容，並依欄位名升序排列 */
-
-SELECT * FROM TableName ORDER BY (ContentName1) ASC LIMIT 3;
-/* 將選擇表格TableName所有內容，並依欄位名升序排列，限取前三名 */
-SELECT * FROM TableName ORDER BY (ContentName1) ASC LIMIT 3 OFFSET 2;
-/* 將選擇表格TableName所有內容，並依欄位名升序排列，限取三名(第3~5名) */
-
-
-SELECT DISTINCT 欄位名 FROM 表格名;
-/* 列舉表格內欄位名的所有項目(不重複) */
-
-SELECT SUM 欄位名 FROM 表格名;
-/* 計算表格內欄位名的總和 */
-
-SELECT MAX 欄位名 FROM 表格名;
-/* 顯示表格內欄位名的最大值 */
-
-
-SELECT COUNT (欄位名) FROM 表格名 WHERE 欄位名 IS NOT NULL;
-/* 計算表格內欄位名的數量(不包含空值) */
-
-SELECT * FROM TableName WHERE ContentName1 = (SELECT MAX(ContentName2) FROM TableName);
-/* 顯示TableName中ContentName1值符合等於ContentName2欄位中的最大值者  */
-
-SELECT (CTeam,MAX(CScore)) FROM TableName GROUP BY (CTeam) HAVING MAX(CScore)>=25;
-/* 顯示CTeam和最大CScore欄位並依CTeam欄位取樣，限定最大CScore值必須大於25  */
-
-SELECT (TableName1.C1,TableName2.C1) FROM (TableName1,TableName2) WHERE TableName1.C2=TableName2.C2;
-/* 列出TableName1.C2等於TableName2.C2之中顯示出TableName1.C1兩者TableName2.C2並列表格  */
-
-SELECT (TN1.C1,TN2.C2) FROM (TableName1 as TN1,TableName2 as TN2) WHERE TN1.C1=TN2.C2;
-/* 列出TableName1.C2等於TableName2.C2之中顯示出TableName1.C1兩者TableName2.C2並列表格(其中將TableName1作縮寫TN1)  */
-
-```
-
-==`SELECT`== 函數:
-|符號|功能|
-|-|-|
-|SUM|總和|
-|MIN|最小值|
-|MAX|最大值|
-|AVG|平均|
-|LENGTH|計算字元長度|
-|LEN|計算字元長度(MS)|
-|COUNT|計算數量|
-
-==`Join`== 集合:
-![](https://lh3.googleusercontent.com/NoWumHxZ-kO2ZPgD4kFsFg6-7UMfStE8UQK83d6aMmWXZzjJvWL-r5EXojHEL0CmzCp_2g0z5MAl8LBvMM7z8iGb-FBBhZulTtikZ2mDoM0EpMVcwhqhKuyHzoPOCxxBdLL28K18WH7xEtMUHK18mayopPLWaG7RAjET0MzJw4VzEAQIrlvHDKn3YeaZn8s4OTuHBVsjS_JqcWDmNmTTt4pO7k1nAY4Crxn3cJD5NRU2Sp89VPcV5wZqg7dM08UBwqx2BTuiKEfRfjVGGFNgSGOIw-JLK2kniQ8gid6EQm27b4hITbVGN4wQlqmDvBeM_-3fuPr_5I6xah9N2rXqi-Fbx75Gs1hdHJAYEEHI7tVWltVjwicYigh8_xDM-eiVnbV71MUgmx79SB3kreuYuUT-hbgTDGpOAcpqOZ64y5L661y2vKRTfpDDtip-OJOPJOHEmF1mPKtxBXW6kWSEiFtJ7EcvVa0f5H8-BCy9Ty_pX77mGhvM6DzS-m6EpHjd1AWIxReUmuO3-4idbRtluQIhy3_huUz0xEzTm8iPy86MjlBVfGaWhN8HspA3Iwt0kFyJk9o_16rX-UDYpt1AhC0Y1lkUnGBE1qZ7PDBkOdwK0Rg-XHk6EPITdgTxhmux6K2l5SHh-Em0-V0Y70940Ats7XFAfOlXM2X_ibyKPlZ6GBoy3VTRr05D=w600-h472-no)
-
-
-
-
-**(3) 資料控制語言(Data Control Language,DCL):**
-
-==`GRANT`== : 開啟權限設置
-```sql
-GRANT DELETE,INSERT,SELECT,QUERY REWRITE ON TableName TO User01 ;
-/* 將 TableName表格中的DELETE,INSERT,SELECT,QUERY REWRITE 權限開放給User01*/
-```
-
-==`REVOLE`== : 取消權限設置
-```sql
-REVOKE DELETE,INSERT,SELECT ON TableName FROM User01;
-/* 將 TableName表格中的DELETE,INSERT,SELECT,QUERY REWRITE 權限取消自User01*/
-```
-
-**(4) 交易控制語言(Transaction Control Language,TCL):**
-
-
-==`START TRANSACTION 或 BEGIN`== : 開始交易
-```sql
-START TRANSACTION;
-BEGIN;
-```
-
-==`COMMIT`== : 將開始交易的過程的執行結果提交
-
-==`SAVEPOINT`== : 在交易過程中設置儲存點
-
-==`ROLLBACK`== : 回復交易設置儲存點或開始前
-```sql
-BEGIN;
-...
-ROLLBACK;
-#回復交易開始前
-```
-```sql
-BEGIN;
-...
-SAVEPOINT SV1;
-...
-ROLLBACK TO SV1;
-#回復存點SV1以前的狀態
-```
-
-
-**其他 Clause 條件語句 & 運算子**
-
-==`WHERE`== 運算子:
-|符號|功能|例舉|說明|
-|-|-|-|-|-|
-|IS NOT NULL||||
-|and||||
-|or||||
-|>||||
-|<||||
-|=||||
-|!=||||
-
-
-==`LIKE`== 運算子:
-|符號|功能|例舉|說明|
-|-|-|-|-|-|
-|_|任一字元|'A_Z'|'A' 起頭'Z' 為結尾中間字元任一，'A1Z' 和 'A?Z' 都符合。|
-|%|開頭或結尾字元|'A%'|'A' 起頭後面字元與長度任一，'A1Z' 和 'A?Z' 都符合。|
-
-
-
-
-
-
-
-## SQL資料型別:
+## MySQL資料型別:
 
 https://html5-editor.net/
 https://www.tablesgenerator.com/markdown_tables
@@ -2317,6 +2101,363 @@ https://www.tablesgenerator.com/markdown_tables
 
 </tbody>
 </table>
+
+
+## MySQL常用指令:
+```bash
+mysql -uroot  -p!@$!F
+#進入mysql root帳戶
+
+SHOW DATABASES;
+#顯示資料庫名稱
+
+USE gamedb_chtqat;
+#使用該資料庫
+
+SELECT DATABASE();
+#顯示正在使用資料庫名稱
+
+SHOW TABLES;
+#顯示該資料庫的所有表
+
+
+describe playerinfo;
+DESC TableName;
+#查詢該TABLE欄位屬性
+
+SHOW CREATE TABLE 表名稱;
+#查詢該TABLE創建語法
+
+SOURCE xxx.sql
+#載入sql檔案
+
+EXIT
+#離開MySQL
+
+```
+
+
+## SQL語法執行順序說明:
+
+| 順序 | 語法 | 註解 |
+|-   |-   |-   |
+|1| ==FROM==     | 來源Table |
+|2| ==WHERE==    | 過濾Data  |
+|3| ==GROUP BY== | 分組Data  |
+|4| ==HAVING==   | 過濾Data  |
+|5| ==SELECT==   | 取樣Data  |
+|6| ==ORDER BY== | 排序Data  |
+
+* ==WHERE==在==GROUP BY==之前進行過濾,==HAVING==在 ==GROUP BY==之後進行過濾
+
+
+**SQL語法分類:**
+https://www.1keydata.com/tw/sql/sql-alter-table.html
+
+## SQL DDL 資料定義語言:
+
+**(1) 資料定義語言(Data Definition Language,DDL):**
+
+==CREATE== : 創建表格
+```sql
+
+CREATE TABLE "表格名"
+("欄位名稱1" "資料型別1" "欄位條件",
+"欄位名稱2" "資料型別2" "欄位條件",
+... )
+
+CREATE TABLE TableName(
+    id serial primary key,
+    title varchar(255) not null,
+    content text check(length(content) > 3),
+    is_del boolean default FALSE,
+    created_date timestamp default 'now'
+);
+
+```
+
+```sql
+CREAT VIEW CVName SELECT (TN1.C1,TN2.C2) FROM (TableName1 as TN1,TableName2 as TN2) WHERE TN1.C1=TN2.C2;
+/* 列出TableName1.C2等於TableName2.C2之中顯示出TableName1.C1兩者TableName2.C2並列表格(其中將TableName1作縮寫TN1)  */
+/* 將上敘述指令值型結果編制成 CVName */
+SELECT * FROM CVName;
+/* 可重複使用CVName簡化指令 */
+DROP VIEW CVName;
+```
+
+==ALTER== : 改變表格
+```sql
+
+ALTER TABLE TableName ADD ColumnName char(1);
+/* 在表格TableName加入新欄位ColumnName */
+
+ALTER TABLE TableName DROP ColumnName;
+/* 在表格TableName中將ColumnName欄位刪除 */
+
+ALTER TABLE TableNameOLD RENAME TO TableNameNEW;
+/* 在表格TableNameOLD名稱改成TableNameNEW */
+
+ALTER TABLE TableName RENAME ColumnNameOLD to ColumnNameNEW;
+/* 在表格TableName中將ColumnNameOLD欄位名稱改成ColumnNameNEW */
+
+ALTER TABLE TableName ALTER ColumnName type char(30);
+/* 將表格TableName中將ColumnName欄位資料型別改成 char(30) */
+
+ALTER DATABASE DBName CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
+/* 將表格DBName中將欄位資料編碼改成'utf8'和 'utf8_general_ci'*/
+
+```
+
+==DROP== : 刪除表格(危險)
+```sql
+DROP TABLE Customer;
+```
+
+## SQL Constraint 限制:
+| 語法 | 說明 | 註解 |
+|-   |-   |-   |
+|==NOT NULL==       | 非空值限制 |
+|==UNIQUE==         | 唯一限制  |
+|==PRIMARY KEY==    | 主鍵限制  | ==UNIQUE==+==NOT NULL== → PRIMARY KEY (\`欄位1\`, \`欄位2\`)
+|==FOREIGN KEY==    | 外鍵限制  |
+|==CHECK==          | 檢查限制  | CHECK (\`欄位\`>0))
+|==DEFAULT==        | 預設值限制  | INSERT 時的資料預設值|
+
+**==AUTO_INCREMENT==:**
+```sql
+CREATE TABLE TableName (
+  ColumnName INT AUTO_INCREMENT,
+  PRIMARY KEY (ColumnName)
+);
+/* AUTO_INCREMENT 為自動增加值,故同時也是UNIQUE,常與P rimary Key搭配使用 */
+```
+
+**==INDEX==**:
+```sql
+-- 創建索引
+CREATE INDEX IndexName ON TableName (ColumnName1, ColumnName2);
+-- 刪除索引
+ALTER TABLE TableName DROP INDEX index_name;
+/* INDEX和PRIMARY KEY最大不同於,INDEX可用於多個欄位增加檢索速度*/
+```
+
+**==FOREIGN KEY==**:
+```sql
+  CREATE TABLE TableName1 (
+    ColumnName11 INT(10), 
+    PRIMARY KEY (ColumnName12), 
+    FOREIGN KEY (ColumnName12) REFERENCES TableName2 (ColumnName21)
+  );
+  
+  --創建外來鍵
+  CREATE TABLE TableName2 (
+    ColumnName21 INT(10) , 
+    PRIMARY KEY (ColumnName21)
+  );
+
+  -- 新增外來鍵
+  ALTER TABLE TableName3 ADD FOREIGN KEY (ColumnName31) REFERENCES TableName2 (ColumnName21);
+  
+  -- 新增外來鍵(同步更新)
+  ALTER TABLE TableName4 ADD FOREIGN KEY (ColumnName41) REFERENCES TableName2 (ColumnName21) ON UPDATE CASCADE;
+  
+  -- 新增外來鍵(同步更新與刪除成預設值)
+  ALTER TABLE TableName5 ADD FOREIGN KEY (ColumnName51) REFERENCES TableName2 (ColumnName21) ON UPDATE CASCADE ON DELETE CASCADE;
+```
+
+
+
+## SQL DML 資料處理語言:
+**(2) 資料處理語言(Data Manipulation Language,DML):**
+
+==INSERT== : 插入表格
+```sql
+INSERT INTO 表格名 (欄位1, 欄位2, ...) VALUES (值1, 值2, ...);
+INSERT INTO TableName (ColumnName1,ColumnName2) VALUES ('Los Angeles', 900);
+```
+
+==UPDATE== : 更新表格
+```sql
+UPDATE 表格名 SET 欄位名 = (值表示式) WHERE (條件式);
+UPDATE TableName SET ColumnName = (ColumnName+1) WHERE (ColumnName) IS NOT NULL;
+/* 將表格TableName之ColumnName欄位內符合不為空值，其值更新為原本值+1 */
+```
+
+==DELETE== : 刪除表格
+```sql
+DELETE FROM 表格名 WHERE (條件式);
+```
+
+==SELECT== : 選取表格
+```sql
+SELECT (欄位1, 欄位2, ...) FROM 表格名;
+SELECT * FROM TableName;
+/* 將選擇表格TableName所有內容 */
+
+
+
+SELECT (欄位1, 欄位2, ...) FROM 表格名 ORDER BY (欄位1,欄位2, ...) ASC;
+SELECT (欄位1, 欄位2, ...) FROM 表格名 ORDER BY (欄位1,欄位2, ...) DESC;
+/* 將選擇表格TableName的欄位內容，並依欄位名升序排列 */
+SELECT * FROM TableName ORDER BY (ColumnName1,ColumnName2) ASC;
+/* 將選擇表格TableName所有內容，並依欄位名升序排列 */
+SELECT * FROM TableName ORDER BY 2 ASC;
+/* 將選擇表格TableName所有內容，並依第二個欄位名升序排列 */
+
+SELECT * FROM TableName ORDER BY (ColumnName1) ASC LIMIT 3;
+/* 將選擇表格TableName所有內容，並依欄位名升序排列，限取前三名 */
+SELECT * FROM TableName ORDER BY (ColumnName1) ASC LIMIT 3 OFFSET 2;
+/* 將選擇表格TableName所有內容，並依欄位名升序排列，限取三名(第3~5名) */
+
+SELECT DISTINCT 欄位名 FROM 表格名;
+/* 列舉表格內欄位名的所有項目(不重複) */
+
+SELECT SUM 欄位名 FROM 表格名;
+/* 計算表格內欄位名的總和 */
+
+SELECT MAX 欄位名 FROM 表格名;
+/* 顯示表格內欄位名的最大值 */
+
+
+SELECT COUNT (欄位名) FROM 表格名 WHERE 欄位名 IS NOT NULL;
+/* 計算表格內欄位名的數量(不包含空值) */
+
+SELECT * FROM TableName WHERE ColumnName1 = (SELECT MAX(ColumnName2) FROM TableName);
+/* 顯示TableName中ColumnName1值符合等於ColumnName2欄位中的最大值者  */
+
+SELECT (CTeam,MAX(CScore)) FROM TableName GROUP BY (CTeam) HAVING MAX(CScore)>=25;
+/* 顯示CTeam和最大CScore欄位並依CTeam欄位取樣，限定最大CScore值必須大於25  */
+
+SELECT (TableName1.C1,TableName2.C1) FROM (TableName1,TableName2) WHERE TableName1.C2=TableName2.C2;
+/* 列出TableName1.C2等於TableName2.C2之中顯示出TableName1.C1兩者TableName2.C2並列表格  */
+
+SELECT (TN1.C1,TN2.C2) FROM (TableName1 as TN1,TableName2 as TN2) WHERE TN1.C1=TN2.C2;
+/* 列出TableName1.C2等於TableName2.C2之中顯示出TableName1.C1兩者TableName2.C2並列表格(其中將TableName1作縮寫TN1)  */
+
+
+```
+
+## SQL語法計算符號:
+| 符號 | 說明 | 註解 |
+|-   |-   |-   |
+| `+` |-   |-   |
+| `-` |-   |-   |
+| `*` |-   |-   |
+| `/` | 結果包含小數   |-   |
+| `%` | 求餘數   |-   |
+
+## SQL語法邏輯判斷:
+| ----- 符號 -------- | 說明 | 註解 |
+|-   |-   |-    |
+| `=`           | 等於     |-   |
+| `!=`          | 不等於   |-   |
+| `<>`          | 不等於   |-   |
+| `<`           | 大於     |-   |
+| `<=`          | 大於等於 |-   |
+| `>`           | 小於     |-   |
+| `>=`          | 小於等於 |-   |
+| `AND`         | 且      |-   |
+| `OR`          | 或      |-   |
+| `NOT`         | 非      |-   |
+| `IN`          | 包含     |-   |
+| `NOT IN`      | 不包含   |-   |
+| `BETWEEN` ... `AND` | 介於兩值之間   | 相當於使用`>=`和`<=`   |
+| `IS NULL`     | 為空值   |-   |
+| `IS NOT NULL` | 非空值   |-   |
+| `LIKE`        | 模糊查詢   |`'%'`(不限長度匹配)和 `'_'`(固定長度匹配)使用   |
+
+
+
+## SQL語法 `SELECT` & `SELECT DISTINCT` 函數:
+| ----- 函數 -------- | 說明 | 註解 |
+|-   |-   |- 
+|SUM()|總和|
+|MIN()|最小值|
+|MAX()|最大值|
+|AVG()|平均|
+|LEN()|計算字元長度(MS)|
+|LENGTH()|計算字元長度|
+|COUNT()|計算數量|==COUNT(*)== → 計算所有數量|
+|SUBSTR|擷取字元|SUBSTR(欄位名,開始位置,擷取長度)|
+|TRIM()|除去最左右空格|
+|RAND()|隨機數產生|
+|REPLACE()|取代字元|REPLACE(欄位, '欲取代的字串', '取代後的字串'|
+|ROUND()|四捨五入|ROUND(欄位, '近位位數'|
+|FROM_UNIXTIME()|將日期變數轉換成字串|FROM_UNIXTIME(日期欄位,"%d-%m-%Y %h:%i")|
+|DATE_FORMAT()|將日期變數轉換成字串|DATE_FORMAT(日期欄位,"%d-%m-%Y %h:%i")|
+
+
+## SQL語法 `Join` 集合:
+
+![](https://lh3.googleusercontent.com/NoWumHxZ-kO2ZPgD4kFsFg6-7UMfStE8UQK83d6aMmWXZzjJvWL-r5EXojHEL0CmzCp_2g0z5MAl8LBvMM7z8iGb-FBBhZulTtikZ2mDoM0EpMVcwhqhKuyHzoPOCxxBdLL28K18WH7xEtMUHK18mayopPLWaG7RAjET0MzJw4VzEAQIrlvHDKn3YeaZn8s4OTuHBVsjS_JqcWDmNmTTt4pO7k1nAY4Crxn3cJD5NRU2Sp89VPcV5wZqg7dM08UBwqx2BTuiKEfRfjVGGFNgSGOIw-JLK2kniQ8gid6EQm27b4hITbVGN4wQlqmDvBeM_-3fuPr_5I6xah9N2rXqi-Fbx75Gs1hdHJAYEEHI7tVWltVjwicYigh8_xDM-eiVnbV71MUgmx79SB3kreuYuUT-hbgTDGpOAcpqOZ64y5L661y2vKRTfpDDtip-OJOPJOHEmF1mPKtxBXW6kWSEiFtJ7EcvVa0f5H8-BCy9Ty_pX77mGhvM6DzS-m6EpHjd1AWIxReUmuO3-4idbRtluQIhy3_huUz0xEzTm8iPy86MjlBVfGaWhN8HspA3Iwt0kFyJk9o_16rX-UDYpt1AhC0Y1lkUnGBE1qZ7PDBkOdwK0Rg-XHk6EPITdgTxhmux6K2l5SHh-Em0-V0Y70940Ats7XFAfOlXM2X_ibyKPlZ6GBoy3VTRr05D=w600-h472-no)
+
+
+
+## SQL DCL 資料控制語言:
+**(3) 資料控制語言(Data Control Language,DCL):**
+
+`GRANT` : 開啟權限設置
+```sql
+GRANT DELETE,INSERT,SELECT,QUERY REWRITE ON TableName TO User01 ;
+/* 將 TableName表格中的DELETE,INSERT,SELECT,QUERY REWRITE 權限開放給User01*/
+```
+
+`REVOLE` : 取消權限設置
+```sql
+REVOKE DELETE,INSERT,SELECT ON TableName FROM User01;
+/* 將 TableName表格中的DELETE,INSERT,SELECT,QUERY REWRITE 權限取消自User01*/
+```
+
+**(4) 交易控制語言(Transaction Control Language,TCL):**
+
+交易功能4個特性 (ACID)
+* Atomicity (原子性、不可分割)：交易內的 SQL 指令，不管在任何情況，都只能是全部執行完成，或全部不執行。若是發生無法全部執行完成的狀況，則會回滾(rollback)到完全沒執行時的狀態。
+* Consistency (一致性)：交易完成後，必須維持資料的完整性。所有資料必須符合預設的驗證規則、外鍵限制...等。
+* Isolation (隔離性)：多個交易可以獨立、同時執行，不會互相干擾。這一點跟後面會提到的「隔離層級」有關。
+* Durability (持久性)：交易完成後，異動結果須完整的保留。
+
+`START TRANSACTION 或 BEGIN` : 開始交易
+```sql
+START TRANSACTION;
+BEGIN;
+```
+
+`COMMIT` : 將開始交易的過程的執行結果提交
+
+`SAVEPOINT` : 在交易過程中設置儲存點
+
+`RELEASE SAVEPOINT` : 刪除在交易過程中設置儲存點
+
+`ROLLBACK` : 回復交易設置儲存點或開始前
+
+```sql
+BEGIN;
+...
+ROLLBACK;
+-- 回復交易開始前
+```
+
+```sql
+BEGIN;
+...
+SAVEPOINT SV1;
+...
+ROLLBACK TO SV1;
+-- 回復存點SV1以前的狀態
+```
+關閉/打開自動commit (僅對當下Session有效)
+```sql
+set autocommit = off;
+set autocommit = on;
+```
+
+### 不能 ROLLBACK 的指令
+ * DDL 的指令
+### 會造成自動終止交易並 COMMIT 的指令
+執行這些指令時，如同先執行了 commit:
+* DDL 指令：ALERT TABLE、CREATE INDEX、CREATE TABLE、DROP TABLE、DROP DATABASE、RENAME TABLE、TRUNCATE、LOCK TABLES、UNLOCK TABLES...等
+* SET AUTOCOMMIT=1、 BEGIN、START TRANSACTION
+
 
 
 ## Redis 安裝
