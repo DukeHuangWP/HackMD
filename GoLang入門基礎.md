@@ -3075,7 +3075,7 @@ func main() {
 > > <span style="color: magenta">　　　**break** </span>\
 > > **}**
 > 
-> 執行內容會直到 ==`break`== 後或是利用 ==`goto`== 跳出迴圈才會中斷，否則為無限迴圈 
+> 執行內容會直到 `break` 後或是利用 `goto` 跳出迴圈才會中斷，否則為無限迴圈 
 > </div>
 > 
 > ### Go 語言的結構控制 - ( for 普通式 )
