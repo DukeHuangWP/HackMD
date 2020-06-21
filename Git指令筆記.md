@@ -1561,87 +1561,152 @@
 ## Git設定指令:
 >| 命令 |  說明 |
 >| --- | --- | --- |
->| git config user.name "Git1"| 設定個別識別資料簽名為 ==`` Git1 ``== | |
->| git config user.email "git@g.com"| 設定個別識別資料E-Mail為 ==`` git@g.com ``== | |
->| git config --global user.name "Git1"| 設定預設識別資料簽名為 ==`` Git1 ``== | |
->| git config --global user.email "git@g.com"| 設定預設識別資料E-Mail為 ==`` git@g.com ``== | |
+>| git config user.name &#0034;Git1&#0034;| 設定個別識別資料簽名為 `` Git1 `` | |
+>| git config user.email &#0034;git@g.com&#0034;| 設定個別識別資料E-Mail為 `` git@g.com `` | |
+>| git config --global user.name &#0034;Git1&#0034;| 設定預設識別資料簽名為 `` Git1 `` | |
+>| git config --global user.email &#0034;git@g.com&#0034;| 設定預設識別資料E-Mail為 `` git@g.com `` | |
 >
 ## Git工作目錄:
 >| 命令 |  說明 |
 >| --- | --- | --- |
 >| git init | 初始化當前工作目錄(為該目錄設置Git) | |
 >| git add . | 將工作目內所有檔案置入暫存區(stage) | |
->| git add "filename" | 將 ==`` filename ``== 置入暫存區(stage) | |
->| git rm --cached "filename" | 將 ==`` filename ``== 從暫存區(stage)中移除 | |
+>| git add &#0034;filename&#0034; | 將 `` filename `` 置入暫存區(stage) | |
+>| git rm --cached &#0034;filename&#0034; | 將 `` filename `` 從暫存區(stage)中移除 | |
 >| git commit -a | 已變更的檔案提交至本地庫(local repoistry) | |
->| git commit -m "測試編輯評論" "filename" | 將 ==`` filename ``== 提交至本地庫(local repoistry)，並註記 ==`測試編輯評論`== | |
+>| git commit -m &#0034;測試編輯評論&#0034; &#0034;filename&#0034; | 將 `` filename `` 提交至本地庫(local repoistry)，並註記 `測試編輯評論` | |
 >| git status | 檢查本地庫(local repoistry)與暫存區(stage)的狀態|
 
 ## Git查詢指令:
 >| 命令 |  說明 | |
 >| --- | --- | --- |
->| git log | 顯示Git版本紀錄 | ==`q`==|
+>| git log | 顯示Git版本紀錄 | `q`|
 >| git log --pretty=oneline | 顯示Git版本紀錄(簡化顯示:無上傳者、時間) | |
 >| git log --oneline | 顯示Git版本紀錄(簡化顯示:sh1) | |
 >| git reflog | 顯示Git版控操作紀錄 | |
 >| git diff | 比較目前檔案與最新版的差異 | |
->| git diff HEAD^ "filename" | 比較檔案 ==`filename`== 與上一版的差異 | |
+>| git diff HEAD^ &#0034;filename&#0034; | 比較檔案 `filename` 與上一版的差異 | |
 
 
 ## Git版控指令:
 >| 命令 |  說明 | |
 >| --- | --- | --- |
->| git reset --hard "sh1" | Git還原至 ==`sh1`== 版本 | |
+>| git reset --hard &#0034;sh1&#0034; | Git還原至 `sh1` 版本 | |
 >| git reset --hard HEAD^ | Git還原至前一版本 | |
 >| git reset --hard HEAD^^^ | Git還原至前三版本 | |
 >| git reset --hard HEAD~3 | Git還原至前三版本 | |
->| git checkout "sh1" "filename" | 將檔案 ==`filename`== 還原至指定版本 | |
+>| git checkout . | Git還原至沒有commit前的版本 | |
+>| git checkout &#0034;sh1&#0034; &#0034;filename&#0034; | 將檔案 `filename` 還原至指定版本 | |
 
 ## Git分支指令:
 >| 命令 |  說明 | |
 >| --- | --- | --- |
 >| git branch -v  | 查詢本地庫的分支 |
 >| git branch -a  | 查詢本地庫與遠端庫的分支 |
->| git branch "vername" | 創建新分支並命名為 ==`vername`== |
->| git branch -d "vername" | 刪除分支名稱 ==`vername`== |
->| git branch -D "vername" | 創建新分支並命名為 ==`vername`== |
->| git branch -m "vername" "newname" | 創建新分支 ==`vername`== 更名為 ==`newname`== |
->| git checkout "vername" | 切換分支名稱 ==`vername`== |
->| git checkout -b "vername" | 新增並切換分支名稱 ==`vername`== |
->| git merge "vername" | 將目前版本與分支 ==`vername`== 合併 |
->| git rebase "vername" | 以 ==`vername`== 為基底衍合當前分支 |
->| git checkout --ours "filename" | 切換檔案 ==`filename`== 使用切換前版本分支 |
->| git checkout --theirs "filename" | 切換檔案 ==`filename`== 使用切換後版本分支 |
+>| git branch &#0034;vername&#0034; | 創建新分支並命名為 `vername` |
+>| git branch -d &#0034;vername&#0034; | 刪除分支名稱 `vername` |
+>| git branch -D &#0034;vername&#0034; | 創建新分支並命名為 `vername` |
+>| git branch -m &#0034;vername&#0034; &#0034;newname&#0034; | 將分支 `vername` 更名為 `newname` |
+>| git checkout &#0034;vername&#0034; | 切換分支名稱 `vername` |
+>| git checkout -b &#0034;vername&#0034; | 新增並切換分支名稱 `vername` |
+>| git merge &#0034;vername&#0034; | 將目前版本與分支 `vername` 合併 |
+>| git rebase &#0034;vername&#0034; | 以 `vername` 為基底衍合當前分支 |
+>| git checkout --ours &#0034;filename&#0034; | 切換檔案 `filename` 使用切換前版本分支 |
+>| git checkout --theirs &#0034;filename&#0034; | 切換檔案 `filename` 使用切換後版本分支 |
  
 
 ## Git遠端指令:
 > | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明 |
 > | --- | --- | --- |
-> | git clone "URL"| 將該遠端儲存庫 ==`URL`== 下載到當前工作目錄 | |
+> | git clone &#0034;URL&#0034;| 將該遠端儲存庫 `URL` 下載到當前工作目錄 | |
 > | git remote| 顯示所有遠端儲存庫版本 | |
 > | git remote -v| 顯示所有遠端儲存庫版本與URL | |
-> | git remote add "remote_name" "URL" | 將該遠端儲存庫 ==`URL`== 命名為 ==`remote_name`== | |
-> | git remote rename "remote_name" "newname" | 將該遠端儲存庫名稱 ==`remote_name`== 更名為 ==`newname`==  | |
-> | git remote rm "remote_name" | 移除遠端儲存庫名稱 ==`remote_name`== 與該URL | 
-> | git push "remote_name" "vername" | 將分支名稱 ==`vername`== 上傳至遠端儲存庫 ==`remote_name`== | |
-> | git pull "remote_name" "vername" | 將遠端儲存庫 ==`remote_name`== 合併至分支名稱 ==`vername`== | |
+> | git remote add &#0034;remote_name&#0034; &#0034;URL&#0034; | 將該遠端儲存庫 `URL` 命名為 `remote_name` | |
+> | git remote rename &#0034;remote_name&#0034; &#0034;newname&#0034; | 將該遠端儲存庫名稱 `remote_name` 更名為 `newname`  | |
+> | git remote rm &#0034;remote_name&#0034; | 移除遠端儲存庫名稱 `remote_name` 與該URL | 
+> | git push | 將現在分支上傳至遠端儲存庫 | |
+> | git push -f | 將現在分支強制上傳並覆蓋至遠端儲存庫(慎用) | |
+> | git push &#0034;remote_name&#0034; &#0034;vername&#0034; | 將分支名稱 `vername` 上傳至遠端儲存庫 `remote_name` | |
+> | git pull &#0034;remote_name&#0034; &#0034;vername&#0034; | 將遠端儲存庫 `remote_name` 合併至分支名稱 `vername` | |
 > | git fetch | 擷取所有遠端儲存庫 | 
-> | git fetch <branch_name> | 擷取遠端儲存庫的 ==`varname`== 分支 | 
+> | git fetch <branch_name> | 擷取遠端儲存庫的 `varname` 分支 | 
 
 ## Git標籤指令:
 > | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明 |
 > | --- | --- | --- |
-> | git tag "輕量標籤"| 為目前的版本添加 ==`輕量標籤`== 作為標籤 | |
-> | git tag -am "標籤名稱" "註解xxx"| 為目前的版本添加 ==`標籤名稱`== 並以 ==`註解xxx`== 作為註解 | |
-> | git tag -d "輕量標籤"| 為目前的版本刪除名稱為 ==`輕量標籤`== 的標籤 | |
+> | git tag  &#0034;輕量標籤&#0034;| 為目前的版本添加 `輕量標籤` 作為標籤 | |
+> | git tag -am &#0034;標籤名稱&#0034; &#0034;註解xxx&#0034;| 為目前的版本添加 `標籤名稱` 並以 `註解xxx` 作為註解 | |
+> | git tag -d &#0034;輕量標籤&#0034;| 為目前的版本刪除名稱為 `輕量標籤` 的標籤 | |
 
 ---
--
+## Git 常用指令:
+```bash
+git log --oneline --graph
+# log 精簡化紀錄
+git log -S "ss"
+# log 搜尋commit的檔案內容中包含"ss"的紀錄
+git log -p "filename"
+# log 搜尋filename檔案commit紀錄
+git blame "filename"
+# log 搜尋filename檔案commit紀錄(單行)
+git log --author="aa"
+# log 搜尋作者為"aa"的commit紀錄
+git log --grep="cc"
+# log 搜尋commit文字中包含"cc"的紀錄
+git log --after="2001-02-03 04:56" --before="2099-09-09 23:23"
+# log 搜尋此時區間的commit紀錄(參數至少包含年月日)
+
+git commit --amend -m "xxxx"
+#重新修改本次commit備註
+
+```
+
+## 將某檔案從Git紀錄中完全移除:
+```bash
+git filter-branch -f --tree-filter "rm -f XXXX/XXXX.ext"
+# filter-branch 指令把檔案XXXX/XXXX.ext從工作目錄裡移掉
+rm .git/refs/original/refs/heads/master
+# 刪除Git管理目錄中的 filter-branch 備份點
+git reflog expire --all --expire=now
+# Reflog 立刻過期（不然預設要等 30 天）
+git gc --prune=now
+# 啟動 Git 的資源回收機制，請垃圾車來立刻把它們載走
+git fsck
+# 檢查
+
+```
+
+
+## 隱藏部份檔案，不上傳至遠端庫Repository:
+
+git所管理資料夾內創建 ==.gitignore== 隱藏檔案，在編輯內容:
+
+```bash
+# 檔案名稱 .gitignore
+
+# 忽略 secret.yml 檔案
+secret.yml
+
+# 忽略 config 目錄下的 database.yml 檔案
+config/database.yml
+
+# 忽略所有 db 目錄下附檔名是 .sqlite3 的檔案
+/db/*.sqlite3
+
+# 忽略所有附檔名是 .tmp 的檔案
+*.tmp
+
+# 當然你要忽略自己也可以，只是通常不會這麼做
+# .gitignore
+```
+
+
+
 ## 上傳至遠端儲存庫失敗(error: failed to push some refs to):
  
- 上傳至遠端儲存庫失敗訊息: ==`error: failed to push some refs to`==
+ 上傳至遠端儲存庫失敗訊息: `error: failed to push some refs to`
  
- 最常見的原因為遠端庫資料與本地庫資料有所差異，必須先將遠端庫更新到本地庫中(pull)，==`git pull`== 指令會更新本地庫資料至最新，過程會自動判斷是否有衝突(conflict)，若有須另外藉由 ==`git merge`== 解決問題，若本地庫更新完成後，即可再次 ==`git push`==。
+ 最常見的原因為遠端庫資料與本地庫資料有所差異，必須先將遠端庫更新到本地庫中(pull)，`git pull` 指令會更新本地庫資料至最新，過程會自動判斷是否有衝突(conflict)，若有須另外藉由 `git merge` 解決問題，若本地庫更新完成後，即可再次 `git push`。
  
  以下是未有衝突發生的成功案例:
  
@@ -1691,7 +1756,7 @@
 > 
 > ```
  
- 以下是衝突發生並利用 ==`git checkout --ours`== 解決案例: 
+ 以下是衝突發生並利用 `git checkout --ours` 解決案例: 
 > ```sass
 > d:\Personal File\Desktop\GOLang\GitStudy (master -> origin) 
 > λ git commit -a -m "合併衝突"
@@ -1746,7 +1811,7 @@
 
 ## 解決合併衝突(merge & conflict):
  
-將遠端庫更新到本地庫中(pull)，==`git pull`== 指令會更新本地庫資料，合併時易容易發生衝突(conflict)，若使用手動處理衝突可利用編輯器的比較工具分析，修改完成後再使用 ==`git add`== 指令將檔案新增至暫存庫，再 ==`git commit`== 成為一個新版本。
+將遠端庫更新到本地庫中(pull)，`git pull` 指令會更新本地庫資料，合併時易容易發生衝突(conflict)，若使用手動處理衝突可利用編輯器的比較工具分析，修改完成後再使用 `git add` 指令將檔案新增至暫存庫，再 `git commit` 成為一個新版本。
 
 
 以下是手動處理合併衝突(conflict)的過程:
@@ -1806,7 +1871,7 @@
 >    
 > ```
 
-若想還原pull所造成的衝突，可利用 ==`git reset --hard HEAD@{0}`== 指令還原操作:
+若想還原pull所造成的衝突，可利用 `git reset --hard HEAD@{0}` 指令還原操作:
 > ```sass
 > d:\Personal File\Desktop\GOLang\GitStudy (master -> origin) 
 > λ git pull "初始版" "master"
