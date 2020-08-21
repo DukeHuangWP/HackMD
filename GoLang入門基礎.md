@@ -1721,7 +1721,7 @@
 > **[⁴]**	https://ithelp.ithome.com.tw/articles/10194019
 > **[⁵]**	https://www.ithome.com.tw/node/57227
 > **[⁶]**	https://kknews.cc/zh-tw/tech/bxgj5xo.html
-> > ==`此表格為本hackmd作者所整理，雖嚴謹查證資料但不保證內容完美無誤`==
+> > ==此表格為本hackmd作者所整理，雖嚴謹查證資料但不保證內容完美無誤==
 
 ---
 
@@ -2632,8 +2632,8 @@ func main() {
 > |strings.LastIndex|計算字串位於該中所在位置(由右至左第一位)|(被計算字串,搜尋字串)|(int) (0表示首位 -1表示搜尋不到)|
 > |strings.ToUpper|將字串內的字元之英文字母改成大寫|(string)|(string)|
 > |strings.ToLower|將字串內的字元之英文字母改成小寫|(string)|(string)|
-> |strings.Replace|將字串內的特定字串取代成另一字串(+由左至右/-由右至左)|(原始字串,被取代字串,搜尋字串,±取代次數)|(string)|
-> |strings.ReplaceAll|將字串內的所有特定字串取代成另一字串|(原始字串,被取代字串,搜尋字串)|(string)|
+> |strings.Replace|將字串內的特定字串取代成另一字串(+由左至右/-由右至左)|(原始字串,搜尋字串,修改字串,±取代次數)|(string)|
+> |strings.ReplaceAll|將字串內的所有特定字串取代成另一字串|(原始字串,搜尋字串,修改字串)|(string)|
 > |strings.TrimSpace|將字串最靠左與最靠右之空白與"\n\t\r"去除|(string)|(string)|
 > |strings.TrimPrefix|將字串最靠左特定字串去除|(原始字串,去除字串)|(string)|
 > |strings.TrimSuffix|將字串最靠右特定字串去除|(原始字串,去除字串)|(string)|
@@ -2951,7 +2951,7 @@ func main() {
 > <div class="panel-body">
 > 
 > > <span style="color: DeepSkyBlue">**switch**</span> {\
-> > 　**case** <span style="color: yellow">判斷變數值</span>**:**\
+> > 　**case** <span style="color: yellow">判斷變數值1,判斷變數值2, .... </span>**:**\
 > > <span style="color: red">　　執行內容...</span>\
 > > **}**
 > </div>
@@ -2960,7 +2960,7 @@ func main() {
 > <div class="panel-body">
 > 
 > > <span style="color: DeepSkyBlue">**switch**</span> <span style="color: orange">**宣告判斷變數**</span>{\
-> > 　**case** <span style="color: yellow">判斷變數值1</span>**:**\
+> > 　**case** <span style="color: yellow">判斷變數值1a,判斷變數值1b, .... </span>**:**\
 > > <span style="color: red">　　 執行內容1...</span>\
 > >  　 　<span style="color: magenta">**fallthrough**</span>\
 > > 　**case** <span style="color: yellow">判斷變數值2</span>**:**\
@@ -3075,7 +3075,7 @@ func main() {
 > > <span style="color: magenta">　　　**break** </span>\
 > > **}**
 > 
-> 執行內容會直到 `break` 後或是利用 `goto` 跳出迴圈才會中斷，否則為無限迴圈 
+> 執行內容會直到 ==`break`== 後或是利用 ==`goto`== 跳出迴圈才會中斷，否則為無限迴圈 
 > </div>
 > 
 > ### Go 語言的結構控制 - ( for 普通式 )
