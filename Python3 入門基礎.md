@@ -1592,18 +1592,20 @@ print("Hello, World!")
 
 #### Python3 指令串接
 ```python
-print(1 +
-      2 +
-      3
-      )
-#6
-print(1 +\
-      2 +\
-      3
-      )
-      
-#6
-#換行串接指令方式
+sum= 1 + \
+     2 + \
+     3
+#\為延續換行符號
+print(sum) #6
+
+sum= (
+     1 +
+     2 +
+     3
+     )
+#()可以代替延續換行符號
+print(sum) #6
+
 ```
 
 #### Python3 變數類型
@@ -1655,7 +1657,7 @@ while	with	yield
 ### Python3變數 - 數值:
 
 #### Python3 數值運算符號
-|變數名稱|型別函式 |規則|
+|變數名稱|型別函式 |範例|
 |-|-|-|
 |+|加|A=5+2|A=7|
 |-|減|A=5-2|A=3|
@@ -1668,19 +1670,36 @@ while	with	yield
 |-=|減 ==A=A-2== |A -= 2|
 |*=|乘 ==A=A*2== |A *= 2|
 |/=|除法 ==A=A/2==  |A /= 2|
-|//=|整數(捨棄)除法 ==A=A//2==|A //= 2|
-|%=|模數(餘數) ==A=A%2== |A %= 2|
+|//=|整數除法(捨棄於數) ==A=A//2==|A //= 2|
+|%=|模數(求餘數) ==A=A%2== |A %= 2|
 |**=|次方 ==A=A**2==|A **= 2|
+|&|位元且運算，當兩個都True，才將該位元設定True，其他都設定為False。|A=5&4|
+|`|`|位元或運算，當兩個都False，才將該位元設定False，其他都設定為True。| `A=5|4` |
+|^|位元互斥或運算，當一個為True，另一個為False，才將該位元設定為True，其他都設定為False。|A=5^4|
+|~|位元取相反|A=~5|
+|<< |位元左移運算，左移指定的位元個數。|A=5<<2|
+|>> |位元右移運算，右移指定的位元個數。|A=5>>2|
+
+
 
 #### Python3 變數型別轉換
-|變數名稱|型別函式 |規則|
+|變數名稱|型別函式 |說明|
 |-|-|-|
 |布林|bool(變數名稱)|非等值0數值和字串轉換皆為True|
-|整數|int(變數名稱)||
-|浮點數|float(變數名稱)||
+|整數|int(變數名稱)|bool視為二進制數值，float則捨去小數點|
+|浮點數|float(變數名稱)|bool視為二進制數值|
 |複數|complex(變數名稱)||
 
 ```python=
+print(1 +
+      2 +
+      3
+      )
+
+print(1 +
+      2 +
+      3
+      )
 
 
 print(123)  # 123
@@ -1725,5 +1744,162 @@ print(True + 0)  # 1
 print(True + 99.9)  # 100.9
 # print(True + "")  # TypeError: unsupported operand type(s) for +: 'bool' and 'str'
 
+print()
+aa = 123-12j
+print(aa.real)  # 實數部分 123.0
+print(aa.imag)  # 虛數部分 123.0
+
+print()
+print(1j * 1J)  # (-1+0j)
+print(1j * complex(0, 1))  # (-1+0j)
+print(3+1j*3)  # (3+3j)
+print((3+1j)*3)  # (9+3j)
+print((1+2j)/(1+1j))  # (1.5+0.5j)
 
 ```
+
+
+#### Python3 邏輯判斷式
+|變數名稱|型別函式 |說明|
+|-|-|-|
+|< |判斷是否小於|A=(5<2)  結果：A=False(False表示條件不成立，結果為假)|
+|<=|判斷是否小於等於|A=(5<=2)  結果：A= False (False表示條件不成立，結果為假)|
+|> |判斷是否大於|A=(5>2)  結果：A=True(True表示條件成立，結果為真)|
+|>=|判斷是否大於等於|A=(5>=2)  結果：A=True(True表示條件成立，結果為真)|
+|!=|判斷是否不等於|A=(5!=2)  結果：A=True(True表示條件成立，結果為真)|
+|==|判斷是否等於|A=(5==2)  結果：A= False (False表示條件不成立，結果為假)|
+|in|是否包含|x = 1 y = [1, 2, 3]  print(x in y) 結果：Ture|
+|not in|是否不包含|x = 1 y = [1, 2, 3]  print(x not in y) 結果：False|
+|is|是否為相同物件|x =  [1, 2, 3] y = [1, 2, 3]  print(x is y) 結果：False|
+|is not|是否不為相同物件|x =  [1, 2, 3] y = [1, 2, 3]  print(x is y) 結果：True|
+
+
+
+
+```python
+#Python邏輯判斷方式
+print(5<10<11) #True
+print(5<12>11) #True
+print(5<12>11<13) #True 等價((5<12)>11)<13
+print(((5<12)>11)<13) #True 等價5<12>11<13
+
+'''
+以下皆為邏輯判斷中被判定False的變數狀況
+'''
+print(bool(False))  #否值bool
+print(bool(None)) #空值null
+print(bool(0)) #零值int
+print(bool(0.0)) #零值float
+print(bool('')) #空string
+print(bool("")) #空string
+print(bool([])) #空list
+print(bool(())) #空tuple
+print(bool({})) #空dict
+print(bool(set())) #空set
+
+```
+
+#### Python3 字串處理
+```python=
+str1 = "'1'"
+print(str1)  # '1'
+str2 = '"2"'
+print(str2)  # "2"
+print()
+
+print(str1, str2)  # '1' "2"
+print(str1+str2)  # '1'"2"
+print()
+
+print("-----------")
+print('')  # 空字串
+print("")  # 空字串
+print('''''')  # 空字串
+print("""""")  # 空字串
+print("-----------")
+print()
+
+
+print("""
+測試1
+測試2
+"""
+      )
+#
+# 測試1
+# 測試2
+#
+
+print()
+print("重複" * 10)  # 重複重複重複重複重複重複重複重複重複重複
+print(str(99.9))  # 99.9 #強制將數字轉為字串
+print()
+
+# str[:] → 表示str整個字串
+# str[10:] → 擷取str字串:第11到最末
+# str[10:15] → 擷取str字串:第11到第15
+# str[10:15:2] → 擷取str字串:第11到第15，中間跳過1字元(12、14會被忽略)
+# str[::-1] → 表示前後反轉str整個字串
+# str[-2::-1] → 表示前後反轉str整個字串後，刪去前一個字元
+
+print()
+str3 = "1234567890abcdef"
+print(str3[-2::-1])  # edcba0987654321
+print(len(str3))  # 16
+
+print(str3.replace("abcdef", "ABCDEF"))  # 1234567890ABCDEF
+print("11111".replace("1", "2", 2))  # 22111
+print("11111".replace("1", "2", -1))  # 22222 #負數則全部取代
+print(("11111"[::-1].replace("1", "2", 1))[::-1])  # 11112
+print()
+
+
+spacestr = "       !@$@$@!%@ \t\t"
+print("'"+spacestr.strip()+"'")  # '!@$@$@!%@'
+print("'"+spacestr.lstrip()+"'")  # '!@$@$@!%@              '
+print("'"+spacestr.rstrip()+"'")  # '       !@$@$@!%@'
+print("'"+spacestr.strip("\t")+"'")  # '       !@$@$@!%@ '
+
+print()
+print(spacestr.startswith("\t"))  # Fasle #確認開頭字串
+print(spacestr.endswith("\t"))  # True #確認結尾字串
+
+print()
+str4="123456789Abcdef"
+print(str4.find("4"))  # 3
+print(str4.index("4"))  # 3
+print(str4.rfind("5"))  # 4
+print(str4.rindex("5"))  # 4
+#string.find()和string.index()差別在於找不倒字串時: find回傳-1,index回傳錯誤
+print()
+print(str4.count("1"))  # 1
+print(str4.count("      "))  # 0
+print(str4.count(''))  # 16 #相當於字串數
+print(str4.isalnum())  # True #字串是否為全英數
+print(str4.capitalize())  # 123456789abcdef #相當於字串數
+print(str4.title())  # True #字串是否為全英數
+print(str4.upper())  # 123456789ABCDEF #相當於字串數
+print(str4.lower())  # 123456789abcdef #字串是否為全英數
+print(str4.swapcase())  # 123456789aBCDEF #字串是否為全英數
+
+
+```
+
+|轉譯字符|型別函式 |說明|
+|-|-|-|
+|`\`|(在行尾時) 續行符|
+|\\| 反斜杠符號|
+|\'| 單引號|
+|\"| 雙引號|
+|\a| 響鈴|
+|\b| 退格(Backspace)|
+|\e| 轉義|
+|\000| 空|
+|\n| 換行|
+|\v| 縱向製表符|
+|\t| 橫向製表符|
+|\r| 回車||
+|\f| 換頁|
+|\oyy| 八進制數，yy代表的字符，例如：\o12代表換行|
+|\xyy| 十六進制數，yy代表的字符，例如：\x0a代表換行|
+|\other| 其它的字符以普通格式輸出|
