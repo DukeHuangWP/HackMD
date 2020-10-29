@@ -1927,3 +1927,17 @@ config/database.yml
 > λ git reset --hard HEAD@{0}
 > HEAD is now at d70266d Xtest Ver
 > ```
+
+
+
+## Gitlab 搬遷:
+ 
+Gitlab方式先將舊專案 git 鏡像clone，在另外push。
+ 
+>  ```sass
+>  git clone --mirror https://git.xxx1/old-poject.git
+>  git remote rename origin old-poject
+>  git remote add origin https://oauth2:PersonalAccessToken@xxx2/new-poject.git/
+>  git push -u origin --all
+>  git push -u origin --tags
+>  ```
