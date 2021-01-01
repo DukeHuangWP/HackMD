@@ -1561,46 +1561,46 @@
 ### Go 單元測試(Unit Test)介紹:
 >
 > #### go test 工具說明 :
-> Golang 官方工具包提供單元測試功能透過，==`go test`== 進行單元測試:
+> Golang 官方工具包提供單元測試功能透過，``go test`` 進行單元測試:
 > 
-> > 1. 單元測試檔名必須以 ==`*_test.go`== 結尾命名，和被測試檔案必須在同一個包(package)中，此檔名內容僅會在 ==`go test`== 下執行。
-> > 2. 單元測試函式必須是 ==`Test`== 或是 ==`Benchmark`== 作為函式開頭名稱後面第一字必需大寫 ex: **TestExample** 、**BenchmarkExample** 。
-> > 3. 單元測試函式輸入參數型別必須 ==`*testing.T`== 、 ==`*testing.B`==
+> > 1. 單元測試檔名必須以 ``*_test.go`` 結尾命名，和被測試檔案必須在同一個包(package)中，此檔名內容僅會在 ``go test`` 下執行。
+> > 2. 單元測試函式必須是 ``Test`` 或是 ``Benchmark`` 作為函式開頭名稱後面第一字必需大寫 ex: **TestExample** 、**BenchmarkExample** 。
+> > 3. 單元測試函式輸入參數型別必須 ``*testing.T`` 、 ``*testing.B``
 > >
 > 
-> ==`go test`== 工具附加命令參數設定值:
+> ``go test`` 工具附加命令參數設定值:
 >    
-> > ==`-c`== : 不運行測試，將go test編譯成為可執行檔案(二進位文件)。
+> > ``-c`` : 不運行測試，將go test編譯成為可執行檔案(二進位文件)。
 > > 
-> > ==`-i`==  : 不運行測試，安裝測試包依賴的package。
+> > ``-i``  : 不運行測試，安裝測試包依賴的package。
 > > 
-> > ==`-v`==  : 測試過程顯示列表所有函式(通過/不通過)。
+> > ``-v``  : 測試過程顯示列表所有函式(通過/不通過)。
 > > 
-> > ==`-short`==  : 縮短運行時間較長的測試項目。
+> > ``-short``  : 縮短運行時間較長的測試項目。
 > > 
-> > ==`-args "-TT"`==  : 測試時置入命令參數 **-TT** (詳細參考flag.Args)
+> > ``-args "-TT"``  : 測試時置入命令參數 **-TT** (詳細參考flag.Args)
 > > 
-> > ==`-timeout 1h`==  : 如果測試用例運行時間超過 **1小時**，則拋出panic。
+> > ``-timeout 1h``  : 如果測試用例運行時間超過 **1小時**，則拋出panic。
 > > 
-> > ==`-run=funcname`== : 僅測試函式包含名稱 **funcname** 。(預設值 ==`.`==，表示全部測試)
+> > ``-run=funcname`` : 僅測試函式包含名稱 **funcname** 。(預設值 ``.``，表示全部測試)
 > > 
-> > ==`-bench=funcname`== : 僅效能測試函式包含名稱 **funcname** 。(預設值 ==`.`==，表示全測試)
+> > ``-bench=funcname`` : 僅效能測試函式包含名稱 **funcname** 。(預設值 ``.``，表示全測試)
 > > 
-> > ==`-benchmem`==  : 設置效能測試的時顯示記憶體使用資訊。
+> > ``-benchmem``  : 設置效能測試的時顯示記憶體使用資訊。
 > > 
-> > ==`-benchtime 10s`==  : 設置效能測試運行的時間 **10秒** (預設值**1秒**)
+> > ``-benchtime 10s``  : 設置效能測試運行的時間 **10秒** (預設值**1秒**)
 > > 
-> > ==`-parallel 4`==  : 設定效能測試並行最大CPU核心數為 **4** (預設值GOMAXPROCS)
+> > ``-parallel 4``  : 設定效能測試並行最大CPU核心數為 **4** (預設值GOMAXPROCS)
 > > 
-> > ==`-cpu 1,2,3,4`==  : 效能測試會依序由 **1~4** CPU核心數測試。(預設值為GOMAXPROCS)
+> > ``-cpu 1,2,3,4``  : 效能測試會依序由 **1~4** CPU核心數測試。(預設值為GOMAXPROCS)
 > > 
-> > ==`-cpuprofile cpu.out`==  : 將測試過程CPU使用量紀錄儲存至 **cpu.out**
+> > ``-cpuprofile cpu.out``  : 將測試過程CPU使用量紀錄儲存至 **cpu.out**
 > > 
-> > ==`-memprofile mem.out`==  : 將測試過程記憶體使用量紀錄儲存至 **mem.out**
+> > ``-memprofile mem.out``  : 將測試過程記憶體使用量紀錄儲存至 **mem.out**
 > > 
-> > ==`-blockprofile block.out`==  : 將測試過程中goroutine阻塞分析紀錄儲存至 **block.out**
+> > ``-blockprofile block.out``  : 將測試過程中goroutine阻塞分析紀錄儲存至 **block.out**
 > > 
-> > ==`-blockprofilerate 2`== : 設置goroutine阻塞時候紀錄間隔時間為 **2納秒** (預設值**1納秒**)
+> > ``-blockprofilerate 2`` : 設置goroutine阻塞時候紀錄間隔時間為 **2納秒** (預設值**1納秒**)
 > > 
 > #### 單元測試關鍵點 :
 > 
@@ -2129,6 +2129,235 @@
 > }
 > ```
 
+### Go 反射包(reflect)介紹
+
+> ```go=
+> package main
+> 
+> import (
+> 	"fmt"
+> 	"reflect"
+> )
+> 
+> func fc_ReflectExample1(if_input interface{}) {
+> 	fmt.Printf("%v (%T)\n", reflect.ValueOf(if_input), reflect.ValueOf(if_input))
+> 	var vi_int = 1 + reflect.ValueOf(if_input).Int() //使用反射之內建方法進行型別斷言
+> 	fmt.Printf("%v (%T)\n", vi_int, vi_int)
+> }
+> 
+> type ty_Custom struct {
+> 	Name string
+> 	ID   uint
+> }
+> 
+> func fc_ReflectExample2(if_input interface{}) {
+> 	if st_Custom, TypePass := if_input.(ty_Custom); TypePass {
+> 		fmt.Printf("%v (%T)\n", st_Custom, st_Custom)
+> 		fmt.Printf("%v (%T)\n", st_Custom.Name, st_Custom.Name)
+> 	}
+> 
+> }
+> 
+> func main() {
+> 
+> 	fc_ReflectExample1(9)
+> 	println()
+> 	fc_ReflectExample2(ty_Custom{Name: "測試"})
+> 
+> 	// 	9 (reflect.Value)
+> 	// 10 (int64)
+> 
+> 	// {測試 0} (main.ty_Custom)
+> 	// 測試 (string
+> 
+> }
+> ```
+> 
+> #### reflect包常用函式與方法:
+> | 函式名稱 | 說明| 輸入 | 輸出類型 |
+> | - | - | -   | - | 
+> |reflect.ValueOf(任意變數)|回傳變數值|任意變數|(reflect.Value)|
+> |reflect.TypeOf(任意變數)|回傳變數型別名稱|任意變數|(*reflect.rtype)|
+> |(reflect.Value型別變數).Kind()|回傳變數底層型別|reflect.Value型別|(string)|
+> |(reflect.Value型別變數).Elem()|回傳指標之變數值|具備指標型別|(reflect.Value))|
+> |(reflect.Value型別變數).Elem().FieldByName(屬性名稱)|回傳結構體該屬性值|(reflect.Value型別)和屬性名稱|(reflect.Value)|
+> |(reflect.Value型別變數名稱).CanSet()|判斷該變數是否能修改值|reflect.Value型別|(bool)|
+> |(reflect.Value型別變數名稱).Set(reflect.Value(數值))|直接修改該變數值|符合型別之數值||
+> |(*reflect.rtype).Name()|回傳變數型別名稱|(*reflect.rtype)|型別名稱(string)|
+> 
+> ```
+> #### reflect Kind() 反射type型別名稱常數
+> const (
+>     Invalid Kind = iota //nil屬此類
+>     Bool
+>     Int
+>     Int8
+>     Int16
+>     Int32
+>     Int64
+>     Uint
+>     Uint8
+>     Uint16
+>     Uint32
+>     Uint64
+>     Uintptr
+>     Float32
+>     Float64
+>     Complex64
+>     Complex128
+>     Array
+>     Chan
+>     Func
+>     Interface
+>     Map
+>     Ptr
+>     Slice
+>     String
+>     Struct
+>     UnsafePointer
+> )
+> ```
+> 
+> ```go=
+> package main
+> 
+> import (
+> 	"fmt"
+> 	"reflect"
+> )
+> 
+> func fc_ReflectExample1(if_input interface{}) {
+> 	fmt.Printf("%v (%T)\n", reflect.ValueOf(if_input), reflect.ValueOf(if_input))
+> 	var vi_int = 1 + reflect.ValueOf(if_input).Int() //使用反射之內建方法進行型別斷言
+> 	fmt.Printf("%v (%T)\n", vi_int, vi_int)
+> }
+> 
+> type ty_Custom struct {
+> 	Name string
+> 	ID   uint
+> }
+> 
+> func fc_ReflectExample2(if_input interface{}) {
+> 	if st_Custom, TypePass := if_input.(ty_Custom); TypePass {
+> 		fmt.Printf("%v (%T)\n", st_Custom, st_Custom)
+> 		fmt.Printf("%v (%T)\n", st_Custom.Name, st_Custom.Name)
+> 	}
+> 
+> }
+> 
+> func main() {
+> 
+> 	fc_ReflectExample1(9)
+> 	println()
+> 	fc_ReflectExample2(ty_Custom{Name: "測試"})
+> 
+> 	// 	9 (reflect.Value)
+> 	// 10 (int64)
+> 
+> 	// {測試 0} (main.ty_Custom)
+> 	// 測試 (string
+> 
+> }
+> ```
+> ### Go 反射包(reflect)應用:
+> 
+> ```go=
+> package main
+> import (
+> 	"fmt"
+> 	"reflect"
+> )
+> 
+> type ty_Example struct {
+> 	F0 uint
+> 	F1 string
+> }
+> 
+> func main() {
+> 
+> 	fmt.Printf("%v\n", reflect.ValueOf("Testing"))        //Testing
+> 	fmt.Printf("%T\n", reflect.ValueOf("Testing"))        //reflect.Value
+> 	fmt.Printf("%v\n", reflect.ValueOf("Testing").Kind()) //string
+> 	fmt.Printf("%T\n", reflect.ValueOf("Testing").Kind()) //reflect.Kind
+> 	//fmt.Printf("%v\n", reflect.ValueOf("Testing").Elem()) //panic: reflect: call of reflect.Value.Elem on string Value
+> 	println()
+> 
+> 	var vi_int int = 1
+> 	//var rVO = reflect.ValueOf(&vi_int)
+> 	var vipr_int *int = &vi_int
+> 	var rVO = reflect.ValueOf(vipr_int)
+> 
+> 	fmt.Printf("%v\n", rVO.Elem())          //1
+> 	fmt.Printf("%T\n", rVO.Elem())          //reflect.Value
+> 	fmt.Printf("%v\n", rVO.Elem().CanSet()) //true
+> 	fmt.Printf("%T\n", rVO.Elem().CanSet()) //bool
+> 	rVO.Elem().Set(reflect.ValueOf(99))
+> 	println(vi_int) //99
+> 	println()
+> 
+> 	var st_Example = ty_Example{F0: 1, F1: "測試"}
+> 	fmt.Printf("%v\n", reflect.ValueOf(&st_Example).CanSet())                          //false
+> 	fmt.Printf("%T\n", reflect.ValueOf(&st_Example).CanSet())                          //bool
+> 	fmt.Printf("%v\n", reflect.ValueOf(&st_Example).Elem().FieldByName("F1"))          //測試
+> 	fmt.Printf("%T\n", reflect.ValueOf(&st_Example).Elem().FieldByName("F1"))          //reflect.Value
+> 	fmt.Printf("%v\n", reflect.ValueOf(&st_Example).Elem().FieldByName("F1").CanSet()) //true
+> 	fmt.Printf("%T\n", reflect.ValueOf(&st_Example).Elem().FieldByName("F1").CanSet()) //bool
+> 	reflect.ValueOf(&st_Example).Elem().FieldByName("F1").Set(reflect.ValueOf("修改"))
+> 	fmt.Println(st_Example) //{1 修改}
+> 	println()
+> 
+> }
+> ```
+> 
+> ```go=
+> package main
+> import (
+> 	"fmt"
+> 	"reflect"
+> )
+> 
+> type ty_Json struct {
+> 	Name string `json:"jsname"`
+> 	Age  int    `json:"jsage"`
+> }
+> 
+> func main() {
+> 
+> 	st_User := ty_Json{
+> 		"測試",
+> 		20,
+> 	}
+> 
+> 	fmt.Println(reflect.TypeOf(st_User))               //(0x4adaa0,0x487ba0)
+> 	fmt.Println(reflect.TypeOf(st_User).Field(0).Name) //name
+> 	fmt.Println(reflect.TypeOf(st_User).Field(0).Type) //string
+> 	fmt.Println(reflect.TypeOf(st_User).Field(0).Tag)  //json:"jsname"
+> 
+> 	fmt.Println(reflect.ValueOf(st_User).FieldByName("Name"))        //測試
+> 	fmt.Println(reflect.ValueOf(st_User).FieldByName("Name").Type()) //測試
+> 
+> 	println()
+> 
+> 	for index := 0; index < reflect.ValueOf(st_User).NumField(); index++ {
+> 		if reflect.ValueOf(st_User).Field(index).CanInterface() { //判斷是否可導出屬性
+> 			fmt.Printf("%v (%v %v %v)\n",
+> 				reflect.ValueOf(st_User).Field(index).Interface(),
+> 				reflect.TypeOf(st_User).Field(index).Name,
+> 				reflect.TypeOf(st_User).Field(index).Type,
+> 				reflect.TypeOf(st_User).Field(index).Tag)
+> 		}
+> 	}
+> 	// 測試 (Name string json:"jsname")
+> 	// 20 (Age int json:"jsage")
+> 
+> }
+> ```
+
+
+
+
+
+
 
 ### Go 檔案管理包(os.File):
 
@@ -2139,7 +2368,7 @@
 > | (*file).Close() |將關閉file指標所指向檔案，移除移除該file指標|(string)|(error)|
 >
 > os.OpenFile(name string, flag int, perm FileMode) (file *File, err error)
-> ==`FileMode:`==
+> ``FileMode:``
 >| 函式名稱 | 說明 | 
 > | - | - | -   | - | 
 > | O_RDONLY | 只讀模式打開文件 |
@@ -2208,7 +2437,7 @@
 > 
 
 ### Go 常用資料格式(json)應用:
-==`json.Marshal`==
+``json.Marshal``
 ```go=
 package main
 
@@ -2312,7 +2541,7 @@ func main() {
 
 ```
 
-==`json.Unmarshal`==
+``json.Unmarshal``
 ```go=
 package main
 
@@ -2369,7 +2598,7 @@ func main() {
 ```
 
 ### Go 注入(inject)(github)應用:
-==`go get github.com/codegangsta/inject`==
+``go get github.com/codegangsta/inject``
 ```go=
 package main
 import (
@@ -2468,7 +2697,7 @@ copy protoc-gen-go.exe %Path%
 ```
 Golang範例:
 
-==`./person.proto`==:
+``./person.proto``:
 ``` go
 syntax="proto3";
 
@@ -2485,7 +2714,7 @@ message Person {
 protoc --go_out=. person.proto
 ```
 
-==`./person.pb.go`==:
+``./person.pb.go``:
 ```go=
 // Code generated by protoc-gen-go. DO NOT EDIT.
 // source: person.proto
@@ -2576,7 +2805,7 @@ var fileDescriptor_4c9e10cf24b1156d = []byte{
 
 ```
 
-==`./main.go`==:
+``./main.go``:
 ```go
 package main
 
@@ -3531,4 +3760,370 @@ func PrintMemUsage(m runtime.MemStats) {
 func byteToMiB(b uint64) uint64 {
 	return b / 1024 / 1024
 }
+```
+
+
+### Go : try-catch 實作:
+```go=
+package main
+
+import "fmt"
+
+func main() {
+
+	someVar := "-----   start test  -----"
+	emptyVar := ""
+
+	Catcher(func(panicErr interface{}) {
+
+		fmt.Printf("something error : \n%v\n", panicErr)
+
+	}, func() {
+
+		fmt.Println(someVar)
+		//panic("自定義錯誤")
+		fmt.Println(emptyVar[0])
+
+	})
+
+	fmt.Println("----- still running -----")
+
+	// 	Try func active
+	// -----   start test  -----
+	// something error :
+	// runtime error: index out of range
+	// ----- still running -----
+}
+
+func Catcher(handler func(interface{}), run func()) {
+	defer func() {
+		if err := recover(); err != nil {
+			handler(err)
+		}
+	}()
+
+	fmt.Println("Try func active")
+	run()
+}
+
+```
+
+### Go : Google Sheet API對接實作:
+```go=
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
+
+	"golang.org/x/net/context"
+	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/google"
+	"google.golang.org/api/sheets/v4"
+)
+
+const (
+	googleAppCredentials = "./license/credentials.json"
+	googleAccountToken   = "./license/token.json"
+	googleErrorTitle     = "Google Sheet API 預期錯誤"
+)
+
+func main() {
+
+	credentials, err := ioutil.ReadFile(googleAppCredentials)
+	if err != nil {
+		log.Fatalf("Unable to read client secret file: %v\n", err)
+		//https://developers.google.com/sheets/api/quickstart/go 需要開啟獲取app 使用google api許可
+	}
+
+	token, err := ioutil.ReadFile(googleAccountToken)
+	if err != nil {
+		log.Printf("Unable to read client secret file: %v\n", err)
+
+		var getGSService GoogleSheet
+		token, err = getGSService.CreatAccTokenFromWeb(credentials, googleAccountToken, false)
+		if err != nil {
+			log.Fatalf("Unable to save oauth token: \n %s (%v)\n", credentials, err)
+		}
+
+	} else {
+		var js map[string]interface{} //空interface可以容許json格式多餘換行，較人性化
+		if json.Unmarshal(token, &js) != nil {
+			log.Fatalf("INVALID json: %v\n%v", err, token)
+			//log.Printf("INVALID json: %v\n%v\n進行重新獲取Token>>>>>\n", err, token)
+		}
+	}
+
+	// var gs1 GoogleSheet
+	// gs1.SetService(credentials, token, "1OQmB9EOXTw07nytdlQeEtvhmREn2-koSc5rlIhNLHHc", false)
+
+	// values, err := gs1.Read("Table!A2:B9")
+	// if err != nil {
+	// 	log.Fatalf("Unable to retrieve data from sheet: %v\n", err)
+	// }
+	// fmt.Println(values)
+
+	// var writeValues [][]interface{}
+	// xx := []interface{}{
+	// 	0, 1, 2, 3, 4, 5,
+	// 	10, 11, 12, 13, 14, 15,
+	// 	20, 21, 22, 23, 24, 25,
+	// 	30, 31, 32, 33, 34, 35,
+	// }
+	// writeValues = append(writeValues, xx)
+
+	// err = gs1.Clear("Table!C8:C9")
+	// if err != nil {
+	// 	log.Fatalf("Unable to retrieve data from sheet: %v\n", err)
+	// }
+
+	// 	var updateValues [][]interface{}
+	// 	row := []interface{}{"BBB", "CCC", "DDD"}
+	// 	updateValues = append(updateValues, row)
+	// 	err = gs1.Update("Table!C3", updateValues)
+	// 	if err != nil {
+	// 		log.Fatal(err)
+	// 	}
+
+	var gs1 GoogleSheet
+	gs1.SetService(credentials, token, "1OQmB9EOXTw07nytdlQeEtvhmREn2-koSc5rlIhNLHHc", false)
+	//gs1.SheetCopy("1OQmB9EOXTw07nytdlQeEtvhmREn2-koSc5rlIhNLHHc", 210732483, "161anr6Guf9Mdmcz--10bb9G62aEEgbjQGJjzJXMqVRY")
+	gs1.CopyFromSheet("161anr6Guf9Mdmcz--10bb9G62aEEgbjQGJjzJXMqVRY", 2014644818, "test")
+
+	//fmt.Println(gs1.GetSheetGID("「Monthly Rates」的副本"))
+	//gs1.SheetRename(1791097333,"測試!!!!!!!!!!!!!!")
+
+}
+
+type GoogleSheet struct {
+	Srv            *sheets.Service
+	Ctx            context.Context
+	AppCredentials []byte //程式本身許可license
+	AccToken       []byte //google帳戶license
+	SpreadSheetID  string //預設google Sheet ID (由網址url取得)
+}
+
+//獲取google API 控制權限設定(綁定method)
+func (gs *GoogleSheet) getGoogleAPIConfig(appCredentials []byte, setReadOnly bool) (config *oauth2.Config, err error) {
+	// https://developers.google.com/sheets/api/guides/authorizing 選擇api控制google帳號權限
+	// https://www.googleapis.com/auth/spreadsheets.readonly	Allows read-only access to the user's sheets and their properties.
+	// https://www.googleapis.com/auth/spreadsheets	Allows read/write access to the user's sheets and their properties.
+	// https://www.googleapis.com/auth/drive.readonly	Allows read-only access to the user's file metadata and file content.
+	// https://www.googleapis.com/auth/drive.file	Per-file access to files created or opened by the app.
+	// https://www.googleapis.com/auth/drive
+	var scopeUrl string
+	if setReadOnly {
+		scopeUrl = sheets.SpreadsheetsReadonlyScope
+	} else {
+		scopeUrl = sheets.SpreadsheetsScope
+	}
+
+	config, err = google.ConfigFromJSON(appCredentials, scopeUrl)
+	if err != nil {
+		//log.Printf("Unable to parse client secret file to config: %v\n", err)
+		return nil, errors.New(googleErrorTitle + ": AppCredentials 內容格式錯誤 !")
+	}
+
+	return config, nil
+}
+
+func (gs *GoogleSheet) GetSheetGID(sheetName string) (int64, error) {
+
+	sheetService, err := gs.Srv.Spreadsheets.Get(gs.SpreadSheetID).Do()
+	if err != nil {
+		return 0, errors.New(googleErrorTitle + ": 「" + gs.SpreadSheetID + "」 該SheetID不存在，請檢查網址或AccountToken權限!")
+	}
+
+	for _, sheet := range sheetService.Sheets {
+		if sheet.Properties.Title == sheetName {
+			return sheet.Properties.SheetId, nil
+		}
+	}
+	return 0, errors.New(googleErrorTitle + ": 「" + sheetName + "」 該Sheet Name不存在，請檢查Sheet內容!")
+}
+
+//建立Google帳戶Token File(需要瀏覽器手動操作)
+func (gs *GoogleSheet) CreatAccTokenFromWeb(appCredentials []byte, accTokenFilePath string, setReadOnly bool) (accToken []byte, err error) {
+
+	config, err := gs.getGoogleAPIConfig(appCredentials, setReadOnly)
+	if err != nil {
+		//log.Printf("Unable to parse client secret file to config: %v\n", err)
+		return nil, errors.New(googleErrorTitle + ": AppCredentials 內容格式錯誤 !")
+	}
+
+	// Request a token from the web, then returns the retrieved token.
+	authURL := config.AuthCodeURL("state-token", oauth2.AccessTypeOffline)
+	fmt.Printf("\n%v\n↑請使用瀏覽器設定你的Google帳戶，並貼入你的token authorization code ↑\n", authURL)
+	var authCode string
+	if _, err := fmt.Scan(&authCode); err != nil {
+		//log.Fatalf("Unable to read authorization code: %v", err)
+		return nil, err
+	}
+
+	tok, err := config.Exchange(context.TODO(), authCode)
+	if err != nil {
+		//log.Fatalf("Unable to retrieve token from web: %v", err)
+		return nil, err
+	}
+
+	// Saves a token to a file path.
+	fmt.Printf("已將token authorization code存入 : %s\n", accTokenFilePath)
+	accTokenFileWrite, err := os.OpenFile(accTokenFilePath, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0600)
+	if err != nil {
+		//log.Fatalf("Unable to cache oauth token: %v", err)
+		return nil, errors.New(googleErrorTitle + ": 「" + accTokenFilePath + "」AccountToken儲存失敗!")
+	}
+	defer accTokenFileWrite.Close()
+	json.NewEncoder(accTokenFileWrite).Encode(tok)
+
+	gs.Ctx = context.Background()
+	client := config.Client(gs.Ctx, tok)
+	_, err = sheets.New(client)
+	if err != nil {
+		//log.Fatalf("Unable to retrieve Sheets client: %v", err)
+		return nil, err
+	}
+
+	token, err := ioutil.ReadFile(accTokenFilePath)
+	if err != nil {
+		//log.Fatalf("Unable to save oauth token: %v", err)
+		return nil, err
+	}
+
+	return []byte(token), nil
+}
+
+//設置Google Sheet連結服務
+func (gs *GoogleSheet) SetService(appCredentials []byte, accToken []byte, spreadSheetID string, setReadOnly bool) (*sheets.Service, error) {
+
+	gs.AppCredentials = appCredentials
+	gs.AccToken = accToken
+	gs.SpreadSheetID = spreadSheetID //預先存入docs網址方便日後存取
+
+	config, err := gs.getGoogleAPIConfig(appCredentials, setReadOnly)
+	if err != nil {
+		// 	log.Printf("Unable to parse client secret file to config: %v\n", err)
+		return nil, errors.New(googleErrorTitle + ": AppCredentials 內容格式錯誤 !")
+	}
+
+	tok := &oauth2.Token{}
+	err = json.NewDecoder(bytes.NewReader(gs.AccToken)).Decode(tok)
+	if err != nil {
+		//log.Fatalf("Unable to cache oauth token: %v", err)
+		return nil, err
+	}
+	client := config.Client(context.Background(), tok)
+
+	gs.Srv, err = sheets.New(client)
+	if err != nil {
+		//log.Printf("Unable to retrieve Sheets client: %v\n", err)
+		return nil, err
+	}
+
+	return gs.Srv, nil
+
+}
+
+//獲取sheet中的數值
+func (gs *GoogleSheet) SheetRead(readRange string) ([][]interface{}, error) {
+	resp, err := gs.Srv.Spreadsheets.Values.Get(gs.SpreadSheetID, readRange).Do()
+
+	if err != nil {
+		return nil, err
+	}
+
+	return resp.Values, err
+}
+
+//寫入sheet中的數值
+func (gs *GoogleSheet) SheetWrite(writeRange string, values [][]interface{}) error {
+	valueInputOption := "RAW"
+	requestBody := &sheets.ValueRange{
+		MajorDimension: "ROWS",
+		Values:         values,
+	}
+
+	_, err := gs.Srv.Spreadsheets.Values.Append(gs.SpreadSheetID, writeRange, requestBody).ValueInputOption(valueInputOption).Do()
+
+	return err
+}
+
+//改變sheet中的數值
+func (gs *GoogleSheet) SheetUpdate(updateRange string, updateValues [][]interface{}) error {
+	valueInputOption := "RAW"
+	requestBody := &sheets.ValueRange{
+		MajorDimension: "ROWS",
+		Values:         updateValues,
+	}
+
+	_, err := gs.Srv.Spreadsheets.Values.Update(gs.SpreadSheetID, updateRange, requestBody).ValueInputOption(valueInputOption).Do()
+
+	return err
+}
+
+//清除sheet中的數值
+func (gs *GoogleSheet) SheetClear(clearRange string) error {
+	// rb has type *ClearValuesRequest
+	requestBody := &sheets.ClearValuesRequest{}
+
+	_, err := gs.Srv.Spreadsheets.Values.Clear(gs.SpreadSheetID, clearRange, requestBody).Do()
+
+	return err
+}
+
+//操作兩Google Sheet 間作sheet複製(需要自行設置權限,並取得Sheet的gid)
+func (gs *GoogleSheet) CopyBetweenSheet(sourceSheetID string, sourceSheetGID int64, destSheetID string) (resp *sheets.SheetProperties, err error) {
+
+	requestBody := &sheets.CopySheetToAnotherSpreadsheetRequest{
+		DestinationSpreadsheetId: destSheetID,
+	}
+
+	resp, err = gs.Srv.Spreadsheets.Sheets.CopyTo(sourceSheetID, sourceSheetGID, requestBody).Context(gs.Ctx).Do()
+
+	return resp, err
+}
+
+//選擇sheetGID 並重新命名
+func (gs *GoogleSheet) SheetGIDRename(sheetGID int64, newName string) (resp *sheets.BatchUpdateSpreadsheetResponse, err error) {
+
+	requestBody := &sheets.BatchUpdateSpreadsheetRequest{
+		Requests: []*sheets.Request{&sheets.Request{
+			UpdateSheetProperties: &sheets.UpdateSheetPropertiesRequest{
+				Properties: &sheets.SheetProperties{
+					SheetId: sheetGID,
+					Title:   newName,
+				},
+				Fields: "title",
+			},
+		}},
+	}
+
+	resp, err = gs.Srv.Spreadsheets.BatchUpdate(gs.SpreadSheetID, requestBody).Context(gs.Ctx).Do()
+	return resp, err
+}
+
+//複製外部sheet到現在工作的Google Sheet(需要自行設置權限,並取得Sheet的gid)
+func (gs *GoogleSheet) CopyFromSheet(sourceSheetID string, sourceSheetGID int64, newName string) (resp *sheets.SheetProperties, err error) {
+
+	requestBody := &sheets.CopySheetToAnotherSpreadsheetRequest{
+		DestinationSpreadsheetId: gs.SpreadSheetID,
+	}
+
+	resp, err = gs.Srv.Spreadsheets.Sheets.CopyTo(sourceSheetID, sourceSheetGID, requestBody).Context(gs.Ctx).Do()
+	if newName != "" && err == nil {
+		_, err2 := gs.SheetGIDRename(resp.SheetId, newName)
+		if err2 != nil {
+			err = err2
+		}
+	}
+
+	return resp, err
+}
+
+
 ```
