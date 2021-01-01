@@ -1564,10 +1564,10 @@
 
 > 一維陣列的宣告方式如下: 
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">陣列名稱</span> = [<span style="color: lightgreen">陣列長度</span>]<span style="color: lightgreen">元素型別</span>{<span style="color: yellow">元素初始值1</span>,<span style="color: yellow">元素初始值2</span>}** \
-> > *陣列長度可以使用 ==``[...]``== 讓編譯器自動計算長度\
+> > *陣列長度可以使用 ```[...]``` 讓編譯器自動計算長度\
 > > *元素型別可為任何資料型別的\
 > > *元素初始值若不賦予則為元素型別的預設值\
-> > *元素初始值可以依序使用 ==``,``== 分隔並可以向右增加元素，或是直接指定元素位置賦值 
+> > *元素初始值可以依序使用 ```,``` 分隔並可以向右增加元素，或是直接指定元素位置賦值 
 > >　例如 : **<span style="color: LemonChiffon">ar := [...]int{</span><span style="color: Orange">0</span><span style="color: LemonChiffon">:99}</span>** 其中<span style="color: Orange">0</span>表示為第一個元素
 >
 
@@ -1765,15 +1765,15 @@ func main() {
 > 
 > 切片的第一種宣告方式(直接創建無名稱陣列): 
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">切片名稱</span> = []<span style="color: lightgreen">元素型別</span>{<span style="color: yellow">元素初始值1</span>,<span style="color: yellow">元素初始值2</span>}** \
-> > *元素型別可為資料型別的 ==``邏輯值、數值、字串``==???引用類型?\
+> > *元素型別可為資料型別的 ```邏輯值、數值、字串```???引用類型?\
 > > *元素初始值若不賦予則為元素型別的預設值\
-> > *元素初始值可以依序使用 ==``,``== 分隔並可以向右增加元素
+> > *元素初始值可以依序使用 ```,``` 分隔並可以向右增加元素
 >
 > 切片的第二種宣告方式(引入已被創建的陣列): 
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">切片名稱</span> = 陣列名稱[<span style="color: yellow">開始元素位置</span>:<span style="color: Orange">結束元素位置</span>]** \
 > > *"開始元素位置"即選擇被引入陣列的元素位置作為引入起始\
 > > *"結束元素位置"即選擇被引入陣列的"元素位置"(第幾個元素)作為引入結束\
-> > *元素位置可以使用 ==`` ``== (空白)作為"第一個元素位置"或"最後一個元素位置"作為簡寫
+> > *元素位置可以使用 ``` ``` (空白)作為"第一個元素位置"或"最後一個元素位置"作為簡寫
 > 
 > 切片的第三種宣告方式(使用make函式創建): 
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">切片名稱</span> = make([]<span style="color: lightgreen">元素型別</span>,<span style="color: yellow">切片長度</span>,<span style="color: yellow">切片容量</span>)** \
@@ -1782,7 +1782,7 @@ func main() {
 >
 > 切片的字串宣告方式(限用於宣告字串): 
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">切片名稱</span> = []<span style="color: lightgreen">字串型別</span>(<span style="color: yellow">字串</span>)** \
-> > *字串型別為 ==``byte``==、==``int32``==、==``rune``==
+> > *字串型別為 ```byte```、```int32```、```rune```
 >
 >切片的宣告方式如下: 
 >``` go
@@ -1850,15 +1850,15 @@ func main() {
 > >  **<span style="color: DodgerBlue">擴容後切片名稱</span> = append(<span style="color: lightgreen">被擴容切片名稱</span>,<span style="color: yellow">元素初始值1</span>,<span style="color: yellow">元素初始值2</span>}**
 > >  
 > > *元素型別必須與擴容後切片型別相同\
-> > *元素初始值若可以依序使用 ==``,``== 分隔並可以向右增加元素
+> > *元素初始值若可以依序使用 ```,``` 分隔並可以向右增加元素
 > 
 > > append()函式擴容方式(拼接原有的切片):
 > > 
 > > **<span style="color: DodgerBlue">擴容後切片名稱</span> = append(<span style="color: lightgreen">被擴容切片名稱</span>,<span style="color: yellow">拼接切片名稱1</span>,<span style="color: yellow">拼接切片名稱2</span><span style="color: red">...</span>}** 
 > > 
 > > *切片型別必須與擴容後切片型別相同\
-> > *拼接切片可以依序使用 ==``,``== 分隔並可以向右增加切片\
-> > *拼接切片時append()指令中 ==``...``== 不可省略
+> > *拼接切片可以依序使用 ```,``` 分隔並可以向右增加切片\
+> > *拼接切片時append()指令中 ```...``` 不可省略
 >
 >
 >切片可藉由copy()函式將切片中的元素值寫入另一切片中，
@@ -1955,8 +1955,8 @@ func main() {
 >	
 >```
 
-### Go 切片append()& 可變參數(Variadic)範例
->
+### Go 切片作為可變參數(Variadic)驗證
+> *可變參數實用性較
 >``` go
 >package main
 >import "fmt"
@@ -1969,10 +1969,181 @@ func main() {
 >	//abbbb
 > }
 >```
+>
+>```go
+>package main
+> import (
+> 	"log"
+> 	"time"
+> )
+> 
+> func StartTimer() time.Time {
+> 	return time.Now()
+> }
+> 
+> func SubTimer(input time.Time) float64 {
+> 	return time.Now().Sub(input).Seconds() * 1000
+> }
+> 
+> func main() {
+> 
+> 	var testCount = 9999999999
+> 	sli := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+> 
+> 	time.Sleep(time.Second * 2)
+> 	var vTime2 = StartTimer()
+> 	for index := 0; index < testCount; index++ {
+> 		add_slice(1, 2, sli)
+> 	}
+> 	log.Printf(" 耗費:%.4f ms ", SubTimer(vTime2))
+> 	//2020/07/13 22:35:01  耗費:23448.0000 ms
+> 
+> 	time.Sleep(time.Second * 2)
+> 	var vTime1 = StartTimer()
+> 	for index := 0; index < testCount; index++ {
+> 		add_variadic(1, 2, sli...)
+> 	}
+> 	log.Printf(" 耗費:%.4f ms ", SubTimer(vTime1))
+> 	//2020/07/13 22:35:53  耗費:49902.0000 ms
+> 
+> }
+> 
+> func add_slice(a, b int, nums []int) int {
+> 	res := a + b
+> 	if nums == nil {
+> 		for _, num := range nums {
+> 			res += num
+> 		}
+> 	}
+> 	return res
+> }
+> 
+> func add_variadic(a, b int, nums ...int) int {
+> 	res := a + b
+> 	for _, num := range nums {
+> 		res += num
+> 	}
+> 	return res
+> }
+> ```
+
+### Go 切片複製方式驗證
+>```go=
+> package main
+> 
+> import (
+> 	"fmt"
+> 	"log"
+> 	"time"
+> )
+> 
+> func StartTimer() time.Time {
+> 	return time.Now()
+> }
+> func SubTimer(input time.Time) float64 {
+> 	return time.Now().Sub(input).Seconds() * 1000
+> }
+> 
+> func main() {
+> 
+> 	var TestCount = 999
+> 
+> 	var testSlice []int
+> 	for index := 0; index < TestCount; index++ {
+> 		testSlice = append(testSlice, index)
+> 	}
+> 
+> 	var vTime1 = StartTimer()
+> 	var s1 []int
+> 	for index := 0; index < TestCount; index++ {
+> 		s1Slice := testSlice[:len(testSlice)/2]
+> 		for _, value := range s1Slice {
+> 			s1 = append(s1, value)
+> 		}
+> 		s1Slice = nil
+> 		fmt.Sprint(s1)
+> 	}
+> 	s1 = nil
+> 	log.Printf(" 耗費:%.4f ms ", SubTimer(vTime1))
+> 	//2020/11/25 11:32:09  耗費:23228.8722 ms
+> 
+> 	time.Sleep(time.Second * 2)
+> 
+> 	var vTime2 = StartTimer()
+> 	var s2 []int
+> 	for index := 0; index < TestCount; index++ {
+> 		s2Slice := testSlice[:len(testSlice)/2]
+> 		s2 = append(s2, s2Slice...)
+> 		s2Slice = nil
+> 		fmt.Sprint(s2)
+> 	}
+> 	s2 = nil
+> 	log.Printf(" 耗費:%.4f ms ", SubTimer(vTime2))
+> 	//2020/11/25 11:32:34  耗費:23321.6117 ms
+> 
+> 	time.Sleep(time.Second * 2)
+> 
+> 	var vTime3 = StartTimer()
+> 	var s3 []int
+> 	for index := 0; index < TestCount; index++ {
+> 		s3Slice := testSlice[:len(testSlice)/2]
+> 		s3 = append([]int{}, s3Slice...)
+> 		s3Slice = nil
+> 		fmt.Sprint(s3)
+> 	}
+> 	s3 = nil
+> 	log.Printf(" 耗費:%.4f ms ", SubTimer(vTime3))
+> 	//2020/11/25 11:32:37  耗費:53.4416 ms
+> 
+> 	time.Sleep(time.Second * 2)
+> 
+> 	var vTime4 = StartTimer()
+> 	var s4 []int
+> 	for index := 0; index < TestCount; index++ {
+> 		s4Slice := testSlice[:len(testSlice)/2]
+> 		s4 = append([]int{}, s4Slice...)
+> 		s4Slice = nil
+> 		fmt.Sprint(s4)
+> 	}
+> 	s4 = nil
+> 	log.Printf(" 耗費:%.4f ms ", SubTimer(vTime4))
+> 	//2020/11/25 11:32:39  耗費:55.0103 ms
+> 
+> 	time.Sleep(time.Second * 2)
+> 
+> 	var vTime5 = StartTimer()
+> 	var s5 = make([]int, len(testSlice)/2)
+> 	for index := 0; index < TestCount; index++ {
+> 		copy(s5, testSlice[:len(testSlice)/2])
+> 		fmt.Sprint(s5)
+> 	}
+> 	s5 = nil
+> 	log.Printf(" 耗費:%.4f ms ", SubTimer(vTime5))
+> 	//2020/11/25 11:32:41  耗費:53.4244 ms
+> 
+> 	time.Sleep(time.Second * 2)
+> 
+> 	var vTime6 = StartTimer()
+> 	var s6 = make([]int, len(testSlice)/2)
+> 	for index := 0; index < TestCount; index++ {
+> 		s6Slice := testSlice[:len(testSlice)/2]
+> 		for index, value := range s6Slice {
+> 			s6[index] = value
+> 		}
+> 		fmt.Sprint(s6)
+> 	}
+> 	s6 = nil
+> 	log.Printf(" 耗費:%.4f ms ", SubTimer(vTime6))
+> 	//2020/11/25 11:32:43  耗費:52.6179 ms
+> 
+> }
+> 
+> ```
+
 
 ### Go 切片&陣列擴容[append()]陷阱 : 
 > 切片若引入原有的陣列當作元素後其使用append()函式擴容需要注意:\
-> ==`` 切片擴容未超過原先陣列長度元素，則所擴容的元素將會溢出並向下覆蓋原本的陣列元素 ``==
+> ==切片擴容未超過原先陣列長度元素，則所擴容的元素將會溢出並向下覆蓋原本的陣列元素==
 > 可直接參考 : https://play.golang.org/p/2noxYSTVe__Y
 >``` go
 >package main
@@ -2079,7 +2250,7 @@ func main() {
 > 
 > 切片的字串宣告方式(限用於宣告字串): 
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">切片名稱</span> = []<span style="color: lightgreen">字串型別</span>(<span style="color: yellow">字串</span>)** 
-> > *字串型別為 ==``byte``==、==``int32``==、==``rune``==
+> > *字串型別為 ```byte```、```int32```、```rune```
 ``` go
 package main
 import "fmt"
@@ -2151,12 +2322,12 @@ func main() {
 > 
 > Map的第一種宣告方式(僅能宣告Map名稱未分配記憶體空間): 
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">map名稱</span> map[<span style="color: lightgreen">鍵型別</span>]<span style="color: yellow">值型別</span>** \
-> > *鍵的資料型別可為 ==``邏輯值、數值、字串、指標、陣列、結構體、接口、通道``==\
+> > *鍵的資料型別可為 ```邏輯值、數值、字串、指標、陣列、結構體、接口、通道```\
 > > *值的資料型別可為任何資料型別包括map自己本身\
 > > *該方式僅宣告Map名稱尚未分配記憶體，宣告完後無法直接使用(賦值、增加...)
 > 
 > Map的第二種宣告方式(使用make()函式賦值，並分配記憶體空間): 
-> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">map名稱</span> = make(map[<span style="color: lightgreen">鍵型別</span>]<span style="color: yellow">值型別</span>,<span style="color: orange">map容量</span>]** \
+> >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">map名稱</span> = make(map[<span style="color: lightgreen">鍵型別</span>]<span style="color: yellow">值型別</span>,<span style="color: orange">map容量</span>])** \
 > > *map容量省略或為空皆會預設為零值，該值必須為正整數
 >
 > Map的第三種宣告方式(直接賦予鍵值，將後自動分配記憶體空間)): 
@@ -2479,7 +2650,7 @@ func main() {
 > >**<span style="color: lightgreen">　　屬性名稱2</span> <span style="color: yellow">屬性型別2</span>**\
 > >  **}**
 > >   
-> > *屬性的資料型別可為 ==``邏輯值、數值、字串、指標、陣列、Map、結構體``==\
+> > *屬性的資料型別可為 ==邏輯值、數值、字串、指標、陣列、Map、結構體==\
 > > *結構體的資料型別可為任何資料型別包括結構體自己本身 \
 > > *定義完結構體後還須透過宣告才能成為變數
 
@@ -2500,12 +2671,12 @@ func main() {
 > 結構體的第四種宣告方式(使用new()宣告而未賦值): 
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">變數名稱</span> ＊<span style="color: lightgreen">結構體名稱</span> = new(<span style="color: lightgreen">結構體名稱</span>)**
 > >   
-> > ＊==``(*變數名稱).屬名稱 = 屬性值 ``== 賦值等同 ==``變數名稱.屬名稱 = 屬性值``==
+> > ＊==(*變數名稱).屬名稱 = 屬性值== 賦值等同 ==變數名稱.屬名稱 = 屬性值==
 > > 
 > 結構體的第五種宣告方式(使用指標方式宣告並賦值): 
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">變數名稱</span> ＊<span style="color: lightgreen">結構體名稱</span> = &<span style="color: lightgreen">結構體名稱</span>{<span style="color: yellow">屬名稱1</span>:<span style="color: orange">屬性值1</span>,<span style="color: yellow">屬性值2</span>:<span style="color: orange">屬性值2</span>}**
 > >   
-> > ＊==``(*變數名稱).屬名稱 = 屬性值 ``== 賦值等同 ==``變數名稱.屬名稱 = 屬性值``==
+> > ＊==(*變數名稱).屬名稱 = 屬性值== 賦值等同 ==變數名稱.屬名稱 = 屬性值==
 > >  
 > ```go 
 > package main
@@ -2623,7 +2794,7 @@ func main() {
 ```
 
 ### Go 結構體與打包問題(Package struct)
-==`` Package_Struct/PackageStruct.go``==
+``` Package_Struct/PackageStruct.go```
 ```go
 package PackageStruct
 
@@ -2648,7 +2819,7 @@ func LocalExportPort(InputF0 string, InputF1 string, InputF2 string, InputF3 str
 
 ```
 
-==`` main.go``==
+``` main.go```
 ```go
 package main
 
@@ -2734,7 +2905,7 @@ func main() {
 
 ### Go 方法與函式 (Method&Function)
 
-> 1. 函式使用方式為 ==`` 函式名(變數列表) ``==，方法使用方式為 ==`` 變數.方法名(變數列表) ``==
+> 1. 函式使用方式為 ``` 函式名(變數列表) ```，方法使用方式為 ``` 變數.方法名(變數列表) ```
 > 2. 當資料型別為值型別時，函式(Function)不能直接將指標當作變數輸入，反之方法(Method)可將變數與指標當作自訂型別變數直接輸入，方法(Method)可定義自訂型別變數影響範圍
 > 
 > Method宣告方式: 
@@ -2743,10 +2914,10 @@ func main() {
 > >　　return <span style="color: orange">輸出值</span>\
 > >  }**
 > >  
-> > *輸入、輸出變數非必需的，有輸出變數則一定要使用 ==`` return ``== 返回值\
+> > *輸入、輸出變數非必需的，有輸出變數則一定要使用 ``` return ``` 返回值\
 > > *方法(Method)必須綁定於自訂型別，必須有自訂型別變數才能使用\
-> > *編譯器對於 ==``(&變數名稱).方法名稱()``== 與 ==`` 變數名稱.方法名稱()``== 兩者等價\
-> > *方法之自訂型別可定義 ==``引用或值型別``==，設定其作用範圍(不因指標而影響)
+> > *編譯器對於 ```(&變數名稱).方法名稱()``` 與 ``` 變數名稱.方法名稱()``` 兩者等價\
+> > *方法之自訂型別可定義 ```引用或值型別```，設定其作用範圍(不因指標而影響)
 > 
 > ```go
 > package main
@@ -3023,7 +3194,7 @@ Golang沒有類(class)，Go語言的結構體(struct)和其它程式語言的類
 1.結構體嵌入了另一個結構體並且定義該屬性名稱，稱為「嵌入具名結構體組合型別」\
 2.結構體嵌入了另一個結構體並且無定義該屬性名稱，稱為「嵌入匿名結構體組合型別」
 
-==`` Package_Struct/PackageStruct.go``==
+``` Package_Struct/PackageStruct.go```
 ```go
 package PackageStruct
 
@@ -3051,7 +3222,7 @@ type AyUserdata struct {
 
 ```
 
-==`` main.go``==
+``` main.go```
 ``` go
 package main
 
@@ -3187,7 +3358,7 @@ func main() {
 > Go的官方文件並未明確指出接口(Interface)動態、靜態的型別分類(Dynamic、Static)，但《Go语言核心编程》(李文塔) 的分析指出接口可由Duck型別做出動靜態分類 (https://blog.golang.org/laws-of-reflection)
 
 
-接口為引用型別之多態變數，它可隨實踐方法(Method)的不同定義各種變數型態(type)的行為。舉例如下宣告一空接口並賦值，其輸出結果之變數型態將隨賦值而改變(相當於使用 ==`` var := value``== 的效果)，
+接口為引用型別之多態變數，它可隨實踐方法(Method)的不同定義各種變數型態(type)的行為。舉例如下宣告一空接口並賦值，其輸出結果之變數型態將隨賦值而改變(相當於使用 ``` var := value``` 的效果)，
 
 ```go=
 package main
@@ -3450,11 +3621,11 @@ func main() {
 
 ### Go 管道(channel)宣告與使用
 
-> 管道(channel)作為Go的一引用型資料型別，可以存放(寫入)任何資料型別作為數據(元素)保存，其特點為取出管道內元素必須遵守「**依序先進先出**」、「**進入管道後不可修改或截取**」、「**管道關閉後只能取出不能再寫入**」，管道必須透過 ==`make`== 函式創建:
+> 管道(channel)作為Go的一引用型資料型別，可以存放(寫入)任何資料型別作為數據(元素)保存，其特點為取出管道內元素必須遵守「**依序先進先出**」、「**進入管道後不可修改或截取**」、「**管道關閉後只能取出不能再寫入**」，管道必須透過 ``make`` 函式創建:
 > 
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">管道名稱</span> = make(chan <span style="color: lightgreen">元素型別</span>,<span style="color: yellow">元素容量</span>)**
 > 
-> 管道可透過 ==`<-`== 符號寫入值或取出元素，也可作為宣告該管道限定寫入或取出，期宣告方式如下:
+> 管道可透過 ``<-`` 符號寫入值或取出元素，也可作為宣告該管道限定寫入或取出，期宣告方式如下:
 >  
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">限寫管道名稱</span> = make(chan <- <span style="color: lightgreen">元素型別</span>,<span style="color: yellow">元素容量</span>)**
 > >  **<span style="color: DeepSkyBlue">var </span><span style="color: DodgerBlue">限取管道名稱</span> = make(<-chan <span style="color: lightgreen">元素型別</span>,<span style="color: yellow">元素容量</span>)**
@@ -3652,7 +3823,7 @@ func main() {
 > > 4. 向無元素且未關閉的管道繼續取出元素(**deadlock**)
 > > 5. 向已關閉的管道再次發出關閉  (重複關閉管道)(**panic: close of closed channel**)
 >
-> 管道可透過 ==`close(管道名稱)`== 函式關閉，關閉後的管道不能再寫入元素，向無元素且已關閉的管道取值會得到該管道元素型別的預設值；利用 ==`<-`== 取值時會同時回傳一邏輯值用以判斷該管道是否已關閉(**需注意:必須透過向管道取值，才能真正確認管道是否關閉**)，為了安全使用管道的功能，可透過 ==`len(管道名稱)`== 計算管道元素數、 ==`cap(管道名稱)`== 計算管道容量，以即defer-recover...等技巧配合使用。
+> 管道可透過 ``close(管道名稱)`` 函式關閉，關閉後的管道不能再寫入元素，向無元素且已關閉的管道取值會得到該管道元素型別的預設值；利用 ``<-`` 取值時會同時回傳一邏輯值用以判斷該管道是否已關閉(**需注意:必須透過向管道取值，才能真正確認管道是否關閉**)，為了安全使用管道的功能，可透過 ``len(管道名稱)`` 計算管道元素數、 ``cap(管道名稱)`` 計算管道容量，以即defer-recover...等技巧配合使用。
 > 
 > ```go=
 > package main
@@ -3804,7 +3975,7 @@ func main() {
 > 
 > 
 > 
-> 各作業系統大多將程式的運作分為:「程序(process)」、「執行緒(thread)」、「服務(Background process)」，Golang並行處理機制使用 **goroutines** 是為golang中最基本的執行單元，使用 ==`go`== 作為使用語法。
+> 各作業系統大多將程式的運作分為:「程序(process)」、「執行緒(thread)」、「服務(Background process)」，Golang並行處理機制使用 **goroutines** 是為golang中最基本的執行單元，使用 ``go`` 作為使用語法。
 > 
 > 
 > 無控制使用:
@@ -4227,233 +4398,5 @@ func main() {
 > }
 > 
 > ```
-
-### Go 反射包(reflect)介紹
-
-```go=
-package main
-
-import (
-	"fmt"
-	"reflect"
-)
-
-func fc_ReflectExample1(if_input interface{}) {
-	fmt.Printf("%v (%T)\n", reflect.ValueOf(if_input), reflect.ValueOf(if_input))
-	var vi_int = 1 + reflect.ValueOf(if_input).Int() //使用反射之內建方法進行型別斷言
-	fmt.Printf("%v (%T)\n", vi_int, vi_int)
-}
-
-type ty_Custom struct {
-	Name string
-	ID   uint
-}
-
-func fc_ReflectExample2(if_input interface{}) {
-	if st_Custom, TypePass := if_input.(ty_Custom); TypePass {
-		fmt.Printf("%v (%T)\n", st_Custom, st_Custom)
-		fmt.Printf("%v (%T)\n", st_Custom.Name, st_Custom.Name)
-	}
-
-}
-
-func main() {
-
-	fc_ReflectExample1(9)
-	println()
-	fc_ReflectExample2(ty_Custom{Name: "測試"})
-
-	// 	9 (reflect.Value)
-	// 10 (int64)
-
-	// {測試 0} (main.ty_Custom)
-	// 測試 (string
-
-}
-```
-
-#### reflect包常用函式與方法:
-| 函式名稱 | 說明| 輸入 | 輸出類型 |
-| - | - | -   | - | 
-|reflect.ValueOf(任意變數)|回傳變數值|任意變數|(reflect.Value)|
-|reflect.TypeOf(任意變數)|回傳變數型別名稱|任意變數|(*reflect.rtype)|
-|(reflect.Value型別變數).Kind()|回傳變數底層型別|reflect.Value型別|(string)|
-|(reflect.Value型別變數).Elem()|回傳指標之變數值|具備指標型別|(reflect.Value))|
-|(reflect.Value型別變數).Elem().FieldByName(屬性名稱)|回傳結構體該屬性值|(reflect.Value型別)和屬性名稱|(reflect.Value)|
-|(reflect.Value型別變數名稱).CanSet()|判斷該變數是否能修改值|reflect.Value型別|(bool)|
-|(reflect.Value型別變數名稱).Set(reflect.Value(數值))|直接修改該變數值|符合型別之數值||
-|(*reflect.rtype).Name()|回傳變數型別名稱|(*reflect.rtype)|型別名稱(string)|
-
-```
-#### reflect Kind() 反射type型別名稱常數
-const (
-    Invalid Kind = iota //nil屬此類
-    Bool
-    Int
-    Int8
-    Int16
-    Int32
-    Int64
-    Uint
-    Uint8
-    Uint16
-    Uint32
-    Uint64
-    Uintptr
-    Float32
-    Float64
-    Complex64
-    Complex128
-    Array
-    Chan
-    Func
-    Interface
-    Map
-    Ptr
-    Slice
-    String
-    Struct
-    UnsafePointer
-)
-```
-
-```go=
-package main
-
-import (
-	"fmt"
-	"reflect"
-)
-
-func fc_ReflectExample1(if_input interface{}) {
-	fmt.Printf("%v (%T)\n", reflect.ValueOf(if_input), reflect.ValueOf(if_input))
-	var vi_int = 1 + reflect.ValueOf(if_input).Int() //使用反射之內建方法進行型別斷言
-	fmt.Printf("%v (%T)\n", vi_int, vi_int)
-}
-
-type ty_Custom struct {
-	Name string
-	ID   uint
-}
-
-func fc_ReflectExample2(if_input interface{}) {
-	if st_Custom, TypePass := if_input.(ty_Custom); TypePass {
-		fmt.Printf("%v (%T)\n", st_Custom, st_Custom)
-		fmt.Printf("%v (%T)\n", st_Custom.Name, st_Custom.Name)
-	}
-
-}
-
-func main() {
-
-	fc_ReflectExample1(9)
-	println()
-	fc_ReflectExample2(ty_Custom{Name: "測試"})
-
-	// 	9 (reflect.Value)
-	// 10 (int64)
-
-	// {測試 0} (main.ty_Custom)
-	// 測試 (string
-
-}
-```
-### Go 反射包(reflect)應用:
-
-```go=
-package main
-import (
-	"fmt"
-	"reflect"
-)
-
-type ty_Example struct {
-	F0 uint
-	F1 string
-}
-
-func main() {
-
-	fmt.Printf("%v\n", reflect.ValueOf("Testing"))        //Testing
-	fmt.Printf("%T\n", reflect.ValueOf("Testing"))        //reflect.Value
-	fmt.Printf("%v\n", reflect.ValueOf("Testing").Kind()) //string
-	fmt.Printf("%T\n", reflect.ValueOf("Testing").Kind()) //reflect.Kind
-	//fmt.Printf("%v\n", reflect.ValueOf("Testing").Elem()) //panic: reflect: call of reflect.Value.Elem on string Value
-	println()
-
-	var vi_int int = 1
-	//var rVO = reflect.ValueOf(&vi_int)
-	var vipr_int *int = &vi_int
-	var rVO = reflect.ValueOf(vipr_int)
-
-	fmt.Printf("%v\n", rVO.Elem())          //1
-	fmt.Printf("%T\n", rVO.Elem())          //reflect.Value
-	fmt.Printf("%v\n", rVO.Elem().CanSet()) //true
-	fmt.Printf("%T\n", rVO.Elem().CanSet()) //bool
-	rVO.Elem().Set(reflect.ValueOf(99))
-	println(vi_int) //99
-	println()
-
-	var st_Example = ty_Example{F0: 1, F1: "測試"}
-	fmt.Printf("%v\n", reflect.ValueOf(&st_Example).CanSet())                          //false
-	fmt.Printf("%T\n", reflect.ValueOf(&st_Example).CanSet())                          //bool
-	fmt.Printf("%v\n", reflect.ValueOf(&st_Example).Elem().FieldByName("F1"))          //測試
-	fmt.Printf("%T\n", reflect.ValueOf(&st_Example).Elem().FieldByName("F1"))          //reflect.Value
-	fmt.Printf("%v\n", reflect.ValueOf(&st_Example).Elem().FieldByName("F1").CanSet()) //true
-	fmt.Printf("%T\n", reflect.ValueOf(&st_Example).Elem().FieldByName("F1").CanSet()) //bool
-	reflect.ValueOf(&st_Example).Elem().FieldByName("F1").Set(reflect.ValueOf("修改"))
-	fmt.Println(st_Example) //{1 修改}
-	println()
-
-}
-```
-
-```go=
-package main
-import (
-	"fmt"
-	"reflect"
-)
-
-type ty_Json struct {
-	Name string `json:"jsname"`
-	Age  int    `json:"jsage"`
-}
-
-func main() {
-
-	st_User := ty_Json{
-		"測試",
-		20,
-	}
-
-	fmt.Println(reflect.TypeOf(st_User))               //(0x4adaa0,0x487ba0)
-	fmt.Println(reflect.TypeOf(st_User).Field(0).Name) //name
-	fmt.Println(reflect.TypeOf(st_User).Field(0).Type) //string
-	fmt.Println(reflect.TypeOf(st_User).Field(0).Tag)  //json:"jsname"
-
-	fmt.Println(reflect.ValueOf(st_User).FieldByName("Name"))        //測試
-	fmt.Println(reflect.ValueOf(st_User).FieldByName("Name").Type()) //測試
-
-	println()
-
-	for index := 0; index < reflect.ValueOf(st_User).NumField(); index++ {
-		if reflect.ValueOf(st_User).Field(index).CanInterface() { //判斷是否可導出屬性
-			fmt.Printf("%v (%v %v %v)\n",
-				reflect.ValueOf(st_User).Field(index).Interface(),
-				reflect.TypeOf(st_User).Field(index).Name,
-				reflect.TypeOf(st_User).Field(index).Type,
-				reflect.TypeOf(st_User).Field(index).Tag)
-		}
-	}
-	// 測試 (Name string json:"jsname")
-	// 20 (Age int json:"jsage")
-
-}
-
-
-```
-
-
 
 
