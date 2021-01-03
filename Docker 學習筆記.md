@@ -1657,7 +1657,7 @@ docker build -f 鏡像設定檔目錄 -t 鏡像倉庫目錄
 文件中可使用#符號來進行註解。
 
 ## FROM
-基底映像檔，必需是「第一個」指令行，指定這個映像檔要以哪一個Image為基底來建構，格式為 ==`FROM <image>`== 或 ==`FROM <image>:<tag>`==，範例如下：
+基底映像檔，必需是「第一個」指令行，指定這個映像檔要以哪一個Image為基底來建構，格式為 ==FROM <image>== 或 ==FROM <image>:<tag>==，範例如下：
 
 ```dockerfile
 FROM ubuntu:15.04 或
@@ -1665,7 +1665,7 @@ FROM ubuntu
 ```
 
 ## MAINTAINER
-映像檔維護者，把它想成是作者即可，格式為 ==`MAINTAINER <name>`== ，範例如下：
+映像檔維護者，把它想成是作者即可，格式為 ==MAINTAINER <name>== ，範例如下：
 
 ```dockerfile
 MAINTAINER John 或
@@ -1676,7 +1676,7 @@ MAINTAINER John john@myemail.com
 ## LABEL
 設定映像檔的Metadata資訊，例如：作者、EMail、映像檔的說明等，格式為：
 
-==`LABEL <key>=<value> <key>=<value> <key>=<value> … `==
+ ==LABEL <key>=<value> <key>=<value> <key>=<value> …==
 
 簡單的來說就是以Key、Value來組成，它可以一行一組，也可以把全部合在一行撰寫，若多組合在一行，則每一組設定中間用空白鍵隔開即可，範例如下：
 
@@ -1684,23 +1684,22 @@ MAINTAINER John john@myemail.com
 LABEL description="這是LABEL的範例" version="1.0" owner="靖技場"
 ```
 
-和MAINTAINER相比，建議使用LABEL來設定會比較方便，另外，如果要查詢LABEL的資訊，則可以下 ==`docker inspect`== 來查詢
+和MAINTAINER相比，建議使用LABEL來設定會比較方便，另外，如果要查詢LABEL的資訊，則可以下 ``docker inspect`` 來查詢
 
 ## RUN
 執行指定的指令，每加一個RUN，就會在基底映像層加上一層資料層，以此類推，一層一層的建構起我們最後想要的映像檔，例如我們可以利用RUN來安裝套件，其格式分為二種：
 
-1. ==`RUN <command>`==：以shell的形式執行，Linux的預設是/bin/sh -c，而Windows上的預設環境則是cmd /S /C
-2. ==`RUN ["executable", "param1", "param2"]`==：以exec的形式執行指令，例如Linux上不想用預設的shell執行指令，那麼就可以透過 ==` RUN [“/bin/bash”, “-c”, “echo hello”]
-`== 指定想要的shell
+1. ==RUN <command>==：以shell的形式執行，Linux的預設是/bin/sh -c，而Windows上的預設環境則是cmd /S /C
+2. `RUN ["executable", "param1", "param2"]`：以exec的形式執行指令，例如Linux上不想用預設的shell執行指令，那麼就可以透過 `RUN ["/bin/bash", "-c", "echo hello"]` 指定想要的shell
 
 shell形式與exec形式有什麼不同呢？官方有提到：
 ```
 Unlike the shell form, the exec form does not invoke a command shell.
 This means that normal shell processing does not happen. 
-For example, RUN [ “echo”, “$HOME” ] will not do variable substitution on $HOME
+For example, RUN [ "echo", "$HOME" ] will not do variable substitution on $HOME
 ```
 
-意思是說exec執行的方式不會使用command shell，所以執行 ==` RUN [ “echo”, “$HOME” ]`== 這樣的指令列， `$HOME` 這個變數是不會被替代(填入值)的，也就是直接輸出「`$HOME`」，但如果你想要有Shell處理的功能，則可以自行指定shell來達成：==`RUN [ “sh”, “-c”, “echo $HOME” ]`==
+意思是說exec執行的方式不會使用command shell，所以執行 `RUN [ "echo", "$HOME" ]` 這樣的指令列， `$HOME` 這個變數是不會被替代(填入值)的，也就是直接輸出「`$HOME`」，但如果你想要有Shell處理的功能，則可以自行指定shell來達成：``RUN [ "sh", "-c", "echo $HOME" ]``
 
 在使用RUN指令時，有以下注意要點：
 
@@ -1721,12 +1720,12 @@ RUN apt-get update && apt-get install -y --force-yes apache2 \
 ## CMD
 設定映像檔啟動為Container時預設要執行的指令，其指令共支援三種格式：
 
-1. ==`CMD [“executable”,”param1″,”param2″]`== ：exec形式，官方推薦此種方式
-2. ==`CMD [“param1″,”param2”]`== ：適用於有定義ENTRYPOINT指令的時候，CMD中的參數會做為ENTRYPOINT的預設參數
-3. ==`CMD command param1 param2`== ：會以shell的形式執行，預設是在「/bin/sh -c」下執行，適合在需要互動的指令時使用CMD的注意事項：
+1. ==CMD ["executable","param1″,"param2″]== ：exec形式，官方推薦此種方式
+2. ``CMD ["param1″,"param2"]`` ：適用於有定義ENTRYPOINT指令的時候，CMD中的參數會做為ENTRYPOINT的預設參數
+3. ``CMD command param1 param2`` ：會以shell的形式執行，預設是在「/bin/sh -c」下執行，適合在需要互動的指令時使用CMD的注意事項：
 
 Dockerfile中只能有一行CMD，若有多行CMD，則只有最後一行會生效
-若在建立Container時有帶執行的命令，則CMD的指令會被蓋掉，例如：執行 ==`docker run <image id>`== 時，CMD所定義的指令會被執行，但當執行 ==`docker run <image id> bash`== 時，Container就會執行bash，而原本CMD中定義的值就會覆蓋
+若在建立Container時有帶執行的命令，則CMD的指令會被蓋掉，例如：執行 ``docker run <image id>`` 時，CMD所定義的指令會被執行，但當執行 ``docker run <image id> bash`` 時，Container就會執行bash，而原本CMD中定義的值就會覆蓋
 CMD範例如下：
 
 ```dockerfile
@@ -1740,8 +1739,8 @@ CMD ["Hello"]
 ## ENTRYPOINT
 和CMD一樣，用來設定映像檔啟動Container時要執行的指令，但不同的是，ENTRYPOINT一定會被執行，而不會有像CMD覆蓋的情況發生，支援二種格式：
 
-==`ENTRYPOINT [“executable”, “param1”, “param2”]`==：exec形式，官方推薦此種方式
-==`ENTRYPOINT command param1 param2：shell`== 的形式
+``ENTRYPOINT ["executable", "param1", "param2"]``：exec形式，官方推薦此種方式
+``ENTRYPOINT command param1 param2：shell`` 的形式
 使用ENTRYPOINT的注意事項：
 
 Dockerfile中只能有一行ENTRYPOINT，若有多行ENTRYPOINT，則只有最後一行會生效
@@ -1753,13 +1752,13 @@ Dockerfile中只能有一行ENTRYPOINT，若有多行ENTRYPOINT，則只有最�
 ENTRYPOINT ["/bin/echo", "Hello"]
 CMD ["World"]
 ```
-如果是使用 ==`docker run -it <image>`== 來啟動Container，那麼輸出的結果為「Hello World」，但如果是用 ==`docker run -it <image> Docker`== 來啟動，則輸出結果會變成「Hello Docker」，因為CMD的值被覆蓋掉了
+如果是使用 ``docker run -it <image>`` 來啟動Container，那麼輸出的結果為「Hello World」，但如果是用 ``docker run -it <image> Docker`` 來啟動，則輸出結果會變成「Hello Docker」，因為CMD的值被覆蓋掉了
 
 ## COPY
 複製本地端的檔案/目錄到映像檔的指定位置中，其格式為：
 
-* ==`COPY [–chown=<user>:<group>] <src>… <dest>`==
-* ==`COPY [–chown=<user>:<group>] [“<src>”,… “<dest>”]`==
+* ``COPY [–chown=<user>:<group>] <src>… <dest>``
+* ``COPY [–chown=<user>:<group>] ["<src>",… "<dest>"]``
 使用COPY的注意事項：
 
 指令的來源位置可以多個
@@ -1768,13 +1767,14 @@ CMD ["World"]
 若目的位置不存在，會自動建立
 COPY的範例如下：
 
-* ==`COPY file1.txt file2.js file3.json ./`==
-* ==`COPY ["file1.txt", "file2.js", "file3.json" "./"]`==
+* ``COPY file1.txt file2.js file3.json ./``
+* ``COPY ["file1.txt", "file2.js", "file3.json" "./"]``
 ## ADD
 和COPY一樣，可將本地端的檔案/目錄加到映像檔的指定位置內，其格式為：
 
-==`ADD [–chown=<user>:<group>] <src>… <dest>`==
-==`ADD [–chown=<user>:<group>] ["<src>",… "<dest>"]`==
+* ``ADD [–chown=<user>:<group>] <src>… <dest>``
+* ``ADD [–chown=<user>:<group>] ["<src>",… "<dest>"]``
+
 雖然ADD和CMD功能類似，但有二點最大的不同：
 
 ADD的來源路徑支援URL，也就是說可以加入遠端的檔案，COPY則不支援URL
@@ -1792,7 +1792,7 @@ ADD https://www.google.com/demo.gzip $ENV_DEMO_VALUE
 ## EXPOSE
 宣告在映像檔中預設要使用(對外)的連接埠，格式如下：
 
-* ==`EXPOSE <port> [<port>/<protocol>…]`==
+* ``EXPOSE <port> [<port>/<protocol>…]``
 
 EXPOSE預設的協定是TCP，但如果不是要TCP的話，可以自行指定，範例如下：
 ```dockerfile
@@ -1812,8 +1812,8 @@ docker run -P demo
 ## ENV
 設定環境變數，支援二種格式：
 
-1. ==`ENV <key> <value>`==：Key後面的第一個空白鍵後會視為Value
-2. ==`ENV <key>=<value> …`==：用等於符號來定義，每一組中間以空白鍵隔開，我個人比較喜歡這種形式，不容易搞混
+1. ``ENV <key> <value>``：Key後面的第一個空白鍵後會視為Value
+2. ``ENV <key>=<value> …``：用等於符號來定義，每一組中間以空白鍵隔開，我個人比較喜歡這種形式，不容易搞混
 ENV範例如下：
 ```dockerfile
 ENV demoPATH="/var/log" demoVer="1.0"
@@ -1829,7 +1829,7 @@ ADD $demoFile /foo
 ## VOLUME
 建立本機或來自其他容器的掛載點，指令格式如下：
 
-* ==`VOLUME [“/data”]`==
+* ``VOLUME ["/data"]``
 
 VOLUME的值可以是JSON的Array格式，也可以是純文字，例如下以範例：
 ```dockerfile
@@ -1843,7 +1843,7 @@ VOLUME /var/log /var/db
 ## WORKDIR
 設定工作目錄，其格式如下：
 
-* ==`WORKDIR /path/to/workdir`==
+* ``WORKDIR /path/to/workdir``
 
 當設定WORKDIR後，Dockerfile中的RUN、CMD、ENTRYPOINT、COPY、ADD等指令就會在該工作目錄下執行，以下是官方的示範：
 ```dockerfile
@@ -1872,7 +1872,7 @@ USER 1000
 ## ARG
 設定在建置映像檔時可傳入的參數，即定義變數名稱以及變數的預設值，其格式為：
 
-* ==`ARG <name>[=<default value>]`==
+* ``ARG <name>[=<default value>]``
 
 ARG和ENV的功能類似，都可以設定變數，但是ARG設定的值是供建置映像檔時使用(搭配docker build指令)，在Container中是無法使用這些變數的，相反地，ENV的值則可以在Container中存取，例如ARG的定義如下：
 
@@ -1881,17 +1881,17 @@ ARG Param1
 ARG Param2=somevalue
 ```
 
-建構映像檔案，可利用 ==`–build-arg <varname>=<value>`== 來指定參數，例如：
+建構映像檔案，可利用 ``–build-arg <varname>=<value>`` 來指定參數，例如：
 ```dockerfile
 docker build --build-arg Param1=demo -t myimage:v1 .
 ```
-在上面的例子中，我們在docker build中利用 ==`–build-arg <varname>=<value>`== 參數將Param1的值變更為「demo」，而Param2的值並沒有指定，所以保留預設值「somevalue」
+在上面的例子中，我們在docker build中利用 ``–build-arg <varname>=<value>`` 參數將Param1的值變更為「demo」，而Param2的值並沒有指定，所以保留預設值「somevalue」
 
 ## ONBUILD
 
 若這個映像檔是作為其他映像檔的基底時，便需要定義ONBUILD指令，格式為：
 
-* ==`ONBUILD [INSTRUCTION]`==
+* ``ONBUILD [INSTRUCTION]``
 ONBUILD後面接的指令在自建的映像檔中不會被執行，只有當這個映像檔是作為其他映像檔的基底時才會被觸發，例如A映像檔的Dockerfile定義如下(假設名稱為A-Image)：
 ```dockerfile
 ...(以上略)
@@ -1915,7 +1915,7 @@ mkdir -p /home/demo/docker
 # 在目前目錄尋找Dockerfile或dockerfile
 docker build -t myimage:v1 .
 ```
-==`-t`== ：Name and optionally a tag in the ‘name:tag’ format，指定映像檔名稱、標籤
+``-t`` ：Name and optionally a tag in the ‘name:tag’ format，指定映像檔名稱、標籤
 
 在上面的範例中，是假設Dockerfile在當前目錄下，因此會以.結尾，若是在不同目錄，則可以直接接Dockerfile所在目錄或用-f來指定Dockerfile位置，例如：
 ```dockerfile
@@ -1923,7 +1923,7 @@ docker build -t myimage:v1 .
 docker build -t myimage:v2 ./docker
 docker build -f /path/to/a/Dockerfile -t myimage:v3 .
 ```
-用 ==`-f`== 來指定Dockerfile的位置時，後面接的目錄(及其子目錄)需要能夠找到Dockerfile，否則會出現context錯誤
+用 ``-f`` 來指定Dockerfile的位置時，後面接的目錄(及其子目錄)需要能夠找到Dockerfile，否則會出現context錯誤
 
 小結：Dockerfile裡面的指令也不少，但因篇幅的關係這邊沒有列出所有的指令，但應該也足夠滿足大部分的需求，想要更深入研究的話，建議可以參考官方的文件，但我個人認為最快的學習方法可以自己動手做做看，比較能夠體會每個指令到底有什麼功用
 
@@ -1952,3 +1952,5 @@ docker build -f ./dockerfile -t centos_plus:1.0 .
 ```shell
 docker run -it centos_plus:1.0
 ```
+
+# Docker Compose
