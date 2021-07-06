@@ -1555,7 +1555,7 @@
 
 # Docker 學習筆記
 
-```
+```yaml
 docker info 版本號
 docker image 顯示掛載鏡像
 -a 列出local
@@ -1577,70 +1577,70 @@ docker rmi -f $(docker images -qa) 刪除全部images
 
 
 docker run [OPTIONS] 鏡像名稱或ID
--i 設置容器使用終端溝通(pseudo-tty)
--t 為容器開啟cmd模式(STDIN)
---name 為容器命名
--P隨機Port
--d 背景運行下如果無任何進程執行則自動關閉
+#-i 設置容器使用終端溝通(pseudo-tty)
+#-t 為容器開啟cmd模式(STDIN)
+#--name 為容器命名
+#-P 隨機Port
+#-d 背景運行下如果無任何進程執行則自動關閉
 
-Ctrl+P+Q跳出容器終端
+#Ctrl+P+Q跳出容器終端
 
 
 
-docker ps 列出現在運行容器
--a 查詢之前執行的容器
--l 查詢最後執行的容器
--n 查詢最後執行前n個容器
--q 容器編號
+docker ps #列出現在運行容器
+#-a 查詢之前執行的容器
+#-l 查詢最後執行的容器
+#-n 查詢最後執行前n個容器
+#-q 容器編號
 
 docker start
 docker stop
-docker kill 強制關閉
-docker rm 關閉容器
+docker kill #強制關閉容器
+docker rm #關閉容器
 
 docker logs -ft --tail 10 容器ID
-顯示執行時間log，最後10個訊息
+#顯示執行時間log，最後10個訊息
 docker top 容器ID
-顯示該容器正在process
+#顯示該容器正在process
 docker inspect 容器ID
-查看容器DockerFile設定檔
+#查看容器DockerFile設定檔
 docker attach 容器ID
-進入容器終端
+#進入容器終端
 docker exec -t 容器ID 命令...
-讓該容器執行該命令
+#讓該容器執行該命令
 docker exec -it 容器ID 命令...
-讓該容器執行該命令後並進入終端
+#讓該容器執行該命令後並進入終端
 docker cp 容器ID:容器檔案路徑 主機檔案路徑
-複製容器內的檔案到主機上
+#複製容器內的檔案到主機上
 docker cp 主機檔案路徑 容器ID:容器檔案路徑 
-複製主機上的檔案到容器內
+#複製主機上的檔案到容器內
 
 docker images commit 
-上傳成為新的鏡像
+#上傳成為新的鏡像
 
 docker run -i 容器名稱 /bin/bash
-執行容器後並進入命令/bin/bash(將會覆蓋設定檔CMD的指令)
+#執行容器後並進入命令/bin/bash(將會覆蓋設定檔CMD的指令)
 
 docker run -it -p 80:8888
-容器的 8888 連接埠，對應到主機上的 80 連接埠
+#容器內的 8888 連接埠，映射到主機上的 80 連接埠
 
 docker run -it -v /主機共享目錄:/容器上的目錄 鏡像名稱--privileged=true
-將主機內目錄與容器內目錄共享
+#將主機內目錄與容器內目錄共享
 --privileged=true 開啟docker 防火牆權限
 docker run -it -v /主機共享目錄:/容器上的目錄:ro 鏡像名稱
-將主機內目錄與容器內目錄共享但限讀
+#將主機內目錄與容器內目錄共享但限讀
 
 docker run -it --volumes-from 容器名稱
-將新容器繼承舊容器之volume
+#將新容器繼承舊容器之volume
 
 docker run --rm --volumes-from storage -v $(pwd):/容器上的目錄 容器名稱
-將容器掛載volume於主機現有目錄下，並於容器關閉後刪除該volume
-
-
+#將容器掛載volume於主機現有目錄下，並於容器關閉後刪除該volume
 
 docker build -f 鏡像設定檔目錄 -t 鏡像倉庫目錄
-```
 
+ifconfig #可查看docker0~9網卡區域ip 
+docker network #查看該機docker虛擬網卡設定 
+```
 
 # 什麼是Dockerfile ?
 * 是一個文字檔，由一行一行的指令所組成，用來描述這個映像檔應該長成怎麼樣
@@ -1954,3 +1954,65 @@ docker run -it centos_plus:1.0
 ```
 
 # Docker Compose
+```yaml
+version: '3.8'
+services:
+
+ # db:
+  #   image: mariadb
+  #   working_dir: #預設工作目錄
+  #     /root/
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: example
+
+  example-01:
+    image: golang:1.15.13-stretch #鏡像名稱與版本,可參考https://hub.docker.com/layers/golang/library/golang/1.15.13-stretch/images/sha256-3c251a7c830aa6bcf0fe57a71d39dc4ba59d4d65775407d989c7f459da3ac207?context=explore
+    container_name: go_API #為容器命名
+    restart: always
+    volumes: #HOST:CONTAINER:ro
+      - ./API:/root/:ro #限讀模式
+      - /dev/shm/API:/dev/shm/ #抓取主機RamDisk
+    working_dir: #預設工作目錄
+      /root/
+    command: #容器內服務啟動指令
+      >
+      sh -c "
+      echo 目錄/dev/shm/:&&
+      ls -la /dev/shm/ &&
+      echo 目錄./:&&
+      ls -la ./ 
+      "
+    #↑批次指令範例
+    ports: #對外Port:容器內Port
+      - "8080:8080"
+    networks:
+      - default
+      - outside
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 20000
+        hard: 40000
+    #limit設置範例
+    environment:
+      - TZ=Asia/Taipei
+    #環境變數設置範例
+
+networks:
+  outside:
+    external: true
+
+
+# version: "3.5": 選定 docker-compose 的版本，每個版本提供的 API 方法有所差異。
+# services: 此欄位底下會有所有的容器，以下分別有server與db兩個 容器。
+# build: 說明此容器要使用特定 Dockerfile 來 build，context為檔案目錄，dockerfile為 Dockerfile 的名字。
+# working_dir: 指定 docker 啟動時所在的目錄，如果目錄不存在會自動創建一個。
+# volumes: 將本機檔案掛載至 docker 內部，本機檔案更新時 docker 內部的掛載檔案也會更新。
+# ports: 將本機的 port 做 mapping 與 docker 內部的 poart。
+# depends_on: 說明 a 容器與 b 容器有相關，會等到 b 容器啟動完畢後，再啟動 a 容器。
+# entrypoint: 指定 docker 啟動時的預設指令。
+# restart: 當容器不正常關閉時，會重新啟動容器。
+# image: 如果不使用 Dockerfile 來建立容器，你可以直接使用 docker image 來啟動容器。
+# environment: 指定容器內的環境變數。
+
+```
