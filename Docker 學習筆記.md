@@ -1556,24 +1556,24 @@
 # Docker 學習筆記
 
 ```yaml
-docker info 版本號
-docker image 顯示掛載鏡像
--a 列出local
--q 僅列出image id
---digests 顯示鏡像摘要訊息(sha256)
---no-trunc 顯示完整鏡像
+docker info #版本號
+docker image #顯示掛載鏡像
+#-a 列出local
+#-q 僅列出image id
+#--digests 顯示鏡像摘要訊息(sha256)
+#--no-trunc 顯示完整鏡像
 
 docker search 鏡像名稱
--s 顯示評價星數大於該值之鏡像
---no-trunc 顯示完整鏡像
---automated 只列出具備Automated Build功能之鏡像
+#-s 顯示評價星數大於該值之鏡像
+#--no-trunc 顯示完整鏡像
+#--automated 只列出具備Automated Build功能之鏡像
 
 docker pull 下載鏡像
 
 docker rmi 刪除鏡像1 刪除鏡像2 ...
 -f  強制刪除
 
-docker rmi -f $(docker images -qa) 刪除全部images
+docker rmi -f $(docker images -qa) #刪除全部images
 
 
 docker run [OPTIONS] 鏡像名稱或ID
