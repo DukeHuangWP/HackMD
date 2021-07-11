@@ -1640,6 +1640,10 @@ docker build -f 鏡像設定檔目錄 -t 鏡像倉庫目錄
 
 ifconfig #可查看docker0~9網卡區域ip 
 docker network #查看該機docker虛擬網卡設定 
+
+docker container prune #將刪除所有停止的容器，並且應在所有平臺上以相同的方式工作。
+docker system prune -a #清理磁碟，刪除關閉的容器、無用的資料卷和網路，以及dangling映象(即無tag的映象)。
+
 ```
 
 # 什麼是Dockerfile ?
