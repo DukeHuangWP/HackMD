@@ -2020,3 +2020,141 @@ networks:
 # environment: 指定容器內的環境變數。
 
 ```
+
+
+# Docker Compose - 範例
+
+### Chrome Debug with Boswer Remote
+```yaml
+version: '3'
+
+services:
+
+  alpine-chrome:
+    image: zenika/alpine-chrome:89
+    command: [chromium-browser, "--headless", "--disable-gpu", "--no-sandbox","--disable-software-rasterizer", "--remote-debugging-address=0.0.0.0","--shm-size=1gb", "--remote-debugging-port=9090"]
+    ports:
+      - "9090:9090"
+```
+
+### Code-Server with Golang
+```yaml
+version: '3.8'
+services:
+
+  API.code-server:
+    image: linuxserver/code-server:amd64-version-v3.10.2
+    container_name: code-server
+    privileged: true #開啟root權限
+    volumes:
+      - ./Code-Server:/config
+      - ./IFT.Bank.System.Dev-API:/config/workspace
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Taipei #時區
+      - PASSWORD=qwerty #雲端vscode登入密碼
+      - HASHED_PASSWORD= #optional
+      - SUDO_PASSWORD=qwerty #雲端環境sudo密碼
+      - SUDO_PASSWORD_HASH= #optional
+      #- PROXY_DOMAIN=code-server.my.domain #optional
+      - GO111MODULE=on #強制開啟go.mod版控
+      - GOPATH=/config/DevOpt/go-1.15.13/GoPath #GoPath絕對路徑
+      - GOROOT=/config/DevOpt/go-1.15.13/GoRoot #GoRoot絕對路徑
+      - GOTOOLDIR=/config/DevOpt/go-1.15.13/GoRoot/pkg/tool/linux_amd64 #GOTOOLDIR絕對路徑
+      - PATH=/config/DevOpt/go-1.15.13/GoPath/bin:/config/DevOpt/go-1.15.13/GoRoot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin #設定go編譯器路徑
+    ports:
+      - 8080:8080 #API子程式專用port
+      - 8081:8443 #code-server外部用port
+    command: #容器內服務啟動指令
+      >
+      sh -c "
+      echo 目錄./:&&
+      ls -la ./config &&
+      echo $PATH &&
+      code-server --port 18080 --host 0.0.0.0
+      "
+    #API子程式專用port必須與code-server port分開
+    #code-server為啟動雲端IDE的指令
+    restart: unless-stopped
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 20000
+        hard: 40000
+
+# networks:
+#   outside:
+#     external: true
+```
+
+### Firefox with VNC
+```yaml
+version: '3'
+services:
+  firefox:
+    container_name: Firefox_for_Code-Server
+    image: ich777/firefox:amd64
+    ports:
+      - "9090:8080"
+    environment: 
+      - FIREFOX_V=latest
+      - FIREFOX_LANG=zh-TW
+      - CUSTOM_RES_W=1600 #VNC解析度
+      - CUSTOM_RES_H=900
+      - UID=99
+      - GID=100
+      - UMASK=000
+      - DATA_PERM=770
+    volumes:
+      - "./appdata:/firefox:rw" #存放firefox目錄
+```
+
+
+### Redis-Server
+```yaml
+version: '3.8'
+services:
+
+  # db:
+  #   image: mariadb
+  #   working_dir: #預設工作目錄
+  #     /root/
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: example
+
+  Redis-Server:
+    restart: always
+    container_name: redis
+    image: redis:6.2.4-alpine
+    ports:
+      - 16379:6379
+    volumes:
+      - ./Redis/data:/data
+
+networks:
+  outsite:
+    external: true
+```
+
+### VNC-xfce
+```yaml
+version: '3.8'
+
+services:
+
+  ubuntu-xfce-vnc:
+    container_name: xfce
+    image: imlala/ubuntu-xfce-vnc-novnc:latest
+    shm_size: "1gb" # 防止高分辨率下Chromium崩溃
+    ports:
+        - 5900:5900
+        - 9090:6080
+    environment: 
+        - VNC_PASSWD=qwerty
+        - GEOMETRY=1600x900
+        - DEPTH=24
+    volumes: 
+        - ./Downloads:/root/Downloads
+    restart: unless-stopped
+```
