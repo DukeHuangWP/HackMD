@@ -1634,8 +1634,8 @@ node [ color="#3e4045" penwidth=10 fillcolor="#3e4045" fontcolor="#DDDDDD" style
 ### Fedora/CentOS/RHEL 設定自動開機登入主機
 > > 若因測試可設定自動登入主機
 > > 
-> **操作步驟(1) :** 以 root 的使用者編輯 ==`` /etc/gdm/custom.conf ``==
-> **操作步驟(2) :** 在文檔中 ==`` [daemon] ``== 和 ==`` [security] ``== 寫入設定
+> **操作步驟(1) :** 以 root 的使用者編輯 ``` /etc/gdm/custom.conf ``==
+> **操作步驟(2) :** 在文檔中 ``` [daemon] ``` 和 ``` [security] ``` 寫入設定
 > ``` inf
 > [daemon]
 >  AutomaticLoginEnable=true
@@ -1655,8 +1655,8 @@ node [ color="#3e4045" penwidth=10 fillcolor="#3e4045" fontcolor="#DDDDDD" style
 ### Fedora/CentOS/RHEL 設定自動開機連上網卡
 > > 設定開機自動連上網卡rth0
 > >
-> **操作步驟(1) :** 以 root 的使用者編輯 ==`` /etc/sysconfig/network-scripts/ifcfg-eth0``==
-> **操作步驟(2) :** 在文檔中的 ==`` ONBOOT = no``== 改成 ==`` ONBOOT = yes ``== 寫入設定
+> **操作步驟(1) :** 以 root 的使用者編輯 ``` /etc/sysconfig/network-scripts/ifcfg-eth0``==
+> **操作步驟(2) :** 在文檔中的 ``` ONBOOT = no``` 改成 ``` ONBOOT = yes ``` 寫入設定
 > 
 > ![](https://i.imgur.com/TuxVSQ2.png)
 > 
@@ -1680,11 +1680,11 @@ node [ color="#3e4045" penwidth=10 fillcolor="#3e4045" fontcolor="#DDDDDD" style
 ### 終端機基本命令列
 > > | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明 | 備註|
 > > | --- | --- | --- |
-> > | man ls| 顯示: ==`` ls ``== 指令說明 | |
+> > | man ls| 顯示: ``` ls ``` 指令說明 | |
 > > | history| 查詢已經執行過的指令 | |
 > > | history 10| 查詢已經執行過的前10個指令 | |
 > > | !10| 執行已經執行過的第10號指令 | |
-> > | echo "$HOME"| 顯示 ==`$HOME`== 變數字串 | |
+> > | echo "$HOME"| 顯示 ``$HOME`` 變數字串 | |
 > > | date | 顯示當前時間 | |
 > > | date +"%Y%m%d-%H:%M:%S"| 顯示當前時間(格式為:20001224-23:59:59) | |
 > > | cal | 顯示當前月曆 | |
@@ -1699,27 +1699,27 @@ node [ color="#3e4045" penwidth=10 fillcolor="#3e4045" fontcolor="#DDDDDD" style
 > **[創建/設置/刪除/查詢/切換]用戶指令**
 > > | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明 | 備註|
 > > | --- | --- | --- |
-> > | useradd newuser | 創建用戶ID: ==`` newuser ``== | 功能僅創建用戶，未設置密碼用戶將不能登入 |
-> > | useradd newuser -d "/TTT" | 創建用戶並將設置該用戶目錄 ==`` /TTT ``== | 該指令不會自動創建子目錄 |
-> > | useradd newuser -g Gr | 創建用戶與用戶群組 ==`` Gr ``== | 用戶群組可以是已經存在 |
-> > | passwd newuser| 為用戶ID: ==`` newuser ``== 設定密碼| 若不輸入使用者ID，該指令為更改登入用戶密碼|
-> > | userdel newuser| 刪除用戶ID: ==`` newuser ``== |僅刪除用戶帳號，其目錄資料仍保留|
+> > | useradd newuser | 創建用戶ID: ``` newuser ``` | 功能僅創建用戶，未設置密碼用戶將不能登入 |
+> > | useradd newuser -d "/TTT" | 創建用戶並將設置該用戶目錄 ``` /TTT ``` | 該指令不會自動創建子目錄 |
+> > | useradd newuser -g Gr | 創建用戶與用戶群組 ``` Gr ``` | 用戶群組可以是已經存在 |
+> > | passwd newuser| 為用戶ID: ``` newuser ``` 設定密碼| 若不輸入使用者ID，該指令為更改登入用戶密碼|
+> > | userdel newuser| 刪除用戶ID: ``` newuser ``` |僅刪除用戶帳號，其目錄資料仍保留|
 > > | userdel newuser -r| 刪除用戶與用戶目錄 ||
-> > | id newuser | 查詢用戶 ==`` uid、gid、group | 若無該ID則會返回提示|
-> > | su - newuser | 切換用戶ID ==`` newuser ``== ||
+> > | id newuser | 查詢用戶 ``` uid、gid、group | 若無該ID則會返回提示|
+> > | su - newuser | 切換用戶ID ``` newuser ``` ||
 > > | whoami | 查詢現在所登入帳號 ||
-> > * 用戶與系統密碼資料放置於檔案 ==`` /etc/passwd ``== 當中
+> > * 用戶與系統密碼資料放置於檔案 ``` /etc/passwd ``` 當中
 > > 
 > ![](https://i.imgur.com/lnpOcfI.png)
 > > 
 > **修改用戶指令**
 > > | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰ |
 > > | --- | --- | --- |
-> > | usermod -s(new shell path)(username) | 修改用戶ID: ==`` username ``== Shell資訊 |
-> > | usermod -d(new home directory)(username) | 修改用戶ID: ==`` username ``== 目錄 |
-> > | usermod -e MM/DD/YY username | 修改用戶ID: ==`` username ``== 有效期 |
-> > | usermod -g GGroup username | 修改用戶ID: ==`` username ``== 所在群組為 ==``GGroup``== |
-> > | groupadd GGroup | 創建群組ID: ==`` GGroup ``== | |
+> > | usermod -s(new shell path)(username) | 修改用戶ID: ``` username ``` Shell資訊 |
+> > | usermod -d(new home directory)(username) | 修改用戶ID: ``` username ``` 目錄 |
+> > | usermod -e MM/DD/YY username | 修改用戶ID: ``` username ``` 有效期 |
+> > | usermod -g GGroup username | 修改用戶ID: ``` username ``` 所在群組為 ```GGroup``` |
+> > | groupadd GGroup | 創建群組ID: ``` GGroup ``` | |
 
 
 
@@ -1727,68 +1727,68 @@ node [ color="#3e4045" penwidth=10 fillcolor="#3e4045" fontcolor="#DDDDDD" style
 > **常見檔案目錄指令**
 > > | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明 | 備註|
 > > | --- | --- | --- |
-> > | ==`` pwd ``== | 顯示當前目錄的絕對路徑 |  |
-> > | ==`` ls ``== | 列出當前目錄的檔案訊息 |  |
-> > | ==`` ls -l ``== | 列出當前目錄的檔案訊息包括隱藏檔案 |  |
-> > | ==`` ls -a ``== | 列出當前目錄的檔案訊息(列表顯示) |  |
-> > | ==`` ls -lh ``== | 列出當前目錄的檔案(顯示檔案大小) |  |
-> > | ==`` ls -lt ``== | 列出當前目錄的檔案(以最新修改時間排列) |  |
-> > | ==`` ls -lSr ``== | 列出當前目錄的檔案(以最大檔案排列) |  |
-> > | ==`` cd .. ``== | 回到上一層目錄 |  |
-> > | ==`` cd ../home ``== | 回到當前目錄上一層之下的/home目錄 |  |
-> > | ==`` cd /usr/lib ``== | 直接進入 ==`` /usr/lib ``== 目錄 |  |
-> > | ==`` cd /usr/lib ``== | 直接進入 ==`` /usr/lib ``== 目錄 |  |
-> > | ==`` mkdir /home/123 ``== | 直接創建 ==`` /home/123 ``== 目錄 | 該指令僅能創建一層子目錄 |
-> > | ==`` mkdir -p /home/123/ABCD ``== | 直接創建 ==`` /home/123/ABCD ``== 目錄 | 該指令可創建多層子目錄 |
-> > | ==`` rmdir /home/123 ``== | 刪除 ==`` /home/123 ``== 目錄(必須為空) | 該指令僅能刪除無檔案目錄 |
-> > | ==`` rm -rf /home/123/ABCD ``== | 刪除 ==`` /home/123 ``== 目錄與該目錄內所有檔案 |  |
-> > | ==`` touch /home/test.txt``== | 直接創建 ==`` /home/test.txt ``== 空檔案 | 目錄必須存在 |
-> > | ==`` cp s/test.txt d/copy.txt  ``== | 複製當前目錄檔案 ==`` a/test.txt ``== 到 ==`` d/copy.txt ``== | 目錄必須存在 |
-> > | ==`` cp -r /home/s/ /home/d/ ``== | 複製目錄 ==`` /home/s/ ``== 內所有檔案到 ==`` /home/d/  ``== | 目錄必須存在 |
-> > | ==`` \cp -r /home/s/ /home/d/ ``== | 複製目錄 ==`` /home/s/ ``== 內所有檔案到 ==`` /home/d/  ``==(過程中不產生提示直接覆蓋已存在檔案) | 目錄必須存在 |
-> > | ==`` rm /home/test.txt ``== | 刪除 ==`` /home/test.txt ``== 檔案 |  |
-> > | ==`` rm -r /home/123/ ``== | 刪除目錄 ==`` /home/123/ ``== 檔案(過程中檔案列表依序提示) |  |
-> > | ==`` mv s/test.txt d/copy.txt  ``== | 移動當前目錄檔案 ==`` a/test.txt ``== 到並重新命名 ==`` d/copy.txt ``== | 目錄必須存在 |
-> > | ==`` mv s/test.txt d/  ``== | 移動當前目錄檔案 ==`` a/test.txt ``== 到 ==`` d/ ``== | 目錄必須存在 |
-> > | ==`` ln -s /home/test.txt TestLink  ``== | 創建一個連結檔 ==`` TestLink ``== 捷徑指向 ==`` /home/test ``== | 可以指向目錄，注意結尾 ==`/`== 符號的使用 |
+> > | ``` pwd ``` | 顯示當前目錄的絕對路徑 |  |
+> > | ``` ls ``` | 列出當前目錄的檔案訊息 |  |
+> > | ``` ls -l ``` | 列出當前目錄的檔案訊息包括隱藏檔案 |  |
+> > | ``` ls -a ``` | 列出當前目錄的檔案訊息(列表顯示) |  |
+> > | ``` ls -lh ``` | 列出當前目錄的檔案(顯示檔案大小) |  |
+> > | ``` ls -lt ``` | 列出當前目錄的檔案(以最新修改時間排列) |  |
+> > | ``` ls -lSr ``` | 列出當前目錄的檔案(以最大檔案排列) |  |
+> > | ``` cd .. ``` | 回到上一層目錄 |  |
+> > | ``` cd ../home ``` | 回到當前目錄上一層之下的/home目錄 |  |
+> > | ``` cd /usr/lib ``` | 直接進入 ``` /usr/lib ``` 目錄 |  |
+> > | ``` cd /usr/lib ``` | 直接進入 ``` /usr/lib ``` 目錄 |  |
+> > | ``` mkdir /home/123 ``` | 直接創建 ``` /home/123 ``` 目錄 | 該指令僅能創建一層子目錄 |
+> > | ``` mkdir -p /home/123/ABCD ``` | 直接創建 ``` /home/123/ABCD ``` 目錄 | 該指令可創建多層子目錄 |
+> > | ``` rmdir /home/123 ``` | 刪除 ``` /home/123 ``` 目錄(必須為空) | 該指令僅能刪除無檔案目錄 |
+> > | ``` rm -rf /home/123/ABCD ``` | 刪除 ``` /home/123 ``` 目錄與該目錄內所有檔案 |  |
+> > | ``` touch /home/test.txt``` | 直接創建 ``` /home/test.txt ``` 空檔案 | 目錄必須存在 |
+> > | ``` cp s/test.txt d/copy.txt  ``` | 複製當前目錄檔案 ``` a/test.txt ``` 到 ``` d/copy.txt ``` | 目錄必須存在 |
+> > | ``` cp -r /home/s/ /home/d/ ``` | 複製目錄 ``` /home/s/ ``` 內所有檔案到 ``` /home/d/  ``` | 目錄必須存在 |
+> > | ``` \cp -r /home/s/ /home/d/ ``` | 複製目錄 ``` /home/s/ ``` 內所有檔案到 ``` /home/d/  ``==(過程中不產生提示直接覆蓋已存在檔案) | 目錄必須存在 |
+> > | ``` rm /home/test.txt ``` | 刪除 ``` /home/test.txt ``` 檔案 |  |
+> > | ``` rm -r /home/123/ ``` | 刪除目錄 ``` /home/123/ ``` 檔案(過程中檔案列表依序提示) |  |
+> > | ``` mv s/test.txt d/copy.txt  ``` | 移動當前目錄檔案 ``` a/test.txt ``` 到並重新命名 ``` d/copy.txt ``` | 目錄必須存在 |
+> > | ``` mv s/test.txt d/  ``` | 移動當前目錄檔案 ``` a/test.txt ``` 到 ``` d/ ``` | 目錄必須存在 |
+> > | ``` ln -s /home/test.txt TestLink  ``` | 創建一個連結檔 ``` TestLink ``` 捷徑指向 ``` /home/test ``` | 可以指向目錄，注意結尾 ``/`` 符號的使用 |
 > > 
 
 > **常見檔案瀏覽指令**
 > > | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰ | 備註|
 > > | --- | --- | --- |
-> > | ==`` cat /home/test.txt ``== | 瀏覽檔案 ==`` /home/test.txt ``== |  |
-> > | ==`` cat -n /home/test.txt ``== | 瀏覽檔案 ==`` /home/test.txt ``== (顯示行數) |  |
-> > | ==` cat -n /home/test.txt|more`== | 瀏覽檔案 ==`` /home/test.txt ``== (顯示行數並分頁瀏覽) | 瀏覽中可按q離開 |
-> > | ==`` less /home/test.txt ``== | 瀏覽檔案 ==`` /home/test.txt ``== (分頁顯示瀏覽檔案) | less指令是逐頁讀取檔案 |
-> > | ==`` head -n5 /home/test.txt ``== | 顯示檔案 ==`` /home/test.txt ``== 最前 ==`5`== 行內容 |  |
-> > | ==`` tail -n5 /home/test.txt ``== | 顯示檔案 ==`` /home/test.txt ``== 最後 ==`5`== 行內容 |  |
-> > | ==`` tail -f /home/test.txt ``== | 監視檔案 ==`` /home/test.txt ``== 的寫入/更新內容 | [Ctrl]+[c]可退出 |
+> > | ``` cat /home/test.txt ``` | 瀏覽檔案 ``` /home/test.txt ``` |  |
+> > | ``` cat -n /home/test.txt ``` | 瀏覽檔案 ``` /home/test.txt ``` (顯示行數) |  |
+> > | `` cat -n /home/test.txt|more`` | 瀏覽檔案 ``` /home/test.txt ``` (顯示行數並分頁瀏覽) | 瀏覽中可按q離開 |
+> > | ``` less /home/test.txt ``` | 瀏覽檔案 ``` /home/test.txt ``` (分頁顯示瀏覽檔案) | less指令是逐頁讀取檔案 |
+> > | ``` head -n5 /home/test.txt ``` | 顯示檔案 ``` /home/test.txt ``` 最前 ``5`` 行內容 |  |
+> > | ``` tail -n5 /home/test.txt ``` | 顯示檔案 ``` /home/test.txt ``` 最後 ``5`` 行內容 |  |
+> > | ``` tail -f /home/test.txt ``` | 監視檔案 ``` /home/test.txt ``` 的寫入/更新內容 | [Ctrl]+[c]可退出 |
 
 > **常見檔案尋找指令**
 > > | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰ | 備註|
 > > | --- | --- | --- |
-> > | ==`` find /home -name *txt ``== | 查詢目錄 ==`` /home ``== 中所有名稱包含 ==`*txt`== 的檔案(顯示絕對路徑) |  |
-> > | ==`` find /root -user root ``== | 查詢目錄 ==`` /root ``== 中檔案所有者為 ==`root`== 的檔案(顯示絕對路徑) |  |
-> > | ==`` find /home -size +20M ``== | 查詢目錄 ==`` /home ``== 中所有大於 ==`20M`== 的檔案(顯示絕對路徑) |  |
-> > | ==`` find /home -size 20M ``== | 查詢目錄 ==`` /home ``== 中所有等於 ==`20M`== 的檔案(顯示絕對路徑) |  |
-> > | ==`` find /home -size -20M ``== | 查詢目錄 ==`` /home ``== 中所有小於 ==`20M`== 的檔案(顯示絕對路徑) |  |
-> > | ==`` updatedb ``== | 創建或更新檔案目錄查詢索引 | 系統管理原 |
-> > | ==`` locate *.txt ``== | 查詢當前目錄中所有名稱包含 ==`*txt`== 的檔案(顯示絕對路徑) | 以updatedb做為查詢依據 |
-> > | ==`` grep "文字" *.txt ``== | 查詢當前目錄中所包含 ==`` 文字 ``== 字串的檔案且檔名為 ==`*.txt`== 的檔案(顯示查詢檔名與字串) | |
-> > | ==`` grep -n "文字" *.txt ``== | 查詢當前目錄中所包含 ==`` 文字 ``== 字串(顯示行數)的檔案且檔名為 ==`*.txt`== 的檔案(顯示查詢檔名與字串) | |
-> > | ==`` grep -i "文字" *.txt ``== | 查詢當前目錄中所包含 ==`` 文字 ``== 字串(忽略大小寫)的檔案且檔名為 ==`*.txt`== 的檔案(顯示查詢檔名與字串) | |
-> >  ls -l ==`/home`== ==`|grep "^d"`== | 列出 ==`/home`== 目錄中的所有資料夾  |
+> > | ``` find /home -name *txt ``` | 查詢目錄 ``` /home ``` 中所有名稱包含 ``*txt`` 的檔案(顯示絕對路徑) |  |
+> > | ``` find /root -user root ``` | 查詢目錄 ``` /root ``` 中檔案所有者為 ``root`` 的檔案(顯示絕對路徑) |  |
+> > | ``` find /home -size +20M ``` | 查詢目錄 ``` /home ``` 中所有大於 ``20M`` 的檔案(顯示絕對路徑) |  |
+> > | ``` find /home -size 20M ``` | 查詢目錄 ``` /home ``` 中所有等於 ``20M`` 的檔案(顯示絕對路徑) |  |
+> > | ``` find /home -size -20M ``` | 查詢目錄 ``` /home ``` 中所有小於 ``20M`` 的檔案(顯示絕對路徑) |  |
+> > | ``` updatedb ``` | 創建或更新檔案目錄查詢索引 | 系統管理原 |
+> > | ``` locate *.txt ``` | 查詢當前目錄中所有名稱包含 ``*txt`` 的檔案(顯示絕對路徑) | 以updatedb做為查詢依據 |
+> > | ``` grep "文字" *.txt ``` | 查詢當前目錄中所包含 ``` 文字 ``` 字串的檔案且檔名為 ``*.txt`` 的檔案(顯示查詢檔名與字串) | |
+> > | ``` grep -n "文字" *.txt ``` | 查詢當前目錄中所包含 ``` 文字 ``` 字串(顯示行數)的檔案且檔名為 ``*.txt`` 的檔案(顯示查詢檔名與字串) | |
+> > | ``` grep -i "文字" *.txt ``` | 查詢當前目錄中所包含 ``` 文字 ``` 字串(忽略大小寫)的檔案且檔名為 ``*.txt`` 的檔案(顯示查詢檔名與字串) | |
+> >  ls -l ``/home`` ``|grep "^d"`` | 列出 ``/home`` 目錄中的所有資料夾  |
 
 > **常見壓縮/解壓縮指令**
 > > | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰ | 備註|
 > > | --- | --- | --- |
-> > | gzip ==`` /home/text.txt ``== | 將 ==`` /home/text.txt ``== 檔案壓縮並輸出至 ==`/home/text.txt.gz`== (原始檔案將不保留) |  |
-> > | gunzip ==`` /home/text.txt.gz ``== | 將 ==`` /home/text.txt.gz ``== 檔案解壓縮並輸出至 ==`/home`== 中 (原壓縮檔將不保留) |  |
-> > | zip ==`` test.zip ``== ==`` /home/text.txt ``== | 將 ==`` /home/text.txt ``== 檔案壓縮至當前目錄並命名 ==`test.zip`== | 若zip已存在，壓縮檔案將會新增或更新 |
-> > | zip -r ==`` test.zip ``== ==`` /home/Folder/ ``== | 將 ==`` /home/Folder/  ``== 內之檔案壓縮至當前目錄並命名 ==`test.zip`== | 若zip已存在，壓縮檔案將會新增或更新|
-> > | unzip -d ==`` /home/Folder/``== ==`` /home/test.zip ``== | 將 ==`` /home/test.zip ``== 檔案解壓縮並輸出至 ==`/home/Folder/`== 中 | 解壓縮目錄必須存在 |
-> > | tar -zcvf ==`` test.tar.gz ``== ==`` /home/Folder/ ``== | 將 ==`` /home/Folder/  ``== 內之檔案壓縮至當前目錄並命名 ==`test.tar.gz`== | 若壓縮檔已存在，壓縮檔案將會新增或更新|
-> > | tar -zxvf ==`` test.tar.gz ``== -C ==`` /home/Folder/ ``== | 將 ==`` /home/test.zip ``== 檔案解壓縮並輸出至 ==`/home/Folder/`== 中 | 解壓縮目錄必須存在 |
+> > | gzip ``` /home/text.txt ``` | 將 ``` /home/text.txt ``` 檔案壓縮並輸出至 ``/home/text.txt.gz`` (原始檔案將不保留) |  |
+> > | gunzip ``` /home/text.txt.gz ``` | 將 ``` /home/text.txt.gz ``` 檔案解壓縮並輸出至 ``/home`` 中 (原壓縮檔將不保留) |  |
+> > | zip ``` test.zip ``` ``` /home/text.txt ``` | 將 ``` /home/text.txt ``` 檔案壓縮至當前目錄並命名 ``test.zip`` | 若zip已存在，壓縮檔案將會新增或更新 |
+> > | zip -r ``` test.zip ``` ``` /home/Folder/ ``` | 將 ``` /home/Folder/  ``` 內之檔案壓縮至當前目錄並命名 ``test.zip`` | 若zip已存在，壓縮檔案將會新增或更新|
+> > | unzip -d ``` /home/Folder/``` ``` /home/test.zip ``` | 將 ``` /home/test.zip ``` 檔案解壓縮並輸出至 ``/home/Folder/`` 中 | 解壓縮目錄必須存在 |
+> > | tar -zcvf ``` test.tar.gz ``` ``` /home/Folder/ ``` | 將 ``` /home/Folder/  ``` 內之檔案壓縮至當前目錄並命名 ``test.tar.gz`` | 若壓縮檔已存在，壓縮檔案將會新增或更新|
+> > | tar -zxvf ``` test.tar.gz ``` -C ``` /home/Folder/ ``` | 將 ``` /home/test.zip ``` 檔案解壓縮並輸出至 ``/home/Folder/`` 中 | 解壓縮目錄必須存在 |
 
 
 
@@ -1843,8 +1843,8 @@ node [ color="#3e4045" penwidth=10 fillcolor="#3e4045" fontcolor="#DDDDDD" style
 > 
 > （二）Debian linux 系統密碼破解
 > 
-> 1. 在grub選項選單 ==`` Debian GNU/Linux,…(recovery mode) ``==,按e進入編輯模式
-> 2. 編輯kernel那行面的 ==`` ro single 改成 rw single init=/bin/bash``==,按b執行重啟
+> 1. 在grub選項選單 ``` Debian GNU/Linux,…(recovery mode) ``==,按e進入編輯模式
+> 2. 編輯kernel那行面的 ``` ro single 改成 rw single init=/bin/bash``==,按b執行重啟
 > 3. 進入後執行下列命令
 > ```
 > #mount -a
@@ -1866,8 +1866,8 @@ node [ color="#3e4045" penwidth=10 fillcolor="#3e4045" fontcolor="#DDDDDD" style
 > ```
 > （四）Solaris 系統密碼破解 bitscn.com
 > 
-> 1. 在grub選項菜中選擇 ==`` solaris failasfe 項
-> 2. 系統提示 ==`` Do you wish to have it mounted read-write on /a ?[y,n,?] ``== 選擇y
+> 1. 在grub選項菜中選擇 ``` solaris failasfe 項
+> 2. 系統提示 ``` Do you wish to have it mounted read-write on /a ?[y,n,?] ``` 選擇y
 > 3. 就進入單使用者模式
 > 4. 輸入下列命令
 > ```
@@ -1900,8 +1900,8 @@ node [ color="#3e4045" penwidth=10 fillcolor="#3e4045" fontcolor="#DDDDDD" style
 > （六）debian linux系統密碼破解
 > 
 > 1. 在Grub的引導裝載程式選單上,選擇你要進入的條目,鍵入 &quot;e&quot; 來進入編輯模式；
-> 2. 在第二行（類似於 ==`` kernel /vmlinuz-2.6.15 ro root=/dev/hda2 ``== ）,鍵入&quot;e&quot;進入編輯模式；
-> 3. 在句末加上 ==`` init=/bin/bash ``== 回車；
+> 2. 在第二行（類似於 ``` kernel /vmlinuz-2.6.15 ro root=/dev/hda2 ``` ）,鍵入&quot;e&quot;進入編輯模式；
+> 3. 在句末加上 ``` init=/bin/bash ``` 回車；
 > 4. 按&quot;b&quot;啟動系統.
 > 
 > 這樣我們即可獲得一個bash的Shell,進入shell後,根分割槽的掛載模式預設是隻讀,我們要將其改為可寫,否則不能更改root密碼:
@@ -1918,7 +1918,7 @@ node [ color="#3e4045" penwidth=10 fillcolor="#3e4045" fontcolor="#DDDDDD" style
 > 
 > 1.在啟動linux的時候按Ctrl X,在bash#提示符下輸入linux single 或 linux 1,然後在bash# 輸入 passwd root 就可以更改密碼了! 設定完後#init 6 重啟 OK.
 > 
-> 2.在啟動linux的時候按Ctrl X,在bash#提示符下輸入 ==`` :vi etcpasswd ``==,找到root,把裡面的 ==`` root:x:… ``== 的x刪掉.就刪除了密碼!
+> 2.在啟動linux的時候按Ctrl X,在bash#提示符下輸入 ==:vi etcpasswd==,找到root,把裡面的 ==root: x:…== 的x刪掉.就刪除了密碼!
 > 
 > （八）
 > 
@@ -1931,17 +1931,17 @@ node [ color="#3e4045" penwidth=10 fillcolor="#3e4045" fontcolor="#DDDDDD" style
 > 二、關於 grub
 > 
 > 1. 在出現grub畫面時,用上下鍵選中你平時啟動linux的那一項,然後按e鍵
-> 2. 再次用上下鍵選中你平時啟動linux的那一項(類似於 ==`` kernel/boot/vmlinuz-2.4.18-14 ro root=LABEL=/ ``==),然後按e鍵
-> 3. 修改你現在見到的命令列,加入single,結果如下： ==`` kernel /boot/vmlinuz-2.4.18-14 single ro root=LABEL=/ single ``==
+> 2. 再次用上下鍵選中你平時啟動linux的那一項(類似於 ==kernel/boot/vmlinuz-2.4.18-14 ro root=LABEL=/==),然後按e鍵
+> 3. 修改你現在見到的命令列,加入single,結果如下：==kernel /boot/vmlinuz-2.4.18-14 single ro root=LABEL=/ single==
 > 4. 回車返回,然後按b鍵啟動,即可直接進入linux命令列
 > 5. 用password命令修改密碼
 > 
 > （九）
 > 
-> 1. 把系統安裝光碟插入,重啟機器,啟動時迅速按下Del鍵,進入CMOS,把啟動順序改為光碟先啟動,這樣就啟動了Linux安裝程式,按F5,按提示打入Linuxrescue回車,進入救援模式,接下來是選擇語言及鍵盤,直接回車即可,程式提示已經把硬碟上的Linux系統安裝到了 ==`` /mnt/sysimage ``== 下,然後出現了超級使用者提示符#.
-> 2. 進入到硬碟etc目錄下： ==`` cd/mnt/sysimage/etc ``==,先做備份防不測： ==`` cpshadowshadow.old ``== 修改shadow檔案的屬性為可寫： ==`` chmod wshadow ``== 然後用vi修改之：找到含root使用者資訊的那一行： ==`` root:….: ``== ,前兩個冒號之間就是加密的密碼,把它刪除掉（冒號不能刪）,存檔退出.這樣root的密碼就為空了.
-> 3. 不會用vi的使用者可以採取如下方法：找一張DOS盤插入軟碟機,把Shadow拷貝到DOS盤上： ==`` mcopyshadowa:/ ``== 然後在Windows下用附件中的記事本修改之,注意開啟檔案型別一定要選所有檔案（\*.\*）,存檔退出.再拷回： ==`` mcopya:/shadowmnt/sysimage/etc ``==
-> 4. 把Shadow的屬性改回只讀： ==`` chmod-wshadow ``==,輸入Exit退出,取出光碟.為安全起見,重啟後應在終端視窗中再給root加上密.
+> 1. 把系統安裝光碟插入,重啟機器,啟動時迅速按下Del鍵,進入CMOS,把啟動順序改為光碟先啟動,這樣就啟動了Linux安裝程式,按F5,按提示打入Linuxrescue回車,進入救援模式,接下來是選擇語言及鍵盤,直接回車即可,程式提示已經把硬碟上的Linux系統安裝到了 ``` /mnt/sysimage ``` 下,然後出現了超級使用者提示符#.
+> 2. 進入到硬碟etc目錄下： ``` cd/mnt/sysimage/etc ``==,先做備份防不測： ``` cpshadowshadow.old ``` 修改shadow檔案的屬性為可寫： ``` chmod wshadow ``` 然後用vi修改之：找到含root使用者資訊的那一行： ``` root:….: ``` ,前兩個冒號之間就是加密的密碼,把它刪除掉（冒號不能刪）,存檔退出.這樣root的密碼就為空了.
+> 3. 不會用vi的使用者可以採取如下方法：找一張DOS盤插入軟碟機,把Shadow拷貝到DOS盤上： ``` mcopyshadowa:/ ``` 然後在Windows下用附件中的記事本修改之,注意開啟檔案型別一定要選所有檔案（\*.\*）,存檔退出.再拷回： ``` mcopya:/shadowmnt/sysimage/etc ``==
+> 4. 把Shadow的屬性改回只讀： ``` chmod-wshadow ``==,輸入Exit退出,取出光碟.為安全起見,重啟後應在終端視窗中再給root加上密.
 
 
 ## VI與VIM文字編輯器操作筆記:
@@ -1971,15 +1971,15 @@ vi 是 Unix 和 Linux 操作系統使用的終端文本編輯器，任何一台�
 > 
 ### **vi 的進入與退出**
 > 
-> > 開啟vi在[終端機/Terminal]中鍵入指令$ ==`` vi 路徑/檔名 ``== 
+> > 開啟vi在[終端機/Terminal]中鍵入指令$ ``` vi 路徑/檔名 ``` 
 > > 若要退出可按下 ESC 鍵返回命令模式再使用進入末行模式鍵入指令:
 > > 
-> > - ==`` :q! ``== 離開 vi，並放棄剛才的修改。
-> > - ==`` :wq ``== 保存退出。
-> > - ==`` :ZZ ``== 保存退出。
-> > - ==`` :x ``== 同 :wq
-> > - ==`` :w ``== 保存但不退出。
-> > - ==`` :q ``== 退出 vi，若文件被修改過，則會被要求確認是否放棄修改。此指令可以 w 配合使用。
+> > - ``` :q! ``` 離開 vi，並放棄剛才的修改。
+> > - ``` :wq ``` 保存退出。
+> > - ``` :ZZ ``` 保存退出。
+> > - ``` :x ``` 同 :wq
+> > - ``` :w ``` 保存但不退出。
+> > - ``` :q ``` 退出 vi，若文件被修改過，則會被要求確認是否放棄修改。此指令可以 w 配合使用。
 > > 
 > > **注意：如果不知道當前處於何種模式，可以多按幾次 ESC 鍵，以便確認進入命令模式。**
 ### **vi/vim 命令模式**
@@ -2064,10 +2064,10 @@ vi 是 Unix 和 Linux 操作系統使用的終端文本編輯器，任何一台�
 > 
 > > | **命令** | **說明** |
 > > | --- | --- |
-> > | ==`` << ``== | 向右移動（縮進） |
-> > | ==`` >> ``== | 向左移動（縮進） |
-> > | ==`` > ``==（vim 支持） | 向右移動（縮進） |
-> > | ==`` < ``==（vim 支持） | 向左移動（縮進） |
+> > | `` << `` | 向右移動（縮進） |
+> > | `` >> `` | 向左移動（縮進） |
+> > | `` > ``（vim 支持） | 向右移動（縮進） |
+> > | `` < ``（vim 支持） | 向左移動（縮進） |
 > 
 > #### **重複命令**
 > 
@@ -2107,8 +2107,8 @@ vi 是 Unix 和 Linux 操作系統使用的終端文本編輯器，任何一台�
 > 
 > > | **命令** | **說明** |
 > > | --- | --- |
-> > | :%s/abc/123/g | 將當前文件中所有的 abc 替換成 123 |
-> > | :1,10s/abc/123/g | 將 1 到 10 行的 abc 全部替換成 123 |
+> > | :%s/```abc```/```123```/g | 將當前文件中所有的 abc 替換成 123 |
+> > | :1,10s/```abc```/```123```/g | 將 1 到 10 行的 abc 全部替換成 123 |
 > 
 > #### **退出命令**
 > 
@@ -2121,8 +2121,8 @@ vi 是 Unix 和 Linux 操作系統使用的終端文本編輯器，任何一台�
 > > | :wq | 保存退出 |
 > > | :x | 若有修改保存，退出程序 |
 > > 
-> > ==`` :wq ``== 使文件沒有被修改也強制寫入，並更新文件的修改時間。
-> > ==`` :x ``== 僅當文件被修改時才寫入，否則不會更新文件修改時間。
+> > ``` :wq ``` 使文件沒有被修改也強制寫入，並更新文件的修改時間。
+> > ``` :x ``` 僅當文件被修改時才寫入，否則不會更新文件修改時間。
 > 
 > #### **其它命令**
 > 
@@ -2142,31 +2142,31 @@ vi 是 Unix 和 Linux 操作系統使用的終端文本編輯器，任何一台�
 
 
 系統預設創建該檔案者權限即為owner、group
-一般我們可使用指令 ==`ls -l`== 做出以下觀察 :
+一般我們可使用指令 ``ls -l`` 做出以下觀察 :
 ![](https://i.imgur.com/we6yk6k.png)
 ** 目錄的檔案容量一般顯示4096 (https://www.itread01.com/p/1381438.html)
 
 ![](https://i.imgur.com/Hb66n2V.png)
-檔案類型: ==`-`== 一般檔案、==`1`== 捷徑、==`b`== 磁碟、==`c`== 鍵盤、滑鼠
+檔案類型: ``-`` 一般檔案、==`1`` 捷徑、==`b`` 磁碟、==`c`` 鍵盤、滑鼠
 
 
 - rwx權限於一般檔案:
-==`r`== →可讀取內容
-==`w`== →可寫入修改(無法刪除、命名)
-==`x`== →可被執行
+==`r`` →可讀取內容
+==`w`` →可寫入修改(無法刪除、命名)
+==`x`` →可被執行
 
 - rwx權限於目錄:
-==`r`== →可列表檔案(ls)
-==`w`== →可增刪及命名
-==`x`== →可進入及讀取
+==`r`` →可列表檔案(ls)
+==`w`` →可增刪及命名
+==`x`` →可進入及讀取
 
 
 ### 檔案擁有者與群組修改
 
 | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰ | 備註|
 | --- | --- | --- |
-| ==`` chown User01 /home/test.txt``== | 將檔案 ==`/home/test/txt`== 擁有者設置成 ==`User01`== |  |
-| ==`` chgrp GGroup /home/test.txt ``== | 將檔案 ==`/home/test/txt`== 群組設置成 ==`GGroup`== |  |
+| ``chown User01 /home/test.txt`` | 將檔案 ``/home/test/txt`` 擁有者設置成 ``User01`` |  |
+| ``chgrp GGroup /home/test.txt`` | 將檔案 ``/home/test/txt`` 群組設置成 ``GGroup`` |  |
 
 
 ### 數字類型改變檔案權限
@@ -2179,7 +2179,7 @@ Linux檔案的基本權限就有九個，分別是 owner/group/others 三種身�
 | 寫入 | w | 2 |
 | 執行 | x | 1 |
 
-權限組合: ==`7`== 讀寫執、==`6`== 讀寫、==`5`== 讀執、==`3`== 寫執、==`-`== 無任何權限
+權限組合: ``7`` 讀寫執、``6`` 讀寫、``5`` 讀執、``3`` 寫執、``-`` 無任何權限
 
 
 每種身份 (owner/group/others) 各自的三個權限 (r/w/x) 分數是需要累加的，例如當權限為： [-rwxrwx—] 分數則是：
@@ -2196,9 +2196,9 @@ Linux檔案的基本權限就有九個，分別是 owner/group/others 三種身�
 
 | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|
 | --- | --- |
-| chmod 770 /home/test.txt| 將檔案 ==`/home/test/txt`== 權限設置成 ==`u=rwx`==、==`g=rwx`==、==`o=-`== |
-| chmod -R 770 /home/Folder| 將目錄內 ==`/home/Folder`== 所有檔案權限設置成 ==`770`== |
-| chmod u=rw,g=r,o=r /home/test.txt| 將檔案 ==`/home/test/txt`== 權限設置成 ==`owner可讀寫、group可讀、others可讀`== |
+| chmod 770 /home/test.txt| 將檔案 ``/home/test/txt`` 權限設置成 ``u=rwx`==、==`g=rwx`==、==`o=-`` |
+| chmod -R 770 /home/Folder| 將目錄內 ``/home/Folder`` 所有檔案權限設置成 ``770`` |
+| chmod u=rw,g=r,o=r /home/test.txt| 將檔案 ``/home/test/txt`` 權限設置成 ``owner可讀寫、group可讀、others可讀`` |
 
 
 
@@ -2212,10 +2212,10 @@ Linux檔案的基本權限就有九個，分別是 owner/group/others 三種身�
 
 | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|
 | --- | --- |
-|chmod go=rx /home/test.txt | 將檔案 ==`/home/test/txt`== 權限設置成 ==`g=rx`==、==`o=rx`== |
-|chmod u+rx /home/Folder/ | 將目錄 ==`/home/test/txt`== 的owner加入權限 ==`rx`== |
-|chmod a-x /home/Folder/ | 將目錄 ==`/home/test/txt`== 的owner/group/others 刪除權限 ==`x`== |
-|chmod -R a-r /home/Folder/ | 將目錄 ==`/home/test/txt`== 中所有檔案的owner/group/others 刪除權限 ==`x`== |
+|chmod go=rx ``/home/test.txt`` | 將檔案 ``/home/test/txt`` 權限設置成 ``g=rx`==、==`o=rx`` |
+|chmod u+rx ``/home/Folder/`` | 將目錄 ``/home/test/txt`` 的owner加入權限 ``rx`` |
+|chmod a-x ``/home/Folder/`` | 將目錄 ``/home/test/txt`` 的owner/group/others 刪除權限 ``x`` |
+|chmod -R a-r ``/home/Folder/`` | 將目錄 ``/home/test/txt`` 中所有檔案的owner/group/others 刪除權限 ``x`` |
 
 
 
@@ -2234,8 +2234,8 @@ Linux檔案的基本權限就有九個，分別是 owner/group/others 三種身�
 
 | 命令 ˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰ |  說明˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|
 | --- | --- |
-| fdisk -l ==`/dev/sda1`== | 查看 ==`/dev/sda1`== 磁區的容量 |
-| fdisk ==`/dev/sdb`== | 進入 ==`/dev/sdb`== 未分配磁區，並準備分割 |
+| fdisk -l ``/dev/sda1`` | 查看 ``/dev/sda1`` 磁區的容量 |
+| fdisk ``/dev/sdb`` | 進入 ``/dev/sdb`` 未分配磁區，並準備分割 |
 
 ```
 #CentOS 7.6_1810 文檔說明如下:
@@ -2264,8 +2264,8 @@ x   extra functionality (experts only)
 ### mount/umount 掛載磁區
 | 命令 ˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰ |  說明˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|
 | --- | --- |
-| mount ==`/dev/sdb1`== ==`/home/NewDisk`== | 將 ==`/dev/sdb1`== 磁區掛載至 ==`/home/NewDisk`== |
-| umount ==`/dev/sdb1`== | 取消 ==`/dev/sdb1`== 磁區掛載 |
+| mount ``/dev/sdb1`` ``/home/NewDisk`` | 將 ``/dev/sdb1`` 磁區掛載至 ``/home/NewDisk`` |
+| umount ``/dev/sdb1`` | 取消 ``/dev/sdb1`` 磁區掛載 |
 
 
 ### **新磁碟分割步驟:**
@@ -2283,10 +2283,9 @@ x   extra functionality (experts only)
 | 命令 ˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰ |  說明˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|
 | --- | --- |
 | df | 檢查硬碟使用量 |
-| df ==`/dev/sda1`== | 檢查 ==`/dev/sda1`== 磁區使用量 |
-| df -h ==`/dev/sda1`== | 檢查 ==`/dev/sda1`== 磁區使用量(單位自動)|
-| df -t ==`xfs`== | 檢查磁區格式化類型為 ==`xfs`== 磁區使用量  |
-| df -t xfs ==`| awk { print $5 " " $1 }'`== | 檢查磁區格式化類型為 ==`xfs`== 磁區使用量  |
+| df ``/dev/sda1`` | 檢查 ``/dev/sda1`` 磁區使用量 |
+| df -h ``/dev/sda1`` | 檢查 ``/dev/sda1`` 磁區使用量(單位自動)|
+| df -t ``xfs`` | 檢查磁區格式化類型為 ``xfs`` 磁區使用量  |
 
 
 
@@ -2320,11 +2319,12 @@ x   extra functionality (experts only)
 | ps -aux | 顯示系統所有的程序資料 |
 | ps -axjf | 顯示系統部分樹程序狀態 |
 | pstree -p | 顯示系統所有的程序資料與PID樹狀圖 |
-| kill ==`1111`== | 關閉PID為 ==`1111`==  |
-| kill -9 ==`1111`== | 強制關閉PID為 ==`1111`==  |
-| killall ==`sshd`== | 強制關閉程序包含名稱為 ==`sshd`== 以及它所在的子程序 |
-| killall -e ==`sshd`== | 強制關閉程序包含名稱 ==`sshd`== 的程序 |
-| killall -u ==`user`== | 強制關閉使用者 ==`user`== 所執行的程序 |
+| kill ``1111`` | 關閉PID為 ``1111``  |
+| kill -9 ``1111`` | 強制關閉PID為 ``1111``  |
+| killall ``sshd`` | 強制關閉程序包含名稱為 ``sshd`` 以及它所在的子程序 |
+| killall -e ``sshd`` | 強制關閉程序包含名稱 ``sshd`` 的程序 |
+| killall -u ``user`` | 強制關閉使用者 ``user`` 所執行的程序 |
+| ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem \| head -6 | 列出前5個佔用記憶體最高的程序 |
 
 
 ![](https://i.imgur.com/hxkRGHH.png)
@@ -2347,27 +2347,28 @@ x   extra functionality (experts only)
 ### Linux 服務管理
 | 命令 ˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰ |  說明˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|
 | --- | --- |
-| systemctl start ==`httpd`== | 啟動 ==`httpd`== 服務 |
-| systemctl stop ==`httpd`== | 停止 ==`httpd`== 服務 |
-| systemctl enable ==`httpd`== | 開機啟用 ==`httpd`== 服務 |
-| systemctl disable ==`httpd`== | 開機停用 ==`httpd`== 服務 |
-| systemctl status ==`httpd`== | 檢查 ==`httpd`== 服務狀態 |
-| systemctl reload ==`httpd.service`== | 開機重新啟用 ==`httpd`== 服務 |
+| systemctl start ``httpd`` | 啟動 ``httpd`` 服務 |
+| systemctl stop ``httpd`` | 停止 ``httpd`` 服務 |
+| systemctl enable ``httpd`` | 開機啟用 ``httpd`` 服務 |
+| systemctl disable ``httpd`` | 開機停用 ``httpd`` 服務 |
+| systemctl status ``httpd`` | 檢查 ``httpd`` 服務狀態 |
+| systemctl reload ``httpd.service`` | 開機重新啟用 ``httpd`` 服務 |
 | systemctl list-unit-files | 列出全部服務 |
-| systemctl list-units --type service ==`| grep running `== | 列出正在執行的服務 |
+| systemctl list-units --type service \| grep running | 列出正在執行的服務 |
 | systemctl get-default  | 顯示目前系統預設運作層級 |
 
 
 ### Linux 監控服務
 | 命令 ˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰ |  說明˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|
 | --- | --- |
-| top -d ==`1`== | 顯示當前系統正在執行的程序與硬體狀態(每隔 ==`1`== 秒更新) |
+| top -d ``1`` | 顯示當前系統正在執行的程序與硬體狀態(每隔 ``1`` 秒更新) |
 | top -i | 顯示當前系統正在執行的程序與硬體狀態(忽略Z:殭屍程序&X:死掉的程序) |
-| top -p ==`1111`== | 顯示當前系統正在執行的程序與硬體狀態(僅監控PID ==`1`== 的程序) |
-| top -u ==`user`== | 顯示當前系統正在執行的程序與硬體狀態(僅監控用戶 ==`user`== 的程序) |
+| top -p ``1111`` | 顯示當前系統正在執行的程序與硬體狀態(僅監控PID ``1`` 的程序) |
+| top -u ``user`` | 顯示當前系統正在執行的程序與硬體狀態(僅監控用戶 ``user`` 的程序) |
 | top -i | 顯示當前系統正在執行的程序與硬體狀態(忽略Z:殭屍程序&X:死掉的程序) |
+| top -b -o +%CPU \| head -n 17 | 列出前10個佔用CPU最高的程序 |
 | netstat -anp | 查看系統的網路服務 |
-| netstat -anp ==`|grep sshd`== | 查看系統的sshd的網路連接狀態(需root權限) | 
+| netstat -anp \| grep ``sshd`` | 查看系統的 ``sshd`` 的網路連接狀態(需root權限) | 
 
 top:
 ![](https://i.imgur.com/oUQ25pb.png)
@@ -2400,15 +2401,15 @@ top:
 | 命令|  說明˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|
 | --- | --- |
 | * | 代表任何時刻都接受的意思！舉例來說，範例一內那個日、月、週都是 * ， 就代表著『不論何月、何日的禮拜幾的 12:00 都執行後續指令』的意思！|
-| , | 代表分隔時段的意思。舉例來說，如果要下達的工作是 3:00 與 6:00 時，就會是：<div>==`0 3,6 * * * command`==<div>時間參數還是有五欄，不過第二欄是 3,6 ，代表 3 與 6 都適用！|
-| - | 代表一段時間範圍內，舉例來說， 8 點到 12 點之間的每小時的 20 分都進行一項工作：<div>==`20 8-12 * * * command`==<div>仔細看到第二欄變成 8-12 喔！代表 8,9,10,11,12 都適用的意思！ |
-| / | 那個 n 代表數字，亦即是『每隔 n 單位間隔』的意思，例如每五分鐘進行一次，則：<div>==`*/5 * * * * command`==<div>很簡單吧！用 * 與 /5 來搭配，也可以寫成 0-59/5 ，相同意思！ |
+| , | 代表分隔時段的意思。舉例來說，如果要下達的工作是 3:00 與 6:00 時，就會是：<div> ==0 3,6 * * * command==<div>時間參數還是有五欄，不過第二欄是 3,6 ，代表 3 與 6 都適用！|
+| - | 代表一段時間範圍內，舉例來說， 8 點到 12 點之間的每小時的 20 分都進行一項工作：<div>==20 8-12 * * * command==<div>仔細看到第二欄變成 8-12 喔！代表 8,9,10,11,12 都適用的意思！ |
+| / | 那個 n 代表數字，亦即是『每隔 n 單位間隔』的意思，例如每五分鐘進行一次，則：<div>==*/5 * * * * command==<div>很簡單吧！用 * 與 /5 來搭配，也可以寫成 0-59/5 ，相同意思！ |
 
 
 
 ### Linux中執行Shell腳本
 
-製作shell script的副檔名為 ==`.sh`==，使用者必須有該檔案的 ==`x`== 權限才能執行。
+製作shell script的副檔名為 ``.sh`==，使用者必須有該檔案的 ``x`` 權限才能執行。
 
 * 執行方法一: 
 切換到Shell腳本所在的目錄 (此時，稱為工作目錄) 執行Shell腳本(/home/shell/hello.sh)
@@ -2455,21 +2456,113 @@ bash /home/shell/hello.sh
 | 命令 |  說明 |
 | --- | --- |
 | rpm -qa | 查詢所有已安裝軟體 |
-| rpm -q ==`firefox`== | 查詢軟體名稱 ==`firefox`== 檔名 |
-| rpm -ql ==`firefox`== | 查詢軟體名稱 ==`firefox`== 安裝目錄 |
-| rpm -qi ==`firefox`== | 查詢軟體名稱 ==`firefox`== 資訊 |
-| rpm -qi ==`firefox-60.2.2-1.el7.centos.x86_64.rpm`== | 查詢rpm安裝包 ==`firefox-60.2.2-1.el7.centos.x86_64.rpm`== 是否已安裝 |
-| rpm -ivh ==`firefox-60.2.2-1.el7.centos.x86_64.rpm`== | 安裝rpm安裝包 ==`firefox-60.2.2-1.el7.centos.x86_64.rpm`==  |
-| rpm -qf ==`/home`== | 查詢檔案或目錄 ==`/home`== 所屬軟體名稱 |
-| rpm -e ==`firefox`== | 移除軟體名稱 ==`firefox`==  |
-| rpm --nodeps ==`firefox`== | 強制移除軟體名稱 ==`firefox`==  |
+| rpm -q ``firefox`` | 查詢軟體名稱 ``firefox`` 檔名 |
+| rpm -ql ``firefox`` | 查詢軟體名稱 ``firefox`` 安裝目錄 |
+| rpm -qi ``firefox`` | 查詢軟體名稱 ``firefox`` 資訊 |
+| rpm -qi ``firefox-60.2.2-1.el7.centos.x86_64.rpm`` | 查詢rpm安裝包 ``firefox-60.2.2-1.el7.centos.x86_64.rpm`` 是否已安裝 |
+| rpm -ivh ``firefox-60.2.2-1.el7.centos.x86_64.rpm`` | 安裝rpm安裝包 ``firefox-60.2.2-1.el7.centos.x86_64.rpm``  |
+| rpm -qf ``/home`` | 查詢檔案或目錄 ``/home`` 所屬軟體名稱 |
+| rpm -e ``firefox`` | 移除軟體名稱 ``firefox``  |
+| rpm --nodeps ``firefox`` | 強制移除軟體名稱 ``firefox``  |
 
 ### RPM&YUM自動管理
 
 | 命令 |  說明 |
 | --- | --- |
 | yum list | 列出所有伺服器上可線上安裝的RPM格式軟體 |
-| yum list ==`|grep gnote`== | 查詢伺服器線上軟體名稱為 ==`|grep chrome`== 的軟體 |
-| yum install ==`gnote.x86_64 `== | 線上安裝軟體 ==`gnote.x86_64 `==  |
+| yum list \| ``grep gnote`` | 查詢軟體名稱為 \| ``grep chrome`` 的軟體 |
+| yum install ``gnote.x86_64`` | 線上安裝軟體 ``gnote.x86_64``  |
+    
+### Linux系統/opt目錄和/usr/local目錄區別
+    
+1. /opt 目錄
+    /opt 目錄可以理解為Windows 中的D:/Software。安裝到/opt目錄下的程式，它所有的資料、庫檔案等等都是放在同個目錄下面。當你不需要時，直接rm -rf 掉即可。
+2. /usr/local目錄
+    /usr：可以理解為Windows 中的C:/Windows/。
+    /usr/lib：可以理解為Windows 中的C:/Windows/System32。
+    /usr/local：可以理解為Windows 中的C:/Progrem Files/。使用者自己編譯的軟體預設會安裝到這個目錄下。這裡主要存放那些手動安裝的軟體，即不是通過apt-get 安裝的軟體。
 
+# Linux Shell Script
 
+## scoure & sh 差異
+* sh執行shell script會在子程序中進行,故不會繼承父程序變數
+* scoure執行shell script會在父程序中進行,繼承父程序變數
+* ``.sh``檔案必須要只執行權限才可使用,可透過 ==chmod +x 檔案名稱.sh== 編輯權限
+## 變數
+
+|指令|描述|註解|
+| --- | --- |--- |
+|$0|目前執行檔名,或bash名稱|
+|$``1``|1代表第1個傳入參數(Arguments),以此類推..|
+|$#|傳遞到程式或函式目前有幾個傳入參數|
+|$*|傳遞到程式或函式所有傳入參數|
+|$@|類似 $* 但是在被雙引號包含時有些許不同|
+|$?|上一個指令退出狀態或是函式的返回值|
+|$$|目前 process PID|
+
+#### ``.sh``變數範例:
+```bash
+var1="測試"
+echo ${var1} # 測試
+unset var1
+echo ${var1} # 空值
+```
+
+#### ``.sh``四則運算:
+```bash
+echo $((5/3)) #1,除數
+echo $((5%3)) #2,餘數
+echo $((1+2-3*4/5))  # 四則運算,結果:1
+echo "1.230*12.3" | bc # 使用bc進行小數點運算,精度使用0補位,結果:15.129
+
+a="10"
+b="20"
+c=`expr $a + $b + 1`
+echo $c # 31 expr進行四則運算
+
+str="1"
+count=$(($str+1))
+echo "$count" #2
+```
+
+### 日期 (Mac很多不適用)
+```bash
+echo $(date) #本地時間：2019年12月11日 週五 00時39分01秒 CST
+echo `date '+%Y-%m-%d %H:%M:%S'` #2019-12-11 00:39:01
+echo `date '+%Y%m%d' -d '+1 day'` #2019-12-12
+echo `date '+%Y%m%d' -d '+1 month'` #2020-01-12
+echo `date '+%Y%m%d' -d '+1 year'` #2020-12-12
+echo `date '+%Y%m%d %H:%M:%S' -d '+1 hour +1 min +1 sec '` #2019-12-11 00:50:02
+```
+
+```
+%n : 下一行
+%t : 跳格
+%H : 小時(00..23)
+%I : 小時(01..12)
+%k : 小時(0..23)
+%l : 小時(1..12)
+%M : 分鐘(00..59)
+%p : 顯示本地 AM 或 PM
+%r : 直接顯示時間 (12 小時制，格式為 hh:mm:ss [AP]M)
+%s : 從 1970 年 1 月 1 日 00:00:00 UTC 到目前為止的秒數
+%S : 秒(00..61)
+%T : 直接顯示時間 (24 小時制)
+%X : 相當於 %H:%M:%S
+%Z : 顯示時區 %a : 星期幾 (Sun..Sat)
+%A : 星期幾 (Sunday..Saturday)
+%b : 月份 (Jan..Dec)
+%B : 月份 (January..December)
+%c : 直接顯示日期與時間
+%d : 日 (01..31)
+%D : 直接顯示日期 (mm/dd/yy)
+%h : 同 %b
+%j : 一年中的第幾天 (001..366)
+%m : 月份 (01..12)
+%U : 一年中的第幾周 (00..53) (以 Sunday 為一周的第一天的情形)
+%w : 一周中的第幾天 (0..6)
+%W : 一年中的第幾周 (00..53) (以 Monday 為一周的第一天的情形)
+%x : 直接顯示日期 (mm/dd/yy)
+%y : 年份的最後兩位元數字 (00.99)
+%Y : 完整年份 (0000..9999)
+```
