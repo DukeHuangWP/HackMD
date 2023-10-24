@@ -1555,98 +1555,92 @@
 
 # Docker 學習筆記
 
-```yaml
-docker info #版本號
-docker image #顯示掛載鏡像
-#-a 列出local
-#-q 僅列出image id
-#--digests 顯示鏡像摘要訊息(sha256)
-#--no-trunc 顯示完整鏡像
+```
+docker info 版本號
+docker image 顯示掛載鏡像
+-a 列出local
+-q 僅列出image id
+--digests 顯示鏡像摘要訊息(sha256)
+--no-trunc 顯示完整鏡像
 
 docker search 鏡像名稱
-#-s 顯示評價星數大於該值之鏡像
-#--no-trunc 顯示完整鏡像
-#--automated 只列出具備Automated Build功能之鏡像
+-s 顯示評價星數大於該值之鏡像
+--no-trunc 顯示完整鏡像
+--automated 只列出具備Automated Build功能之鏡像
 
 docker pull 下載鏡像
 
 docker rmi 刪除鏡像1 刪除鏡像2 ...
 -f  強制刪除
 
-docker rmi -f $(docker images -qa) #刪除全部images
+docker rmi -f $(docker images -qa) 刪除全部images
 
 
 docker run [OPTIONS] 鏡像名稱或ID
-#-i 設置容器使用終端溝通(pseudo-tty)
-#-t 為容器開啟cmd模式(STDIN)
-#--name 為容器命名
-#-P 隨機Port
-#-d 背景運行下如果無任何進程執行則自動關閉
+-i 設置容器使用終端溝通(pseudo-tty)
+-t 為容器開啟cmd模式(STDIN)
+--name 為容器命名
+-P隨機Port
+-d 背景運行下如果無任何進程執行則自動關閉
 
-#Ctrl+P+Q跳出容器終端
+Ctrl+P+Q跳出容器終端
 
 
 
-docker ps #列出現在運行容器
-#-a 查詢之前執行的容器
-#-l 查詢最後執行的容器
-#-n 查詢最後執行前n個容器
-#-q 容器編號
+docker ps 列出現在運行容器
+-a 查詢之前執行的容器
+-l 查詢最後執行的容器
+-n 查詢最後執行前n個容器
+-q 容器編號
 
 docker start
 docker stop
-docker kill #強制關閉容器
-docker rm #關閉容器
+docker kill 強制關閉
+docker rm 關閉容器
 
 docker logs -ft --tail 10 容器ID
-#顯示執行時間log，最後10個訊息
-docker logs --since="2016-07-01"
-#顯示執行時間log，由2016-07-01到現在之log
+顯示執行時間log，最後10個訊息
 docker top 容器ID
-#顯示該容器正在process
+顯示該容器正在process
 docker inspect 容器ID
-#查看容器DockerFile設定檔
+查看容器DockerFile設定檔
 docker attach 容器ID
-#進入容器終端
+進入容器終端
 docker exec -t 容器ID 命令...
-#讓該容器執行該命令
+讓該容器執行該命令
 docker exec -it 容器ID 命令...
-#讓該容器執行該命令後並進入終端
+讓該容器執行該命令後並進入終端
 docker cp 容器ID:容器檔案路徑 主機檔案路徑
-#複製容器內的檔案到主機上
+複製容器內的檔案到主機上
 docker cp 主機檔案路徑 容器ID:容器檔案路徑 
-#複製主機上的檔案到容器內
+複製主機上的檔案到容器內
 
 docker images commit 
-#上傳成為新的鏡像
+上傳成為新的鏡像
 
 docker run -i 容器名稱 /bin/bash
-#執行容器後並進入命令/bin/bash(將會覆蓋設定檔CMD的指令)
+執行容器後並進入命令/bin/bash(將會覆蓋設定檔CMD的指令)
 
 docker run -it -p 80:8888
-#容器內的 8888 連接埠，映射到主機上的 80 連接埠
+容器的 8888 連接埠，對應到主機上的 80 連接埠
 
 docker run -it -v /主機共享目錄:/容器上的目錄 鏡像名稱--privileged=true
-#將主機內目錄與容器內目錄共享
+將主機內目錄與容器內目錄共享
 --privileged=true 開啟docker 防火牆權限
 docker run -it -v /主機共享目錄:/容器上的目錄:ro 鏡像名稱
-#將主機內目錄與容器內目錄共享但限讀
+將主機內目錄與容器內目錄共享但限讀
 
 docker run -it --volumes-from 容器名稱
-#將新容器繼承舊容器之volume
+將新容器繼承舊容器之volume
 
 docker run --rm --volumes-from storage -v $(pwd):/容器上的目錄 容器名稱
-#將容器掛載volume於主機現有目錄下，並於容器關閉後刪除該volume
+將容器掛載volume於主機現有目錄下，並於容器關閉後刪除該volume
+
+
 
 docker build -f 鏡像設定檔目錄 -t 鏡像倉庫目錄
-
-ifconfig #可查看docker0~9網卡區域ip 
-docker network #查看該機docker虛擬網卡設定 
-
-docker container prune #將刪除所有停止的容器，並且應在所有平臺上以相同的方式工作。
-docker system prune -a #清理磁碟，刪除關閉的容器、無用的資料卷和網路，以及dangling映象(即無tag的映象)。
-
 ```
+
 
 # 什麼是Dockerfile ?
 * 是一個文字檔，由一行一行的指令所組成，用來描述這個映像檔應該長成怎麼樣
@@ -1960,317 +1954,3 @@ docker run -it centos_plus:1.0
 ```
 
 # Docker Compose
-```yaml
-version: '3.8'
-services:
-
- # db:
-  #   image: mariadb
-  #   working_dir: #預設工作目錄
-  #     /root/
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: example
-
-  example-01:
-    image: golang:1.15.13-stretch #鏡像名稱與版本,可參考https://hub.docker.com/layers/golang/library/golang/1.15.13-stretch/images/sha256-3c251a7c830aa6bcf0fe57a71d39dc4ba59d4d65775407d989c7f459da3ac207?context=explore
-    container_name: go_API #為容器命名
-    restart: always
-    volumes: #HOST:CONTAINER:ro
-      - ./API:/root/:ro #限讀模式
-      - /dev/shm/API:/dev/shm/ #抓取主機RamDisk
-    working_dir: #預設工作目錄
-      /root/
-    command: #容器內服務啟動指令
-      >
-      sh -c "
-      echo 目錄/dev/shm/:&&
-      ls -la /dev/shm/ &&
-      echo 目錄./:&&
-      ls -la ./ 
-      "
-    #↑批次指令範例
-    ports: #對外Port:容器內Port
-      - "8080:8080"
-    networks:
-      - default
-      - outside
-    ulimits:
-      nproc: 65535
-      nofile:
-        soft: 20000
-        hard: 40000
-    #limit設置範例
-    environment:
-      - TZ=Asia/Taipei
-    #環境變數設置範例
-
-networks:
-  outside:
-    external: true
-
-
-# version: "3.5": 選定 docker-compose 的版本，每個版本提供的 API 方法有所差異。
-# services: 此欄位底下會有所有的容器，以下分別有server與db兩個 容器。
-# build: 說明此容器要使用特定 Dockerfile 來 build，context為檔案目錄，dockerfile為 Dockerfile 的名字。
-# working_dir: 指定 docker 啟動時所在的目錄，如果目錄不存在會自動創建一個。
-# volumes: 將本機檔案掛載至 docker 內部，本機檔案更新時 docker 內部的掛載檔案也會更新。
-# ports: 將本機的 port 做 mapping 與 docker 內部的 poart。
-# depends_on: 說明 a 容器與 b 容器有相關，會等到 b 容器啟動完畢後，再啟動 a 容器。
-# entrypoint: 指定 docker 啟動時的預設指令。
-# restart: 當容器不正常關閉時，會重新啟動容器。
-# image: 如果不使用 Dockerfile 來建立容器，你可以直接使用 docker image 來啟動容器。
-# environment: 指定容器內的環境變數。
-
-```
-
-
-# Docker Compose - 範例
-
-### Chrome Debug with Boswer Remote
-```yaml
-version: '3'
-
-services:
-
-  alpine-chrome:
-    image: zenika/alpine-chrome:89
-    command: [chromium-browser, "--headless", "--disable-gpu", "--no-sandbox","--disable-software-rasterizer", "--remote-debugging-address=0.0.0.0","--shm-size=1gb", "--remote-debugging-port=9090"]
-    ports:
-      - "9090:9090"
-```
-
-### Code-Server with Golang
-```yaml
-version: '3.8'
-services:
-
-  API.code-server:
-    image: linuxserver/code-server:amd64-version-v3.10.2
-    container_name: code-server
-    privileged: true #開啟root權限
-    volumes:
-      - ./Code-Server:/config
-      - ./IFT.Bank.System.Dev-API:/config/workspace
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Taipei #時區
-      - PASSWORD=qwerty #雲端vscode登入密碼
-      - HASHED_PASSWORD= #optional
-      - SUDO_PASSWORD=qwerty #雲端環境sudo密碼
-      - SUDO_PASSWORD_HASH= #optional
-      #- PROXY_DOMAIN=code-server.my.domain #optional
-      - GO111MODULE=on #強制開啟go.mod版控
-      - GOPATH=/config/DevOpt/go-1.15.13/GoPath #GoPath絕對路徑
-      - GOROOT=/config/DevOpt/go-1.15.13/GoRoot #GoRoot絕對路徑
-      - GOTOOLDIR=/config/DevOpt/go-1.15.13/GoRoot/pkg/tool/linux_amd64 #GOTOOLDIR絕對路徑
-      - PATH=/config/DevOpt/go-1.15.13/GoPath/bin:/config/DevOpt/go-1.15.13/GoRoot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin #設定go編譯器路徑
-    ports:
-      - 8080:8080 #API子程式專用port
-      - 8081:8443 #code-server外部用port
-    command: #容器內服務啟動指令
-      >
-      sh -c "
-      echo 目錄./:&&
-      ls -la ./config &&
-      echo $PATH &&
-      code-server --port 18080 --host 0.0.0.0
-      "
-    #API子程式專用port必須與code-server port分開
-    #code-server為啟動雲端IDE的指令
-    restart: unless-stopped
-    ulimits:
-      nproc: 65535
-      nofile:
-        soft: 20000
-        hard: 40000
-
-# networks:
-#   outside:
-#     external: true
-```
-
-### Firefox with VNC
-```yaml
-version: '3'
-services:
-  firefox:
-    container_name: Firefox_for_Code-Server
-    image: ich777/firefox:amd64
-    ports:
-      - "9090:8080"
-    environment: 
-      - FIREFOX_V=latest
-      - FIREFOX_LANG=zh-TW
-      - CUSTOM_RES_W=1600 #VNC解析度
-      - CUSTOM_RES_H=900
-      - UID=99
-      - GID=100
-      - UMASK=000
-      - DATA_PERM=770
-    volumes:
-      - "./appdata:/firefox:rw" #存放firefox目錄
-```
-
-
-### Redis-Server
-```yaml
-version: '3.8'
-services:
-
-  # db:
-  #   image: mariadb
-  #   working_dir: #預設工作目錄
-  #     /root/
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: example
-
-  Redis-Server:
-    restart: always
-    container_name: redis
-    image: redis:6.2.4-alpine
-    ports:
-      - 16379:6379
-    volumes:
-      - ./Redis/data:/data
-
-networks:
-  outsite:
-    external: true
-```
-
-### VNC-xfce
-```yaml
-version: '3.8'
-
-services:
-
-  ubuntu-xfce-vnc:
-    container_name: xfce
-    image: imlala/ubuntu-xfce-vnc-novnc:latest
-    shm_size: "1gb" # 防止高分辨率下Chromium崩溃
-    ports:
-        - 5900:5900
-        - 9090:6080
-    environment: 
-        - VNC_PASSWD=qwerty
-        - GEOMETRY=1600x900
-        - DEPTH=24
-    volumes: 
-        - ./Downloads:/root/Downloads
-    restart: unless-stopped
-```
-
-### Hedgedoc(hackmd社群版)
-```yaml=
-# Using version 3 to provide play-with-docker badge
-# You can change to version 2 without breaking.
-#version: '2'
-version: '3'
-services:
-  database:
-    # Don't upgrade PostgreSQL by simply changing the version number
-    # You need to migrate the Database to the new PostgreSQL version
-    image: postgres:13.4-alpine
-    #mem_limit: 256mb         # version 2 only
-    #memswap_limit: 512mb     # version 2 only
-    #read_only: true          # not supported in swarm mode please enable along with tmpfs
-    #tmpfs:
-    #  - /run/postgresql:size=512K
-    #  - /tmp:size=256K
-    environment:
-      - POSTGRES_USER=dbuser
-      - POSTGRES_PASSWORD=dbpassword
-      - POSTGRES_DB=dbName
-    volumes:
-      - database:/home/user01/hedgedoc/postgresql/data
-    networks:
-      backend:
-    restart: always
-
-  # MySQL example
-  # Most of the documentation that applies to PostgreSQL applies also to MySQL
-  #database:
-  #    # You should be able to upgrade MySQL without problems
-  #    # but to make sure no even when a problem appears you
-  #    # should have a backup
-  #    image: mariadb:10
-  #    environment:
-  #      - MYSQL_USER=dbuser
-  #      - MYSQL_PASSWORD=dbpassword
-  #      - MYSQL_DATABASE=dbName
-  #      - MYSQL_ALLOW_EMPTY_PASSWORD=true
-  #    volumes:
-  #      - database:/home/user01/hedgedoc/mysql
-  #      # This config provides UTF-8 support to the database by default
-  #      # If this config is not used, HedgeDoc breaks as it tries to write
-  #      # UTF-8 to a latin database.
-  #      - ./resources/utf8.cnf:/etc/mysql/conf.d/utf8.cnf
-  #    networks:
-  #      backend:
-  #    restart: always
-
-  app:
-    # Uncomment the following section to build the image yourself:
-    #build:
-    #  context: .
-    #  dockerfile: debian/Dockerfile
-    #  args:
-    #    - "VERSION=master"
-    #    - "HEDGEDOC_REPOSITORY=https://github.com/hedgedoc/hedgedoc.git"
-    image: quay.io/hedgedoc/hedgedoc:1.9.2
-    #mem_limit: 256mb         # version 2 only
-    #memswap_limit: 512mb     # version 2 only
-    #read_only: true          # not supported in swarm mode, enable along with tmpfs
-    #tmpfs:
-    #  - /tmp:size=10M
-    #  # Make sure you remove this when you use filesystem as upload type
-    #  - /hedgedoc/public/uploads:size=10M
-    environment:
-      # **DB_URL** is formatted like: <databasetype>://<username>:<password>@<hostname>:<port>/<database>
-      # Other examples are:
-      # - mysql://hedgedoc:password@database:3306/hedgedoc
-      # - sqlite:///data/sqlite.db (NOT RECOMMENDED)
-      # - For details see the official sequelize docs: http://docs.sequelizejs.com/en/v3/
-      - CMD_DB_URL=postgres://dbuser:dbpassword@database:5432/dbName
-      # **DOMAIN** is the domain under which HedgeDoc will be available. Just the (sub)domain, no protocol or paths.
-      # You MUST change this if your instance should be available under another domain than "localhost", otherwise your
-      # instance may be broken.
-      # You can define only ONE domain.
-      - CMD_DOMAIN=localhost
-      # **PROTOCOL_USESSL** defines if generated links should be HTTPS URLs.
-      # This variable won't activate encryption on the listen port.
-      # Set this to true if your reverse proxy exposes your instance via HTTPS.
-      - CMD_PROTOCOL_USESSL=false
-      # **HSTS_ENABLE** defines if HSTS headers should be sent. Set this to true if you use HTTPS.
-      - CMD_HSTS_ENABLE=false
-      # **URL_ADDPORT** defines if generated links should contain the port.
-      # Set this to false if your reverse uses the default ports (443 for HTTPS or 80 for HTTP).
-      - CMD_URL_ADDPORT=true
-    volumes:
-      - uploads:/home/user01/hedgedoc/uploads
-    ports:
-      # Ports that are published to the outside.
-      # The latter port is the port inside the container. It should always stay on 3000
-      # If you only specify a port it'll published on all interfaces. If you want to use a
-      # local reverse proxy, you may want to listen on 127.0.0.1.
-      # Example:
-      # - "127.0.0.1:3000:3000"
-      - "3000:3000"
-    networks:
-      backend:
-    restart: always
-    depends_on:
-      - database
-
-# Define networks to allow best isolation
-networks:
-  # Internal network for communication with PostgreSQL/MySQL
-  backend:
-
-# Define named volumes so data stays in place
-volumes:
-  # Volume for PostgreSQL/MySQL database
-  database:
-  uploads:
-```

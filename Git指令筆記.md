@@ -1559,7 +1559,7 @@
 # Git指令筆記
 
 ## Git設定指令:
->| 命令 |  說明 | |
+>| 命令 |  說明 |
 >| --- | --- | --- |
 >| git config user.name &#0034;Git1&#0034;| 設定個別識別資料簽名為 `` Git1 `` | |
 >| git config user.email &#0034;git@g.com&#0034;| 設定個別識別資料E-Mail為 `` git@g.com `` | |
@@ -1567,7 +1567,7 @@
 >| git config --global user.email &#0034;git@g.com&#0034;| 設定預設識別資料E-Mail為 `` git@g.com `` | |
 >
 ## Git工作目錄:
->| 命令 |  說明 | |
+>| 命令 |  說明 |
 >| --- | --- | --- |
 >| git init | 初始化當前工作目錄(為該目錄設置Git) | |
 >| git add . | 將工作目內所有檔案置入暫存區(stage) | |
@@ -1616,7 +1616,7 @@
  
 
 ## Git遠端指令:
-> | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明 ||
+> | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明 |
 > | --- | --- | --- |
 > | git clone &#0034;URL&#0034;| 將該遠端儲存庫 `URL` 下載到當前工作目錄 | |
 > | git remote| 顯示所有遠端儲存庫版本 | |
@@ -1632,7 +1632,7 @@
 > | git fetch <branch_name> | 擷取遠端儲存庫的 `varname` 分支 | 
 
 ## Git標籤指令:
-> | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明 ||
+> | 命令˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰˰|  說明 |
 > | --- | --- | --- |
 > | git tag  &#0034;輕量標籤&#0034;| 為目前的版本添加 `輕量標籤` 作為標籤 | |
 > | git tag -am &#0034;標籤名稱&#0034; &#0034;註解xxx&#0034;| 為目前的版本添加 `標籤名稱` 並以 `註解xxx` 作為註解 | |
@@ -1927,17 +1927,3 @@ config/database.yml
 > λ git reset --hard HEAD@{0}
 > HEAD is now at d70266d Xtest Ver
 > ```
-
-
-
-## Gitlab 搬遷:
- 
-Gitlab方式先將舊專案 git 鏡像clone，在另外push。
- 
->  ```sass
->  git clone --mirror https://git.xxx1/old-poject.git
->  git remote rename origin old-poject
->  git remote add origin https://oauth2:PersonalAccessToken@xxx2/new-poject.git/
->  git push -u origin --all
->  git push -u origin --tags
->  ```

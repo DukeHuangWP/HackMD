@@ -1667,30 +1667,6 @@ ceate table TableName(
 ```
 
 
-## 備份使用mysqldump
-
-### 備份單一資料庫
-```bash=
-mysqldump -h hostname -u root -p database_name > backup.sql;
-# 備份資料庫中單一資料表
-mysqldump -u root -p database_name table_name > backup.sql;
-# 備份資料庫中多張資料表
-mysqldump -u root -p database_name table1 table2 > backup.sql;
-#備份多個資料庫
-mysqldump -u root -p --databases db1 db2 > backup.sql;
-#備份所有資料庫
-mysqldump -u root -p --all-databases > backup.sql;
-```
-### 指令範例-復原
-
-```bash=
-# 復原單一資料庫
-mysql -u root -p database_name < backup.sql
-# 復原多個資料庫
-mysql -u root -p < backup.sql
-```
-
-
 ## MySQL資料型別:
 
 https://html5-editor.net/
@@ -2482,31 +2458,9 @@ set autocommit = on;
 * DDL 指令：ALERT TABLE、CREATE INDEX、CREATE TABLE、DROP TABLE、DROP DATABASE、RENAME TABLE、TRUNCATE、LOCK TABLES、UNLOCK TABLES...等
 * SET AUTOCOMMIT=1、 BEGIN、START TRANSACTION
 
-### 事務隔離等級
-
-```sql
-SET session transaction isolation level Read Uncommitted
-SET session transaction isolation level Read Committed
-SET session transaction isolation level Repeatable Read
-SET session transaction isolation level Serializable
-
-SELECT @@tx_isolation
-```
-
-* 髒讀(Dirty Read): 其他使用者可以看到交易未commit的結果。
-* 不可重複讀(Non-Repeatable Read): 發起交易過程會可讀取到其他使用者已commit的結果,可能導致更新結果為非本次交易所期望的結果。
-* 幻讀(Phantom Read): 其他使用者無法看到交易未commit的結果。因此發起交易過程可能將其他使用者的交易結果覆蓋或是插入新行時回報錯誤。
-
-|事務隔離等級|特性|髒讀|不重複|幻讀|
-|-|-|-|-|-|
-|Read Uncommitted|最不實用|✓|✓|✓|
-|Read Committed|最常使用||✓|✓|
-|Repeatable Read|MySQL預設|||✓|
-|Serializable|最安全||||
 
 
-事務隔離等級參考網址：https://kknews.cc/news/l9qlyag.html
-## Redis 安裝/操作
+## Redis 安裝
 
 ```bash
 ##Ubuntu 安裝步驟
@@ -2566,6 +2520,7 @@ incrby key add key
 decrby key --
 ```
 
+## String 單鍵單值(無次序)
 
 
 ```
@@ -2623,176 +2578,4 @@ zrangebyscore key min max [WITHSCORES] [LIMIT offset count]
 zrevrangebyscore key min max [WITHSCORES] [LIMIT offset count]
 ```
 
-## MongoDB 安裝/操作
-https://www.runoob.com/mongodb/mongodb-osx-install.html
-
-#### ==db 操作==:
-```javascript
-db.createCollection(db名稱, db設定參數) //創建
-db.dropDatabase() //刪除目前使用的db
-use db名稱
-db //顯示現在使用db
-show dbs //顯示所有db以及所佔用空間
-show collection //顯示創建db
-```
-
-|db設定參數|值類型|預設值|說明|
-|-|-|-|-|
-|capped|bool|false|true時則創建固定大小的集合，超過數量時則自動覆蓋最早的文檔。|
-|size|bool|無|固定集合指定一個最大字節數|
-|max|bool|無|固定集合中包含文檔的最大數量|
-
-#### ==db 操作==:
-```javascript
-//假設以存在表user
-db.test.renameCollection(新名稱) //更名db
-db.test.drop() //刪除db
-db.test.count() //計算元素量
-```
-
-
-#### ==新增資料 insert==:
-```javascript
-//db.db名稱.insert(資料文檔)
-//db.db名稱.insertOne(資料文檔,insert參數);
-//db.db名稱.insertMany(資料文檔,insert參數);
-
-db.ColName.insert({"title": "MongoDB 教程", 
-    "description": "MongoDB 是一个 Nosql 数据库",
-    "tags": ["mongodb", "database", "NoSQL"],
-    "likes": 100
-});
-
-db.ColName.insertOne(
-   <document>,
-   {
-      writeConcern: <document>
-   }
-);
-
-db.ColName.insertMany(
-   [ {<document 1> }, <document 2>, ... ],
-   {
-      writeConcern: <document>,
-      ordered: <boolean>
-   }
-);
-```
-
-|insert參數|值類型|預設值|說明|
-|-|-|-|-|
-|writeConcern|int|1|https://docs.mongodb.com/manual/reference/write-concern/|
-|ordered|bool|false|是否案順序寫入,依順序寫入時預錯則拋出異常並中斷後續insert|
-
-#### ==查詢資料 find==:
-```javascript
-//db.db名稱.find(查詢文檔,顯示文檔);
-//db.db名稱.find(查詢文檔,顯示文檔).pretty(); //格式化顯示查詢結果
-
-//↓查詢KeyTest值為valueTest,並顯示keyTest全部之值
-db.ColName.find({"keyTest":"valueTest"}); 
-//↓查詢keyTest值為valueTest,只顯示keyTest1之值（不顯示_id）
-db.ColName.find({"keyTest":"valueTest"},{"keyTest1":true,"_id":false}); 
-//↓查詢keyTest1值為valueTest1 AND keyTest2值為valueTest2
-db.ColName.find({"keyTest1":"valueTest1", "keyTest2":"valueTest2"}); 
-//↓查詢keyTest1值為valueTest1 AND keyTest2值為valueTest2
-db.ColName.find({$or:[{"keyTest1":"valueTest1", "keyTest2":"valueTest2"}]}); 
-
-db.ColName.find(
-    {
-        "keyTest": "valueTest",
-        $or: [{"keyTest1": "valueTest1"},{"keyTest2": "valueTest2"}]
-    }
-); // (keyTest==valueTest) AND (keyTest1==valueTest1 OR keyTest2==valueTest2)
-
-```
-|*|查詢條件Condition**|格式說明**************************|範例|
-|-|-|-|-|
-|`=`|<key>等於<value>|{<key>:<value>}|`db.col.find({"Q":"V"})`|
-|`!=`|<key>不等<value>|{<key>:{$ne:<value>}}|`db.col.find({"ExQ":{$ne:50}})`|
-|`<`|<key>小於<value>|{<key>:{$le:<value>}}|`db.col.find({"ExQ":{$lt:50}})`|
-|`<=`|<key>小於等<value>|{<key>:{$lte:<value>}}|`db.col.find({"ExQ":{$lte:50}})`|
-|`>`|<key>大於<value>|{<key>:{$gt:<value>}}|`db.col.find({"ExQ":{$gt:50}})`|
-|`>=`|<key>大於等<value>|{<key>:{$gte:<value>}}|`db.col.find({"ExQ":{$gte:50}})`|
-|`包含`|<key>包含<value>|{<key>:/<value>/}|`db.col.find({"ExQ":/文字/})`|
-|`開頭`|<key>開頭<value>|{<key>:/^<value>/}|`db.col.find({"ExQ":/^文字/})`|
-|`結尾`|<key>結尾<value>|{<key>:/<value>$/}|`db.col.find({"ExQ":/文字$/})`|
-|`存在`|<key>存在<value>|{<key>:{$exists:<value>}}|`db.col.find({"ExQ":{$exists:"文字"}})`|
-|`存於`|<key>存在於<value>|{<key>:{$in:[<value>]}}|`db.col.find({"ExQ":{$in:["文字1","文字2"]})`|
-
-```javascript
-//db.db名稱.find(查詢文檔,顯示文檔).sort(排序文檔) //將查詢結果作排序
-//db.db名稱.find(查詢文檔,顯示文檔).limit(正整數) //將查詢結果依據排序限制顯示數量
-//db.db名稱.find(查詢文檔,顯示文檔).skip(正整數) //將查詢結果依據排序跳過前面數量
-
-//↓相當於keyTest1=valueTest1當中,找出排名keyTest1最小的一位
-db.ColName.find({"keyTest1":"valueTest1"}).sort({"keyTest1":-1}).limit(1); 
-//↓相當於keyTest1=valueTest1當中,找出排名keyTest1最大第4名～第10名
-db.ColName.find({"keyTest1":"valueTest1"}).sort({"keyTest1":1}).skip(3).limit(7); 
-```
-
-#### ==更新資料 update==:
-
-```javascript
-//db.db名稱.update(查詢文檔,更新文檔,update參數) //更新文檔將會把整個文件資料覆蓋
-//db.db名稱.update(查詢文檔,{$set:資料文檔},update參數) //set為更新或插入部分資料於文檔內
-//db.db名稱.update(查詢文檔,{$unset:資料文檔},update參數) //unset為部分資料刪除於文檔內
-//db.db名稱.update(查詢文檔,{$rename:更名文檔},update參數) //rename為將文檔內的key進行更名
-//db.db名稱.update(查詢文檔,{$inc:資料文檔},update參數) //inc為將文檔資料內數值相加
-//db.db名稱.update(查詢文檔,{$mul:資料文檔},update參數) //mul為將文檔資料內數值相乘
-//db.db名稱.update(查詢文檔,{$push:資料文檔},update參數) //push為將新元素添加到文檔資料
-//db.db名稱.update(查詢文檔,{$pull:資料文檔},update參數) //pull為將元素由文檔資料中刪除
-
-
-db.ColName.update(
-   <query>, //查詢文檔
-   <update>, //更新文檔
-   {
-     upsert: <boolean>,
-     multi: <boolean>,
-     writeConcern: <document>
-   }
-)
-```
-|update參數|值類型|預設值|說明|
-|-|-|-|-|
-|upsert|bool|false|不存在時是否進行insert|
-|multi|bool|false|是否更新全部<query>資料|
-|writeConcern|int|1|https://docs.mongodb.com/manual/reference/write-concern/|
-
-
-#### ==刪除資料 update==:
-```javascript
-//db.db名稱.remove(查詢文檔,刪除設定值)
-//db.db名稱.deleteOne({"keyTest":"valueTest"}) //刪除一個keyTest=valueTest的資料
-//db.db名稱.deleteMany({"keyTest":"valueTest"}) //刪除一個keyTest=valueTest的資料
-
-db.collection.remove(
-   <query>,
-   {
-     justOne: <boolean>,
-     writeConcern: <document>
-   }
-)
-```
-
-
-#### ==創建索引==:
-```javascript
-//db.db名稱.createIndex(查詢文檔, 索引設定值) //創建索引
-//db.db名稱.getIndexes() // 查詢索引設置
-//db.db名稱.dropIndex(查詢文檔) //刪除索引
-
-```
-|索引設定參數|值類型|預設值|說明|
-|-|-|-|-|
-|background|bool|false|建索引過程會阻塞其它數據庫操作，background可指定以後台方式創建索引|
-|unique|bool|false|建立的索引是否唯一|
-|name|string||索引的名稱。如果未指定，MongoDB的通過連線索引的欄位名和排序順序生成一個索引名稱。|
-|sparse|bool|false|對文件中不存在的欄位資料不啟用索引；|
-|expireAfterSeconds|integer||指定一個以秒為單位的數值，完成 TTL設定|
-|v|index||索引的版本號|
-|weights|document||索引權重值，數值在 1 到 99,999 之間，表示該索引相對於其他索引欄位的得分權重。|
-|default_language|string||對於文字索引，該引數決定了停用詞及詞幹和詞器的規則的列表。 預設為英語
-|language_override|string||對於文字索引，該引數指定了包含在文件中的欄位名，語言覆蓋預設的language，預設值為 language.
 
